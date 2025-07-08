@@ -1,0 +1,34 @@
+### Testar se o Piston API está online (listando runtimes)
+GET https://emkc.org/api/v2/piston/runtimes
+
+### Executar código C# (Mono 6.12.0) na Piston API
+POST https://emkc.org/api/v2/piston/execute
+Content-Type: application/json
+
+{
+  "language": "csharp",
+  "version": "6.12.0",
+  "files": [
+    {
+      "name": "Program.cs",
+      "content": "using System; class Program { static void Main() { int a = int.Parse(Console.ReadLine()); int b = int.Parse(Console.ReadLine()); Console.WriteLine(a + b); } }"
+    }
+  ],
+  "stdin": "3\n4"
+}
+
+### Perfil do Usuário em C#
+POST https://emkc.org/api/v2/piston/execute
+Content-Type: application/json
+
+{
+  "language": "csharp",
+  "version": "6.12.0",
+  "files": [
+    {
+      "name": "Program.cs",
+      "content": "using System;\n\nclass Program\n{\n    static void Main()\n    {\n        Console.WriteLine(\"Digite seu nome completo:\");\n        string nome = Console.ReadLine();\n\n        Console.WriteLine(\"Digite a cidade onde você mora:\");\n        string cidade = Console.ReadLine();\n\n        Console.WriteLine(\"Digite um lema ou frase pessoal:\");\n        string lema = Console.ReadLine();\n\n        Console.WriteLine(\"\\n--- Perfil do Usuário ---\");\n        Console.WriteLine($\"Nome: {nome}\");\n        Console.WriteLine($\"Cidade: {cidade}\");\n        Console.WriteLine($\"Lema: {lema}\");\n    }\n}"
+    }
+  ],
+  "stdin": "Ana Beatriz Silva\nCuritiba\nSempre em frente!"
+}

@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/bin/Debug/net9.0/VariaveisProvaApp
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/bin/Debug/net9.0/VariaveisProvaApp.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/bin/Debug/net9.0/VariaveisProvaApp.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/bin/Debug/net9.0/VariaveisProvaApp.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/bin/Debug/net9.0/VariaveisProvaApp.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/VariaveisProvaApp.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/VariaveisProvaApp.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/VariaveisProvaApp.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/VariaveisProvaApp.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/VariaveisProvaApp.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/VariaveisProvaApp.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/refint/VariaveisProvaApp.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/VariaveisProvaApp.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/VariaveisProvaApp.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/solucao_001/VariaveisProvaApp/obj/Debug/net9.0/ref/VariaveisProvaApp.dll
