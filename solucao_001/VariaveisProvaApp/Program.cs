@@ -5,15 +5,13 @@ class Program
     static void Main()
     {
         // Declaração e inicialização das variáveis
-        string nomeCompleto = "Ana Beatriz Silva";
-        int idade = 28;
-        char inicialNome = 'A';
-        double salario = 3850.50;
+        double precoProduto = 49.90;
+        int quantidadeComprada = 3;
 
-        // Exibição das informações no console
-        Console.WriteLine("Nome completo: " + nomeCompleto);
-        Console.WriteLine("Idade: " + idade);
-        Console.WriteLine("Inicial do nome: " + inicialNome);
-        Console.WriteLine("Salário: R$" + salario);
+        // Cálculo do valor total
+        double valorTotal = precoProduto * quantidadeComprada;
+
+        // Exibição do resultado no console
+        Console.WriteLine("Valor total da compra: R$" + valorTotal);
     }
 }
