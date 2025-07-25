@@ -4,10 +4,16 @@ class Program
 {
     static void Main()
     {
-        Console.Write("Digite seu nome: ");
-        string nome = Console.ReadLine();
+        // Declaração das variáveis
+        string primeiroNome = "Maria";
+        string sobrenome = "Silva";
 
-        // Exibe mensagem de boas-vindas usando interpolação de strings
-        Console.WriteLine($"Bem-vindo(a), {nome}!");
+        // Exibição com concatenação
+        Console.WriteLine("Usando concatenação:");
+        Console.WriteLine(primeiroNome + " " + sobrenome);
+
+        // Exibição com interpolação
+        Console.WriteLine("\nUsando interpolação:");
+        Console.WriteLine($"{primeiroNome} {sobrenome}");
     }
 }
