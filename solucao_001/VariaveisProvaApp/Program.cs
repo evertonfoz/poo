@@ -4,17 +4,11 @@ class Program
 {
     static void Main()
     {
-        // Declaração e inicialização das variáveis
-        string nomeCompleto = "Ana Carolina Silva";
-        int idade = 28;
-        char inicialDoNome = 'A';
-        double salario = 4500.75;
+        // Solicita o nome do usuário
+        Console.Write("Digite seu nome: ");
+        string nome = Console.ReadLine();
 
-        // Exibição das informações no console
-        Console.WriteLine("Informações da Pessoa:");
-        Console.WriteLine($"Nome completo: {nomeCompleto}");
-        Console.WriteLine($"Idade: {idade}");
-        Console.WriteLine($"Letra inicial do nome: {inicialDoNome}");
-        Console.WriteLine($"Salário: R$ {salario:F2}");
+        // Exibe mensagem de boas-vindas com interpolação de strings
+        Console.WriteLine($"Seja bem-vindo(a), {nome}!");
     }
 }
