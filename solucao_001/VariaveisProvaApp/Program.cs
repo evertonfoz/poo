@@ -1,29 +1,20 @@
-﻿using System;
+﻿// Programa: Informação de Produto (concatenação)
+using System;
 
 class Program
 {
     static void Main()
     {
-        // Nota de uma prova (ponto flutuante com precisão razoável)
-        float notaProva = 8.75f;
+        // Declaração das variáveis
+        string productName = "Teclado Mecânico";
+        int quantity = 25;
+        decimal unitPrice = 199.90m; // sufixo 'm' para literal decimal
+        bool isActive = true;
 
-        // Quantidade de alunos (número inteiro)
-        int quantidadeAlunos = 30;
-
-        // Nome de um curso (texto)
-        string nomeCurso = "Ciência da Computação";
-
-        // Status de pagamento (booleano: pago ou não pago)
-        bool pagamentoEfetuado = true;
-
-        // Dígito verificador (único caractere)
-        char digitoVerificador = '7';
-
-        // Exibindo no console
-        Console.WriteLine($"Nota da prova: {notaProva}");
-        Console.WriteLine($"Quantidade de alunos: {quantidadeAlunos}");
-        Console.WriteLine($"Nome do curso: {nomeCurso}");
-        Console.WriteLine($"Pagamento efetuado: {pagamentoEfetuado}");
-        Console.WriteLine($"Dígito verificador: {digitoVerificador}");
+        // Exibição no console usando concatenação
+        Console.WriteLine("Produto: " + productName);
+        Console.WriteLine("Quantidade: " + quantity);
+        Console.WriteLine("Preço unitário: R$ " + unitPrice);
+        Console.WriteLine("Ativo para venda: " + isActive);
     }
 }
