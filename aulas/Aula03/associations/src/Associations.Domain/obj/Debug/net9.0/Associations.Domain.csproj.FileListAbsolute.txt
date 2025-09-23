@@ -1,0 +1,12 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/bin/Debug/net9.0/Associations.Domain.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/bin/Debug/net9.0/Associations.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/bin/Debug/net9.0/Associations.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/Associations.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/Associations.Domain.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/Associations.Domain.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/Associations.Domain.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/Associations.Domain.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/Associations.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/refint/Associations.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/Associations.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.Domain/obj/Debug/net9.0/ref/Associations.Domain.dll
