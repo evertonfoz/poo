@@ -1,6 +1,6 @@
 using System;
 
-namespace Associations.Domain;
+namespace Associations.Domain.ValueObjects;
 
 public class Money
 {
