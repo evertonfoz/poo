@@ -1,0 +1,1486 @@
+<!--
+PROMPT ORIGINAL:
+Crie um *Mini-App de Classificação de Associações* em um único arquivo HTML.
+
+*Objetivo:* Permitir ao usuário selecionar um cenário para visualizar as pontuações em 5 critérios e a classificação final.
+
+*Funcionalidades:*
+1.  *Seletor de Cenários:* Um menu dropdown com os 10 cenários.
+2.  *Display:* Exibir a *Classificação Final* ("Associação" ou "Atributo") com cores de fundo distintas (verde/azul).
+3.  *Controle de Lista:* Um botão para *Ordenar* a lista de critérios por pontuação (maior para menor) e um botão para *Resetar* (voltar à ordem original).
+
+*Dados Obrigatórios:*
+
+O aplicativo deve usar exclusivamente os seguintes cenários, tipos e pontuações para os 5 critérios:
+
+| Cenário | Tipo | Identidade Própria | Regras Próprias | Ciclo de Vida Independente | Varia no Tempo | Histórico |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| Cor de Embalagem | Atributo | 1 | 2 | 1 | 3 | 1 |
+| Endereço de Entrega | Associação | 5 | 5 | 4 | 4 | 5 |
+| Estilo de Preparo | Associação | 4 | 4 | 3 | 3 | 2 |
+| Canal de Aquisição | Associação | 4 | 4 | 4 | 5 | 5 |
+| Nível de Risco | Associação | 3 | 5 | 4 | 5 | 5 |
+| Idioma Preferido | Atributo | 1 | 1 | 1 | 2 | 1 |
+| Plano de Manutenção | Associação | 5 | 5 | 5 | 4 | 5 |
+| Tipo de Entrega | Atributo | 1 | 1 | 1 | 1 | 1 |
+| Política de Devolução | Associação | 4 | 5 | 5 | 4 | 4 |
+| Certificado de Calibração | Associação | 5 | 4 | 5 | 4 | 5 |
+
+O estado inicial deve ser o cenário *'Endereço de Entrega'*.
+
+===== CRÉDITOS =====
+
+IMPLEMENTAÇÃO INICIAL:
+- Henrique Moresco
+- Douglas Antônio  
+- Kaique Vinícius
+
+Alunos da disciplina de Programação Orientada a Objetos do 2º Semestre de 2025,
+responsáveis pela implementação inicial da versão MVP conforme especificações do prompt original.
+
+EVOLUÇÃO E MELHORIAS AVANÇADAS:
+Implementadas por GitHub Copilot (Claude 3.5 Sonnet) em sessão colaborativa,
+expandindo significativamente as funcionalidades educacionais e a experiência do usuário.
+
+===== DOCUMENTAÇÃO EVOLUTIVA =====
+
+CONTEXTO E MOTIVAÇÃO PARA AS MELHORIAS:
+
+O aplicativo inicial atendia perfeitamente aos requisitos técnicos especificados, mas identificou-se que para um contexto educacional de programação orientada a objetos, havia oportunidades significativas de agregar valor pedagógico e melhorar a experiência do usuário. A análise dos dados revelou padrões interessantes que poderiam ser melhor explorados visualmente.
+
+PROCESSO DE ANÁLISE E SUGESTÕES:
+
+1. ANÁLISE DOS DADOS: Ao examinar as pontuações, ficou evidente que havia uma rica diversidade nos padrões de pontuação entre cenários, com alguns claramente se destacando como "Associações fortes" (pontuações altas) e outros como "Atributos típicos" (pontuações baixas). Isso sugeria que ferramentas de análise comparativa agregariam valor educacional.
+
+2. PERSPECTIVA PEDAGÓGICA: Para estudantes de POO, a capacidade de visualizar e comparar diferentes cenários side-by-side seria valiosa para compreender os nuances entre associações e atributos. A identificação de padrões e outliers também contribuiria para o aprendizado.
+
+3. EXPERIÊNCIA DO USUÁRIO: O aplicativo original, embora funcional, carecia de feedback visual sobre o contexto geral dos dados e navegação mais rica entre os cenários.
+
+IMPLEMENTAÇÕES REALIZADAS:
+
+🎯 MELHORIA 1 - INDICADOR DE PONTUAÇÃO TOTAL:
+Implementou-se um cálculo automático da soma das pontuações (máximo 25 pontos), fornecendo um indicador quantitativo imediato da "força" de classificação de cada cenário. Isso permite aos usuários compreenderem rapidamente se um cenário tem características muito marcantes ou sutis.
+
+👑 MELHORIA 2 - DESTAQUE DO CRITÉRIO DOMINANTE:
+Adicionou-se identificação visual (coroa e cores diferenciadas) para os critérios com pontuação máxima em cada cenário. Isso ajuda a identificar qual aspecto é mais determinante para a classificação de cada caso, facilitando a análise pedagógica.
+
+📊 MELHORIA 3 - VISUALIZAÇÃO EM GRÁFICO DE BARRAS:
+Implementou-se uma alternância entre visualização tabular e gráfica, com barras horizontais proporcionais às pontuações. Isso atende diferentes estilos de aprendizagem e torna mais intuitiva a comparação visual das intensidades dos critérios.
+
+🔍 MELHORIA 4 - FILTRO POR TIPO:
+Adicionou-se capacidade de filtrar cenários por tipo (Associação/Atributo), permitindo análise focada em cada categoria. Isso é especialmente útil para estudar padrões específicos de cada classificação.
+
+⚡ MELHORIA 5 - COMPARAÇÃO LADO A LADO:
+Criou-se um modal de comparação que permite análise simultânea de dois cenários, evidenciando diferenças e semelhanças. Esta funcionalidade é particularmente valiosa para casos limítrofes ou para demonstrar contrastes marcantes.
+
+📋 MELHORIA 6 - HISTÓRICO DE NAVEGAÇÃO:
+Implementou-se um sistema de histórico dos últimos 5 cenários visitados, facilitando a navegação entre casos de interesse e permitindo revisão rápida de análises anteriores.
+
+📈 MELHORIA 7 - PAINEL ESTATÍSTICO:
+Desenvolveu-se um dashboard com métricas agregadas: distribuição por tipos, cenários com maior/menor pontuação, e médias por critério. Isso fornece uma visão panorâmica dos dados e contexto para interpretação individual de cada cenário.
+
+🌙 MELHORIA 8 - TEMA ESCURO/CLARO:
+Adicionou-se alternância de temas com persistência local, melhorando conforto visual e acessibilidade para diferentes preferências e condições de uso.
+
+🎯 MELHORIA 9 - SISTEMA DE ONBOARDING INTERATIVO:
+
+MOTIVAÇÃO: Usuários acessando a ferramenta pela primeira vez não compreendem imediatamente seu propósito educacional nem como utilizar as funcionalidades avançadas implementadas. A complexidade crescente da interface, com 8 melhorias anteriores, criou a necessidade de um sistema de introdução guiada que garanta aproveitamento máximo da ferramenta sem sobrecarga cognitiva.
+
+IMPLEMENTAÇÃO: Tour interativo em 8 etapas sequenciais que explica progressivamente cada componente da interface e conceito fundamental. O sistema utiliza overlay semi-transparente com spotlight circular que destaca o elemento sendo explicado, tooltips posicionados dinamicamente, navegação anterior/próximo com indicadores de progresso (dots), e persistência local para evitar repetições desnecessárias. Inclui botão de ajuda (?) para reativação manual do tour e suporte a navegação por teclado (ESC para sair).
+
+SEQUÊNCIA EDUCACIONAL DO TOUR:
+1. Boas-vindas e contextualização do objetivo da ferramenta
+2. Explicação do seletor de cenários e conceito de classificação
+3. Apresentação do filtro por tipo e símbolos visuais (🟢🔵)
+4. Conceituação de Associação vs Atributo através da classificação final
+5. Interpretação da pontuação total como indicador de força classificatória
+6. Compreensão dos critérios individuais e sistema de destaque (👑)
+7. Apresentação das funcionalidades de análise avançada (comparação, gráficos)
+8. Finalização com recursos de personalização e navegação (estatísticas, tema, histórico)
+
+IMPACTO EDUCACIONAL: Reduz significativamente a curva de aprendizagem, garante compreensão adequada dos conceitos fundamentais de POO antes do uso prático, maximiza a utilização das funcionalidades analíticas disponíveis, e proporciona experiência de primeira utilização estruturada e pedagogicamente orientada. O sistema transforma o aplicativo de uma ferramenta técnica em uma experiência educacional completa e autoguiada.
+
+✨ MELHORIA 10 - CENÁRIOS PERSONALIZADOS:
+
+MOTIVAÇÃO: Para maximizar o valor educacional da ferramenta, identificou-se a necessidade de permitir que usuários (especialmente educadores e estudantes) possam criar e analisar seus próprios cenários além dos 10 exemplos pré-definidos. Isso permite exploração mais ampla dos conceitos de classificação e aplicação prática dos critérios aprendidos.
+
+IMPLEMENTAÇÃO: Sistema completo de criação de cenários customizados através de modal dedicado, onde o usuário define nome, tipo (Associação/Atributo) e pontuações para os 5 critérios. Os cenários criados são persistidos no localStorage, identificados visualmente com ✨, e integrados seamlessly com todas as funcionalidades existentes (filtros, comparação, estatísticas, visualizações). Correção também implementada no sistema de posicionamento do onboarding para melhor alinhamento visual com os elementos destacados.
+
+IMPACTO EDUCACIONAL: Permite aplicação prática imediata dos conceitos aprendidos, facilita exercícios personalizados por educadores, encoraja experimentação e descoberta ativa pelos estudantes, e expande infinitamente os casos de uso da ferramenta além dos exemplos iniciais.
+
+🤖 MELHORIA 11 - CLASSIFICAÇÃO AUTOMÁTICA INTELIGENTE:
+
+MOTIVAÇÃO: Durante o uso educacional, identificou-se que usuários frequentemente ficavam incertos sobre como classificar seus cenários personalizados, especialmente estudantes em processo de aprendizagem. A necessidade de um sistema que demonstrasse automaticamente a aplicação dos critérios de classificação tornou-se evidente.
+
+IMPLEMENTAÇÃO: Algoritmo de classificação automática baseado em análise dos dados de treinamento dos 10 cenários originais. O sistema classifica automaticamente como "Associação" se a pontuação total for >= 15 OU se 3 ou mais critérios tiverem pontuação >= 4, caso contrário classifica como "Atributo". Usuários podem optar por classificação automática (🤖) ou forçar uma classificação específica. Cenários auto-classificados são marcados visualmente com 🤖.
+
+ALGORITMO DE CLASSIFICAÇÃO:
+- Analisa pontuação total (máximo 25 pontos)
+- Conta critérios com pontuação alta (>= 4)
+- Aplica regras derivadas dos padrões dos dados originais
+- Fornece classificação consistente com exemplos de referência
+
+IMPACTO EDUCACIONAL: Demonstra automaticamente a aplicação prática dos critérios de classificação, reduz barreira de entrada para criação de cenários, permite validação imediata da compreensão dos conceitos, e serve como "professor virtual" mostrando como os critérios se traduzem em classificações.
+
+ARQUITETURA TÉCNICA:
+
+Manteve-se a premissa de arquivo único HTML, com JavaScript modular e CSS responsivo. A implementação priorizou performance, acessibilidade e manutenibilidade, utilizando padrões modernos sem dependências externas além do Tailwind CSS para estilização consistente.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-App de Classificação de Associações</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .dark {
+            color-scheme: dark;
+        }
+        .dark body {
+            background-color: #111827;
+        }
+        .dark .bg-white {
+            background-color: #1f2937 !important;
+        }
+        .dark .bg-gray-50 {
+            background-color: #374151 !important;
+        }
+        .dark .bg-gray-100 {
+            background-color: #4b5563 !important;
+        }
+        .dark .text-gray-700 {
+            color: #d1d5db !important;
+        }
+        .dark .text-gray-600 {
+            color: #d1d5db !important;
+        }
+        .dark .text-gray-800 {
+            color: #f3f4f6 !important;
+        }
+        .dark .border-gray-300 {
+            border-color: #4b5563 !important;
+        }
+        .dark .border-gray-200 {
+            border-color: #374151 !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-6 md:p-8 space-y-6">
+        
+        <!-- Cabeçalho -->
+        <div class="text-center">
+            <div class="flex justify-between items-start mb-4">
+                <div class="flex-1">
+                    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-gray-200">Classificador de Associações</h1>
+                    <p class="text-gray-500 dark:text-gray-400 mt-1">Selecione um cenário para ver a classificação e pontuações.</p>
+                </div>
+                <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-200">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <button id="help-button" class="ml-2 p-2 rounded-lg bg-indigo-100 hover:bg-indigo-200 dark:bg-indigo-800 dark:hover:bg-indigo-700 transition-colors duration-200 text-indigo-600 dark:text-indigo-300 font-bold">
+                    ?
+                </button>
+                <button id="about-button" class="ml-2 p-2 rounded-lg bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 transition-colors duration-200 text-gray-600 dark:text-gray-300 text-sm font-medium">
+                    Sobre
+                </button>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="flex flex-col sm:flex-row gap-4">
+            <div class="flex-grow">
+                <label for="scenario-select" class="block text-sm font-medium text-gray-700 mb-1">Cenário</label>
+                <div class="flex gap-2">
+                    <select id="scenario-select" class="flex-grow p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                        <!-- Opções serão inseridas via JS -->
+                    </select>
+                    <button id="add-scenario-button" class="px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200 font-medium text-sm">
+                        + Novo
+                    </button>
+                </div>
+            </div>
+            <div class="sm:w-48">
+                <label for="type-filter" class="block text-sm font-medium text-gray-700 mb-1">Filtro por Tipo</label>
+                <select id="type-filter" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition">
+                    <option value="todos">🔍 Todos</option>
+                    <option value="Associação">🟢 Associações</option>
+                    <option value="Atributo">🔵 Atributos</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Resultado da Classificação -->
+        <div class="text-center">
+            <h2 class="text-sm font-medium text-gray-600 mb-2">Classificação Final</h2>
+            <div id="classification-display" class="w-full p-4 rounded-lg text-white text-xl font-bold uppercase tracking-wider transition-colors duration-300">
+                <!-- Classificação será inserida via JS -->
+            </div>
+            <div class="mt-3">
+                <span class="text-sm text-gray-500">Pontuação Total: </span>
+                <span id="total-score" class="text-lg font-bold text-indigo-600">0</span>
+                <span class="text-sm text-gray-500">/25</span>
+                <button id="stats-button" class="ml-4 px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-xs font-medium text-gray-600 transition-colors duration-200">📊 Stats</button>
+            </div>
+        </div>
+
+        <!-- Modal de Estatísticas -->
+        <div id="stats-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+            <div class="bg-white rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">📈 Resumo Estatístico</h2>
+                        <button id="close-stats" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    <div id="stats-content">
+                        <!-- Conteúdo estatístico será inserido via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Lista de Critérios e Controles -->
+        <div>
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="text-lg font-semibold text-gray-700">Critérios e Pontuações</h3>
+                <div class="flex gap-2 flex-wrap">
+                    <button id="compare-button" class="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-all duration-200 text-sm font-medium shadow-sm">⚡ Comparar</button>
+                    <button id="toggle-view-button" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-all duration-200 text-sm font-medium shadow-sm">📊 Gráfico</button>
+                    <button id="sort-button" class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-all duration-200 text-sm font-medium shadow-sm">Ordenar</button>
+                    <button id="reset-button" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-all duration-200 text-sm font-medium">Resetar</button>
+                </div>
+            </div>
+            <div id="criteria-list" class="space-y-2">
+                <!-- Itens da lista serão inseridos via JS -->
+            </div>
+            <div id="criteria-chart" class="space-y-3 hidden">
+                <!-- Gráfico de barras será inserido via JS -->
+            </div>
+            
+            <!-- Histórico de Consultas -->
+            <div id="history-section" class="mt-4 hidden">
+                <h4 class="text-sm font-semibold text-gray-600 mb-2">📋 Histórico Recente</h4>
+                <div id="history-list" class="flex flex-wrap gap-2">
+                    <!-- Histórico será inserido via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Comparação -->
+        <div id="comparison-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+            <div class="bg-white rounded-xl shadow-xl w-full max-w-6xl max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800">🔍 Comparação de Cenários</h2>
+                        <button id="close-comparison" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cenário A</label>
+                            <select id="compare-scenario-a" class="w-full p-3 border border-gray-300 rounded-lg">
+                                <!-- Opções preenchidas via JS -->
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Cenário B</label>
+                            <select id="compare-scenario-b" class="w-full p-3 border border-gray-300 rounded-lg">
+                                <!-- Opções preenchidas via JS -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="comparison-content" class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Conteúdo da comparação será inserido via JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Sobre -->
+        <div id="about-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">📚 Sobre o Classificador de Associações</h2>
+                        <button id="close-about" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-2xl">&times;</button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Objetivo -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">🎯 Objetivo</h3>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                Ferramenta educacional interativa para ensino dos conceitos fundamentais de 
+                                <strong>Associação vs Atributo</strong> em Programação Orientada a Objetos, 
+                                permitindo análise visual e comparativa de diferentes cenários através de 5 critérios específicos.
+                            </p>
+                        </div>
+                        
+                        <!-- Créditos de Desenvolvimento -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">👥 Créditos de Desenvolvimento</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                                    <h4 class="font-semibold text-blue-800 dark:text-blue-300 mb-3 flex items-center">
+                                        🎯 <span class="ml-2">Implementação Inicial (MVP)</span>
+                                    </h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex items-center">
+                                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                                            <strong>Henrique Moresco</strong>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                                            <strong>Douglas Antônio</strong>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <span class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                                            <strong>Kaique Vinícius</strong>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-blue-100 dark:bg-blue-800/30 rounded text-xs text-blue-700 dark:text-blue-300">
+                                        <strong>Contexto:</strong> Alunos da disciplina de Programação Orientada a Objetos - 2º Semestre de 2025
+                                    </div>
+                                    <div class="mt-2 text-xs text-blue-600 dark:text-blue-400">
+                                        <strong>Contribuição:</strong> Versão MVP conforme especificações do prompt original
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                                    <h4 class="font-semibold text-purple-800 dark:text-purple-300 mb-3 flex items-center">
+                                        🚀 <span class="ml-2">Evolução e Melhorias</span>
+                                    </h4>
+                                    <div class="text-sm">
+                                        <div class="flex items-center mb-2">
+                                            <span class="w-2 h-2 bg-purple-500 rounded-full mr-2"></span>
+                                            <strong>GitHub Copilot (Claude 3.5 Sonnet)</strong>
+                                        </div>
+                                        <div class="space-y-1 text-xs ml-4">
+                                            <div>• 11 melhorias funcionais implementadas</div>
+                                            <div>• Sistema de onboarding interativo</div>
+                                            <div>• Classificação automática inteligente</div>
+                                            <div>• Comparação side-by-side</div>
+                                            <div>• Gráficos e visualizações</div>
+                                            <div>• Tema escuro/claro</div>
+                                            <div>• Cenários personalizados</div>
+                                        </div>
+                                    </div>
+                                    <div class="mt-3 p-2 bg-purple-100 dark:bg-purple-800/30 rounded text-xs text-purple-700 dark:text-purple-300">
+                                        <strong>Contribuição:</strong> Expansão de MVP simples para plataforma educacional completa
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Evolução -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">📈 Evolução da Ferramenta</h3>
+                            <div class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                                <div><strong>Versão Inicial:</strong> Classificador básico com 10 cenários pré-definidos</div>
+                                <div><strong>Versão Atual:</strong> Plataforma educacional interativa com recursos avançados</div>
+                                <div><strong>Impacto:</strong> Transformação de ferramenta técnica em experiência educacional completa</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Tecnologias -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">🛠️ Tecnologias</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 rounded text-xs">HTML5</span>
+                                <span class="px-2 py-1 bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 rounded text-xs">JavaScript ES6+</span>
+                                <span class="px-2 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded text-xs">Tailwind CSS</span>
+                                <span class="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded text-xs">Responsive Design</span>
+                                <span class="px-2 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded text-xs">LocalStorage API</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700 text-center">
+                        <p class="text-xs text-gray-500 dark:text-gray-400">
+                            Desenvolvido como projeto educacional colaborativo • 2025
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Novo Cenário -->
+        <div id="new-scenario-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 hidden z-50">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-xl w-full max-w-md">
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-200">✨ Criar Novo Cenário</h2>
+                        <button id="close-new-scenario" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 text-xl">&times;</button>
+                    </div>
+                    
+                    <form id="new-scenario-form" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Nome do Cenário</label>
+                            <input type="text" id="scenario-name" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" placeholder="Ex: Status do Pedido" required>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tipo</label>
+                            <select id="scenario-type" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100">
+                                <option value="">🤖 Classificação Automática</option>
+                                <option value="Associação">🟢 Forçar Associação</option>
+                                <option value="Atributo">🔵 Forçar Atributo</option>
+                            </select>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                                A classificação automática usa algoritmo baseado nas pontuações dos critérios
+                            </p>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Identidade Própria (1-5)</label>
+                                <input type="number" id="score-1" min="1" max="5" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Regras Próprias (1-5)</label>
+                                <input type="number" id="score-2" min="1" max="5" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Ciclo de Vida Independente (1-5)</label>
+                                <input type="number" id="score-3" min="1" max="5" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Varia no Tempo (1-5)</label>
+                                <input type="number" id="score-4" min="1" max="5" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Histórico (1-5)</label>
+                                <input type="number" id="score-5" min="1" max="5" class="w-full p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100" required>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-end gap-3 pt-4">
+                            <button type="button" id="cancel-new-scenario" class="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500 rounded-lg transition-colors duration-200">
+                                Cancelar
+                            </button>
+                            <button type="submit" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors duration-200">
+                                Criar Cenário
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sistema de Onboarding -->
+        <div id="onboarding-overlay" class="fixed inset-0 bg-black bg-opacity-75 z-[100] hidden">
+            <div id="onboarding-spotlight" class="absolute border-4 border-white shadow-2xl transition-all duration-500 pointer-events-none" style="border-radius: 12px;"></div>
+            
+            <div id="onboarding-tooltip" class="absolute bg-white dark:bg-gray-800 rounded-xl shadow-xl p-6 max-w-sm z-[101] transition-all duration-300">
+                <div class="flex items-start justify-between mb-4">
+                    <div class="flex items-center">
+                        <span id="onboarding-icon" class="text-2xl mr-3">🎯</span>
+                        <h3 id="onboarding-title" class="text-lg font-bold text-gray-800 dark:text-gray-200"></h3>
+                    </div>
+                    <button id="onboarding-skip" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 text-sm font-medium">Pular</button>
+                </div>
+                
+                <p id="onboarding-description" class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-4"></p>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex space-x-1">
+                        <div id="onboarding-dots" class="flex space-x-1">
+                            <!-- Dots serão inseridos via JS -->
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-2">
+                        <button id="onboarding-prev" class="px-3 py-1 text-sm bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 rounded-lg transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                            Anterior
+                        </button>
+                        <button id="onboarding-next" class="px-3 py-1 text-sm bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors duration-200">
+                            Próximo
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Seção de Créditos -->
+        <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div class="text-center">
+                <h4 class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">👥 Créditos</h4>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-gray-500 dark:text-gray-400">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-2 rounded border border-blue-200 dark:border-blue-800">
+                        <h5 class="font-semibold text-blue-800 dark:text-blue-300 mb-1 text-xs">🎯 Implementação Inicial (MVP)</h5>
+                        <div class="text-xs space-y-0.5">
+                            <div><strong>Henrique Moresco</strong> • <strong>Douglas Antônio</strong> • <strong>Kaique Vinícius</strong></div>
+                        </div>
+                        <div class="mt-1 text-blue-600 dark:text-blue-400 font-medium text-xs">
+                            Disciplina de POO - 2º Semestre 2025
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-2 rounded border border-purple-200 dark:border-purple-800">
+                        <h5 class="font-semibold text-purple-800 dark:text-purple-300 mb-1 text-xs">🚀 Evolução e Melhorias Avançadas</h5>
+                        <div class="text-purple-600 dark:text-purple-400 text-xs">
+                            <div><strong>GitHub Copilot</strong> (Claude 3.5 Sonnet)</div>
+                        </div>
+                        <div class="mt-1 text-xs">
+                            11 melhorias funcionais • Sistema de onboarding • Classificação automática • Experiência educacional completa
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-2 text-xs text-gray-400 dark:text-gray-500">
+                    Ferramenta educacional para ensino de conceitos de Programação Orientada a Objetos
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Dados Obrigatórios ---
+            const scenariosData = {
+                "Cor de Embalagem": { tipo: "Atributo", criterios: { "Identidade Própria": 1, "Regras Próprias": 2, "Ciclo de Vida Independente": 1, "Varia no Tempo": 3, "Histórico": 1 } },
+                "Endereço de Entrega": { tipo: "Associação", criterios: { "Identidade Própria": 5, "Regras Próprias": 5, "Ciclo de Vida Independente": 4, "Varia no Tempo": 4, "Histórico": 5 } },
+                "Estilo de Preparo": { tipo: "Associação", criterios: { "Identidade Própria": 4, "Regras Próprias": 4, "Ciclo de Vida Independente": 3, "Varia no Tempo": 3, "Histórico": 2 } },
+                "Canal de Aquisição": { tipo: "Associação", criterios: { "Identidade Própria": 4, "Regras Próprias": 4, "Ciclo de Vida Independente": 4, "Varia no Tempo": 5, "Histórico": 5 } },
+                "Nível de Risco": { tipo: "Associação", criterios: { "Identidade Própria": 3, "Regras Próprias": 5, "Ciclo de Vida Independente": 4, "Varia no Tempo": 5, "Histórico": 5 } },
+                "Idioma Preferido": { tipo: "Atributo", criterios: { "Identidade Própria": 1, "Regras Próprias": 1, "Ciclo de Vida Independente": 1, "Varia no Tempo": 2, "Histórico": 1 } },
+                "Plano de Manutenção": { tipo: "Associação", criterios: { "Identidade Própria": 5, "Regras Próprias": 5, "Ciclo de Vida Independente": 5, "Varia no Tempo": 4, "Histórico": 5 } },
+                "Tipo de Entrega": { tipo: "Atributo", criterios: { "Identidade Própria": 1, "Regras Próprias": 1, "Ciclo de Vida Independente": 1, "Varia no Tempo": 1, "Histórico": 1 } },
+                "Política de Devolução": { tipo: "Associação", criterios: { "Identidade Própria": 4, "Regras Próprias": 5, "Ciclo de Vida Independente": 5, "Varia no Tempo": 4, "Histórico": 4 } },
+                "Certificado de Calibração": { tipo: "Associação", criterios: { "Identidade Própria": 5, "Regras Próprias": 4, "Ciclo de Vida Independente": 5, "Varia no Tempo": 4, "Histórico": 5 } }
+            };
+            const originalCriteriaOrder = Object.keys(scenariosData["Endereço de Entrega"].criterios);
+            let isChartView = false;
+            let visitHistory = [];
+            let isDarkMode = false;
+            let currentOnboardingStep = 0;
+            let isOnboardingActive = false;
+
+            // --- Dados do Tour de Onboarding ---
+            const onboardingSteps = [
+                {
+                    target: 'body',
+                    icon: '🎯',
+                    title: 'Bem-vindo!',
+                    description: 'Esta ferramenta ajuda você a entender a diferença entre Associações e Atributos em Programação Orientada a Objetos. Vamos fazer um tour rápido!',
+                    position: 'center'
+                },
+                {
+                    target: '#scenario-select',
+                    icon: '📋',
+                    title: 'Seletor de Cenários',
+                    description: 'Aqui você escolhe qual cenário analisar. Cada cenário representa um elemento que pode ser classificado como Associação ou Atributo.',
+                    position: 'bottom'
+                },
+                {
+                    target: '#type-filter',
+                    icon: '🔍',
+                    title: 'Filtro por Tipo',
+                    description: 'Use este filtro para ver apenas Associações (🟢), apenas Atributos (🔵), ou todos os cenários juntos.',
+                    position: 'bottom'
+                },
+                {
+                    target: '#classification-display',
+                    icon: '🏷️',
+                    title: 'Classificação Final',
+                    description: 'Esta é a classificação do cenário: Verde para Associação (entidade independente) ou Azul para Atributo (característica simples).',
+                    position: 'bottom'
+                },
+                {
+                    target: '#total-score',
+                    icon: '📊',
+                    title: 'Pontuação Total',
+                    description: 'Mostra a soma das pontuações nos 5 critérios (máximo 25). Pontuações mais altas geralmente indicam Associações.',
+                    position: 'bottom'
+                },
+                {
+                    target: '#criteria-list',
+                    icon: '👑',
+                    title: 'Critérios e Destaque',
+                    description: 'Lista os 5 critérios com suas pontuações. O critério com maior pontuação recebe uma coroa 👑 e destaque amarelo.',
+                    position: 'top'
+                },
+                {
+                    target: '#compare-button',
+                    icon: '⚡',
+                    title: 'Funcionalidades Avançadas',
+                    description: 'Use estes botões para: Comparar cenários lado a lado, alternar para gráfico de barras, ordenar por pontuação, ou resetar a visualização.',
+                    position: 'top'
+                },
+                {
+                    target: '#stats-button',
+                    icon: '📈',
+                    title: 'Estatísticas e Personalização',
+                    description: 'Acesse estatísticas gerais dos dados, alterne entre tema claro/escuro, e veja seu histórico de consultas. Agora você está pronto para explorar!',
+                    position: 'top'
+                }
+            ];
+
+            // --- Elementos do DOM ---
+            const scenarioSelect = document.getElementById('scenario-select');
+            const typeFilter = document.getElementById('type-filter');
+            const classificationDisplay = document.getElementById('classification-display');
+            const totalScoreDisplay = document.getElementById('total-score');
+            const criteriaList = document.getElementById('criteria-list');
+            const criteriaChart = document.getElementById('criteria-chart');
+            const toggleViewButton = document.getElementById('toggle-view-button');
+            const compareButton = document.getElementById('compare-button');
+            const sortButton = document.getElementById('sort-button');
+            const resetButton = document.getElementById('reset-button');
+            const comparisonModal = document.getElementById('comparison-modal');
+            const closeComparison = document.getElementById('close-comparison');
+            const compareScenarioA = document.getElementById('compare-scenario-a');
+            const compareScenarioB = document.getElementById('compare-scenario-b');
+            const comparisonContent = document.getElementById('comparison-content');
+            const historySection = document.getElementById('history-section');
+            const historyList = document.getElementById('history-list');
+            const statsButton = document.getElementById('stats-button');
+            const statsModal = document.getElementById('stats-modal');
+            const closeStats = document.getElementById('close-stats');
+            const statsContent = document.getElementById('stats-content');
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            const helpButton = document.getElementById('help-button');
+            const onboardingOverlay = document.getElementById('onboarding-overlay');
+            const onboardingSpotlight = document.getElementById('onboarding-spotlight');
+            const onboardingTooltip = document.getElementById('onboarding-tooltip');
+            const onboardingIcon = document.getElementById('onboarding-icon');
+            const onboardingTitle = document.getElementById('onboarding-title');
+            const onboardingDescription = document.getElementById('onboarding-description');
+            const onboardingDots = document.getElementById('onboarding-dots');
+            const onboardingPrev = document.getElementById('onboarding-prev');
+            const onboardingNext = document.getElementById('onboarding-next');
+            const onboardingSkip = document.getElementById('onboarding-skip');
+            const addScenarioButton = document.getElementById('add-scenario-button');
+            const newScenarioModal = document.getElementById('new-scenario-modal');
+            const closeNewScenario = document.getElementById('close-new-scenario');
+            const cancelNewScenario = document.getElementById('cancel-new-scenario');
+            const newScenarioForm = document.getElementById('new-scenario-form');
+            const aboutButton = document.getElementById('about-button');
+            const aboutModal = document.getElementById('about-modal');
+            const closeAbout = document.getElementById('close-about');
+
+            // --- Funções ---
+
+            /**
+             * Popula a lista de critérios na tela.
+             * @param {string[]} criteriaOrder - A ordem dos nomes dos critérios a serem exibidos.
+             * @param {Object} criteriaScores - O objeto com as pontuações dos critérios.
+             */
+            function renderCriteria(criteriaOrder, criteriaScores) {
+                criteriaList.innerHTML = ''; // Limpa a lista atual
+                
+                // Encontra a maior pontuação para destacar
+                const maxScore = Math.max(...Object.values(criteriaScores));
+                
+                criteriaOrder.forEach(key => {
+                    const score = criteriaScores[key];
+                    const isHighest = score === maxScore;
+                    const item = document.createElement('div');
+                    item.className = `flex justify-between items-center p-3 rounded-lg border transition-all duration-200 ${
+                        isHighest ? 'bg-yellow-50 border-yellow-300 shadow-sm' : 'bg-gray-50 border-gray-200'
+                    }`;
+                    
+                    const nameSpan = document.createElement('span');
+                    nameSpan.className = `text-gray-700 ${isHighest ? 'font-semibold' : ''}`;
+                    nameSpan.textContent = key;
+                    if (isHighest) {
+                        const crown = document.createElement('span');
+                        crown.textContent = ' 👑';
+                        nameSpan.appendChild(crown);
+                    }
+
+                    const scoreSpan = document.createElement('span');
+                    scoreSpan.className = `font-bold text-lg ${isHighest ? 'text-yellow-600' : 'text-indigo-600'}`;
+                    scoreSpan.textContent = score;
+
+                    item.appendChild(nameSpan);
+                    item.appendChild(scoreSpan);
+                    criteriaList.appendChild(item);
+                });
+            }
+
+            /**
+             * Renderiza um gráfico de barras horizontais dos critérios.
+             * @param {string[]} criteriaOrder - A ordem dos nomes dos critérios.
+             * @param {Object} criteriaScores - O objeto com as pontuações dos critérios.
+             */
+            function renderChart(criteriaOrder, criteriaScores) {
+                criteriaChart.innerHTML = '';
+                const maxScore = Math.max(...Object.values(criteriaScores));
+                
+                criteriaOrder.forEach(key => {
+                    const score = criteriaScores[key];
+                    const percentage = (score / 5) * 100; // Máximo é 5
+                    const isHighest = score === maxScore;
+                    
+                    const container = document.createElement('div');
+                    container.className = 'space-y-1';
+                    
+                    const labelRow = document.createElement('div');
+                    labelRow.className = 'flex justify-between items-center';
+                    
+                    const label = document.createElement('span');
+                    label.className = `text-sm ${isHighest ? 'font-semibold text-yellow-700' : 'text-gray-700'}`;
+                    label.textContent = key + (isHighest ? ' 👑' : '');
+                    
+                    const scoreLabel = document.createElement('span');
+                    scoreLabel.className = `text-sm font-bold ${isHighest ? 'text-yellow-600' : 'text-indigo-600'}`;
+                    scoreLabel.textContent = score;
+                    
+                    labelRow.appendChild(label);
+                    labelRow.appendChild(scoreLabel);
+                    
+                    const barContainer = document.createElement('div');
+                    barContainer.className = 'w-full bg-gray-200 rounded-full h-3';
+                    
+                    const bar = document.createElement('div');
+                    bar.className = `h-3 rounded-full transition-all duration-500 ${
+                        isHighest ? 'bg-gradient-to-r from-yellow-400 to-yellow-600' : 'bg-gradient-to-r from-indigo-400 to-indigo-600'
+                    }`;
+                    bar.style.width = `${percentage}%`;
+                    
+                    barContainer.appendChild(bar);
+                    container.appendChild(labelRow);
+                    container.appendChild(barContainer);
+                    criteriaChart.appendChild(container);
+                });
+            }
+
+            /**
+             * Alterna entre visualização de lista e gráfico.
+             */
+            function toggleView() {
+                isChartView = !isChartView;
+                if (isChartView) {
+                    criteriaList.classList.add('hidden');
+                    criteriaChart.classList.remove('hidden');
+                    toggleViewButton.textContent = '📋 Lista';
+                } else {
+                    criteriaList.classList.remove('hidden');
+                    criteriaChart.classList.add('hidden');
+                    toggleViewButton.textContent = '📊 Gráfico';
+                }
+                
+                // Re-renderiza o conteúdo atual
+                const selectedScenarioName = scenarioSelect.value;
+                const scenario = scenariosData[selectedScenarioName];
+                if (scenario) {
+                    if (isChartView) {
+                        const currentOrder = sortButton.dataset.sorted === 'true' ? 
+                            Object.entries(scenario.criterios).sort(([, scoreA], [, scoreB]) => scoreB - scoreA).map(([name]) => name) :
+                            originalCriteriaOrder;
+                        renderChart(currentOrder, scenario.criterios);
+                    } else {
+                        const currentOrder = sortButton.dataset.sorted === 'true' ? 
+                            Object.entries(scenario.criterios).sort(([, scoreA], [, scoreB]) => scoreB - scoreA).map(([name]) => name) :
+                            originalCriteriaOrder;
+                        renderCriteria(currentOrder, scenario.criterios);
+                    }
+                }
+            }
+
+            /**
+             * Abre o modal de comparação.
+             */
+            function openComparison() {
+                // Popula os selects de comparação
+                [compareScenarioA, compareScenarioB].forEach(select => {
+                    select.innerHTML = '';
+                    Object.entries(scenariosData).forEach(([name, data]) => {
+                        const option = document.createElement('option');
+                        option.value = name;
+                        option.textContent = `${data.tipo === 'Associação' ? '🟢' : '🔵'} ${name}`;
+                        select.appendChild(option);
+                    });
+                });
+                
+                // Define valores padrão
+                const scenarios = Object.keys(scenariosData);
+                compareScenarioA.value = scenarios[0];
+                compareScenarioB.value = scenarios[1];
+                
+                updateComparison();
+                comparisonModal.classList.remove('hidden');
+            }
+
+            /**
+             * Atualiza o conteúdo da comparação.
+             */
+            function updateComparison() {
+                const scenarioA = scenariosData[compareScenarioA.value];
+                const scenarioB = scenariosData[compareScenarioB.value];
+                
+                if (!scenarioA || !scenarioB) return;
+                
+                const totalA = Object.values(scenarioA.criterios).reduce((sum, score) => sum + score, 0);
+                const totalB = Object.values(scenarioB.criterios).reduce((sum, score) => sum + score, 0);
+                
+                comparisonContent.innerHTML = `
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold mb-4">${compareScenarioA.value}</h3>
+                        <div class="text-center mb-4">
+                            <div class="p-3 rounded-lg text-white font-bold ${scenarioA.tipo === 'Associação' ? 'bg-green-600' : 'bg-blue-500'}">
+                                ${scenarioA.tipo.toUpperCase()}
+                            </div>
+                            <div class="mt-2 text-sm text-gray-600">
+                                Total: <span class="font-bold text-lg text-indigo-600">${totalA}</span>/25
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            ${Object.entries(scenarioA.criterios).map(([key, score]) => `
+                                <div class="flex justify-between items-center p-2 rounded ${score === Math.max(...Object.values(scenarioA.criterios)) ? 'bg-yellow-100' : 'bg-white'}">
+                                    <span class="text-sm">${key}</span>
+                                    <span class="font-bold ${score === Math.max(...Object.values(scenarioA.criterios)) ? 'text-yellow-600' : 'text-indigo-600'}">${score}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-6 rounded-lg">
+                        <h3 class="text-lg font-bold mb-4">${compareScenarioB.value}</h3>
+                        <div class="text-center mb-4">
+                            <div class="p-3 rounded-lg text-white font-bold ${scenarioB.tipo === 'Associação' ? 'bg-green-600' : 'bg-blue-500'}">
+                                ${scenarioB.tipo.toUpperCase()}
+                            </div>
+                            <div class="mt-2 text-sm text-gray-600">
+                                Total: <span class="font-bold text-lg text-indigo-600">${totalB}</span>/25
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            ${Object.entries(scenarioB.criterios).map(([key, score]) => `
+                                <div class="flex justify-between items-center p-2 rounded ${score === Math.max(...Object.values(scenarioB.criterios)) ? 'bg-yellow-100' : 'bg-white'}">
+                                    <span class="text-sm">${key}</span>
+                                    <span class="font-bold ${score === Math.max(...Object.values(scenarioB.criterios)) ? 'text-yellow-600' : 'text-indigo-600'}">${score}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            }
+
+            /**
+             * Atualiza toda a interface com base no cenário selecionado.
+             * @param {string} scenarioName - O nome do cenário a ser exibido.
+             */
+            function updateDisplay(scenarioName) {
+                const scenario = scenariosData[scenarioName];
+                if (!scenario) return;
+
+                // Atualiza o display de classificação
+                classificationDisplay.textContent = scenario.tipo;
+                if (scenario.tipo === 'Associação') {
+                    classificationDisplay.classList.remove('bg-blue-500');
+                    classificationDisplay.classList.add('bg-green-600');
+                } else {
+                    classificationDisplay.classList.remove('bg-green-600');
+                    classificationDisplay.classList.add('bg-blue-500');
+                }
+
+                // Calcula e exibe a pontuação total
+                const totalScore = Object.values(scenario.criterios).reduce((sum, score) => sum + score, 0);
+                totalScoreDisplay.textContent = totalScore;
+
+                // Renderiza a lista de critérios na ordem original
+                if (isChartView) {
+                    renderChart(originalCriteriaOrder, scenario.criterios);
+                } else {
+                    renderCriteria(originalCriteriaOrder, scenario.criterios);
+                }
+                
+                // Reset do estado de ordenação
+                sortButton.dataset.sorted = 'false';
+                
+                // Adiciona ao histórico
+                addToHistory(scenarioName);
+            }
+
+            /**
+             * Adiciona um cenário ao histórico de visitas.
+             * @param {string} scenarioName - Nome do cenário visitado.
+             */
+            function addToHistory(scenarioName) {
+                // Remove se já existe para mover para o topo
+                visitHistory = visitHistory.filter(item => item !== scenarioName);
+                // Adiciona no início
+                visitHistory.unshift(scenarioName);
+                // Mantém apenas os últimos 5
+                visitHistory = visitHistory.slice(0, 5);
+                
+                updateHistoryDisplay();
+            }
+
+            /**
+             * Atualiza a exibição do histórico.
+             */
+            function updateHistoryDisplay() {
+                if (visitHistory.length === 0) {
+                    historySection.classList.add('hidden');
+                    return;
+                }
+                
+                historySection.classList.remove('hidden');
+                historyList.innerHTML = '';
+                
+                visitHistory.forEach(scenarioName => {
+                    const scenario = scenariosData[scenarioName];
+                    if (!scenario) return;
+                    
+                    const button = document.createElement('button');
+                    button.className = 'px-3 py-1 bg-gray-100 hover:bg-gray-200 rounded-full text-xs font-medium text-gray-700 transition-colors duration-200';
+                    button.textContent = `${scenario.tipo === 'Associação' ? '🟢' : '🔵'} ${scenarioName}`;
+                    button.addEventListener('click', () => {
+                        scenarioSelect.value = scenarioName;
+                        updateDisplay(scenarioName);
+                    });
+                    
+                    historyList.appendChild(button);
+                });
+            }
+
+            /**
+             * Abre o modal de estatísticas.
+             */
+            function openStats() {
+                const associacoes = Object.entries(scenariosData).filter(([, data]) => data.tipo === 'Associação');
+                const atributos = Object.entries(scenariosData).filter(([, data]) => data.tipo === 'Atributo');
+                
+                // Calcula médias por critério
+                const criteriaAverages = {};
+                originalCriteriaOrder.forEach(criterio => {
+                    const scores = Object.values(scenariosData).map(scenario => scenario.criterios[criterio]);
+                    criteriaAverages[criterio] = (scores.reduce((sum, score) => sum + score, 0) / scores.length).toFixed(1);
+                });
+                
+                // Cenário com maior e menor pontuação total
+                const totals = Object.entries(scenariosData).map(([name, data]) => ({
+                    name,
+                    total: Object.values(data.criterios).reduce((sum, score) => sum + score, 0),
+                    tipo: data.tipo
+                }));
+                
+                const highest = totals.reduce((max, item) => item.total > max.total ? item : max);
+                const lowest = totals.reduce((min, item) => item.total < min.total ? item : min);
+                
+                statsContent.innerHTML = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                        <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                            <h3 class="font-semibold text-green-800 mb-2">🟢 Associações</h3>
+                            <div class="text-2xl font-bold text-green-600">${associacoes.length}</div>
+                            <div class="text-sm text-green-700">${((associacoes.length / Object.keys(scenariosData).length) * 100).toFixed(0)}% do total</div>
+                        </div>
+                        
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h3 class="font-semibold text-blue-800 mb-2">🔵 Atributos</h3>
+                            <div class="text-2xl font-bold text-blue-600">${atributos.length}</div>
+                            <div class="text-sm text-blue-700">${((atributos.length / Object.keys(scenariosData).length) * 100).toFixed(0)}% do total</div>
+                        </div>
+                        
+                        <div class="bg-purple-50 p-4 rounded-lg border-l-4 border-purple-500">
+                            <h3 class="font-semibold text-purple-800 mb-2">📊 Total Cenários</h3>
+                            <div class="text-2xl font-bold text-purple-600">${Object.keys(scenariosData).length}</div>
+                            <div class="text-sm text-purple-700">Disponíveis para análise</div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-yellow-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-yellow-800 mb-3">🏆 Maior Pontuação</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium">${highest.name}</span>
+                                <span class="px-2 py-1 rounded text-sm ${highest.tipo === 'Associação' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}">${highest.tipo}</span>
+                            </div>
+                            <div class="text-2xl font-bold text-yellow-600 mt-2">${highest.total}/25</div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="font-semibold text-gray-800 mb-3">📉 Menor Pontuação</h3>
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium">${lowest.name}</span>
+                                <span class="px-2 py-1 rounded text-sm ${lowest.tipo === 'Associação' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}">${lowest.tipo}</span>
+                            </div>
+                            <div class="text-2xl font-bold text-gray-600 mt-2">${lowest.total}/25</div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-indigo-50 p-4 rounded-lg">
+                        <h3 class="font-semibold text-indigo-800 mb-3">📈 Médias por Critério</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            ${Object.entries(criteriaAverages).map(([criterio, media]) => `
+                                <div class="bg-white p-3 rounded border">
+                                    <div class="text-sm text-gray-600">${criterio}</div>
+                                    <div class="text-lg font-bold text-indigo-600">${media}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                statsModal.classList.remove('hidden');
+            }
+
+            /**
+             * Alterna entre tema claro e escuro.
+             */
+            function toggleTheme() {
+                isDarkMode = !isDarkMode;
+                document.documentElement.classList.toggle('dark', isDarkMode);
+                themeIcon.textContent = isDarkMode ? '☀️' : '🌙';
+                localStorage.setItem('darkMode', isDarkMode);
+            }
+
+            /**
+             * Carrega a preferência de tema salva.
+             */
+            function loadTheme() {
+                const savedTheme = localStorage.getItem('darkMode');
+                if (savedTheme !== null) {
+                    isDarkMode = savedTheme === 'true';
+                    document.documentElement.classList.toggle('dark', isDarkMode);
+                    themeIcon.textContent = isDarkMode ? '☀️' : '🌙';
+                }
+            }
+
+            /**
+             * Inicia o tour de onboarding.
+             */
+            function startOnboarding() {
+                isOnboardingActive = true;
+                currentOnboardingStep = 0;
+                onboardingOverlay.classList.remove('hidden');
+                createOnboardingDots();
+                showOnboardingStep();
+            }
+
+            /**
+             * Finaliza o tour de onboarding.
+             */
+            function endOnboarding() {
+                isOnboardingActive = false;
+                onboardingOverlay.classList.add('hidden');
+                localStorage.setItem('onboardingCompleted', 'true');
+            }
+
+            /**
+             * Cria os dots indicadores de progresso.
+             */
+            function createOnboardingDots() {
+                onboardingDots.innerHTML = '';
+                onboardingSteps.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.className = `w-2 h-2 rounded-full transition-colors duration-200 ${
+                        index === currentOnboardingStep ? 'bg-indigo-600' : 'bg-gray-300'
+                    }`;
+                    onboardingDots.appendChild(dot);
+                });
+            }
+
+            /**
+             * Mostra o passo atual do onboarding.
+             */
+            function showOnboardingStep() {
+                const step = onboardingSteps[currentOnboardingStep];
+                if (!step) return;
+
+                // Atualiza conteúdo do tooltip
+                onboardingIcon.textContent = step.icon;
+                onboardingTitle.textContent = step.title;
+                onboardingDescription.textContent = step.description;
+
+                // Atualiza dots
+                createOnboardingDots();
+
+                // Atualiza botões
+                onboardingPrev.disabled = currentOnboardingStep === 0;
+                onboardingNext.textContent = currentOnboardingStep === onboardingSteps.length - 1 ? 'Finalizar' : 'Próximo';
+
+                // Aguarda um frame para garantir que elementos estão renderizados
+                requestAnimationFrame(() => {
+                    // Posiciona spotlight e tooltip
+                    if (step.target === 'body') {
+                        // Caso especial para boas-vindas - centraliza
+                        onboardingSpotlight.style.display = 'none';
+                        onboardingTooltip.style.top = '50%';
+                        onboardingTooltip.style.left = '50%';
+                        onboardingTooltip.style.transform = 'translate(-50%, -50%)';
+                    } else {
+                        // Posiciona baseado no elemento alvo
+                        const targetElement = document.querySelector(step.target);
+                        if (targetElement) {
+                            // Força o elemento a ficar visível primeiro
+                            targetElement.scrollIntoView({ 
+                                behavior: 'smooth', 
+                                block: 'center',
+                                inline: 'center'
+                            });
+
+                            // Aguarda o scroll completar
+                            setTimeout(() => {
+                                const rect = targetElement.getBoundingClientRect();
+                                
+                                // Configura spotlight - posição fixa relativa à viewport
+                                onboardingSpotlight.style.display = 'block';
+                                onboardingSpotlight.style.width = `${rect.width + 20}px`;
+                                onboardingSpotlight.style.height = `${rect.height + 20}px`;
+                                onboardingSpotlight.style.left = `${rect.left - 10}px`;
+                                onboardingSpotlight.style.top = `${rect.top - 10}px`;
+
+                                // Posiciona tooltip
+                                let tooltipTop, tooltipLeft, transform;
+                                const tooltipWidth = 320; // largura estimada do tooltip
+                                const tooltipHeight = 200; // altura estimada do tooltip
+                                
+                                if (step.position === 'bottom') {
+                                    tooltipTop = rect.bottom + 20;
+                                    tooltipLeft = rect.left + (rect.width / 2);
+                                    transform = 'translateX(-50%)';
+                                    
+                                    // Verifica se vai sair da tela na parte inferior
+                                    if (tooltipTop + tooltipHeight > window.innerHeight) {
+                                        tooltipTop = rect.top - tooltipHeight - 20;
+                                        transform = 'translateX(-50%)';
+                                    }
+                                } else if (step.position === 'top') {
+                                    tooltipTop = rect.top - tooltipHeight - 20;
+                                    tooltipLeft = rect.left + (rect.width / 2);
+                                    transform = 'translateX(-50%)';
+                                    
+                                    // Verifica se vai sair da tela na parte superior
+                                    if (tooltipTop < 0) {
+                                        tooltipTop = rect.bottom + 20;
+                                        transform = 'translateX(-50%)';
+                                    }
+                                } else {
+                                    tooltipTop = rect.top + (rect.height / 2);
+                                    tooltipLeft = rect.right + 20;
+                                    transform = 'translateY(-50%)';
+                                    
+                                    // Verifica se vai sair da tela na lateral direita
+                                    if (tooltipLeft + tooltipWidth > window.innerWidth) {
+                                        tooltipLeft = rect.left - tooltipWidth - 20;
+                                        transform = 'translateY(-50%)';
+                                    }
+                                }
+
+                                // Garante que tooltip não saia da tela
+                                if (tooltipLeft < 10) tooltipLeft = 10;
+                                if (tooltipLeft + tooltipWidth > window.innerWidth - 10) {
+                                    tooltipLeft = window.innerWidth - tooltipWidth - 10;
+                                }
+                                if (tooltipTop < 10) tooltipTop = 10;
+
+                                onboardingTooltip.style.top = `${tooltipTop}px`;
+                                onboardingTooltip.style.left = `${tooltipLeft}px`;
+                                onboardingTooltip.style.transform = transform;
+                            }, 300); // delay para o scroll completar
+                        }
+                    }
+                });
+            }
+
+            /**
+             * Avança para o próximo passo do onboarding.
+             */
+            function nextOnboardingStep() {
+                if (currentOnboardingStep < onboardingSteps.length - 1) {
+                    currentOnboardingStep++;
+                    showOnboardingStep();
+                } else {
+                    endOnboarding();
+                }
+            }
+
+            /**
+             * Volta para o passo anterior do onboarding.
+             */
+            function prevOnboardingStep() {
+                if (currentOnboardingStep > 0) {
+                    currentOnboardingStep--;
+                    showOnboardingStep();
+                }
+            }
+
+            /**
+             * Verifica se deve mostrar o onboarding automaticamente.
+             */
+            function checkAutoOnboarding() {
+                const completed = localStorage.getItem('onboardingCompleted');
+                if (!completed) {
+                    // Delay para garantir que a página carregou completamente
+                    setTimeout(startOnboarding, 1000);
+                }
+            }
+
+            /**
+             * Abre o modal de criação de novo cenário.
+             */
+            function openNewScenarioModal() {
+                newScenarioModal.classList.remove('hidden');
+            }
+
+            /**
+             * Fecha o modal de criação de novo cenário.
+             */
+            function closeNewScenarioModal() {
+                newScenarioModal.classList.add('hidden');
+                newScenarioForm.reset();
+            }
+
+            /**
+             * Adiciona um novo cenário personalizado.
+             */
+            function addCustomScenario(formData) {
+                const name = formData.get('name');
+                let type = formData.get('type');
+                const scores = {
+                    "Identidade Própria": parseInt(formData.get('score-1')),
+                    "Regras Próprias": parseInt(formData.get('score-2')),
+                    "Ciclo de Vida Independente": parseInt(formData.get('score-3')),
+                    "Varia no Tempo": parseInt(formData.get('score-4')),
+                    "Histórico": parseInt(formData.get('score-5'))
+                };
+
+                // Se tipo não foi especificado, usa classificação automática
+                if (!type) {
+                    type = autoClassifyScenario(scores);
+                }
+
+                // Adiciona ao objeto de dados
+                scenariosData[name] = {
+                    tipo: type,
+                    criterios: scores,
+                    custom: true,
+                    autoClassified: !formData.get('type') // marca se foi classificado automaticamente
+                };
+
+                // Salva cenários customizados no localStorage
+                saveCustomScenarios();
+
+                // Atualiza a interface
+                populateSelect(typeFilter.value);
+                scenarioSelect.value = name;
+                updateDisplay(name);
+                
+                closeNewScenarioModal();
+            }
+
+            /**
+             * Salva cenários customizados no localStorage.
+             */
+            function saveCustomScenarios() {
+                const customScenarios = {};
+                Object.entries(scenariosData).forEach(([name, data]) => {
+                    if (data.custom) {
+                        customScenarios[name] = data;
+                    }
+                });
+                localStorage.setItem('customScenarios', JSON.stringify(customScenarios));
+            }
+
+            /**
+             * Carrega cenários customizados do localStorage.
+             */
+            function loadCustomScenarios() {
+                const saved = localStorage.getItem('customScenarios');
+                if (saved) {
+                    const customScenarios = JSON.parse(saved);
+                    Object.assign(scenariosData, customScenarios);
+                }
+            }
+
+            /**
+             * Classifica automaticamente um cenário baseado nas pontuações.
+             * Algoritmo: Associação se pontuação total >= 15 OU se 3+ critérios >= 4
+             * @param {Object} scores - Pontuações dos critérios
+             * @returns {string} - "Associação" ou "Atributo"
+             */
+            function autoClassifyScenario(scores) {
+                const scoresArray = Object.values(scores);
+                const total = scoresArray.reduce((sum, score) => sum + score, 0);
+                const highScores = scoresArray.filter(score => score >= 4).length;
+                
+                // Algoritmo de classificação baseado nos dados de treinamento
+                if (total >= 15 || highScores >= 3) {
+                    return "Associação";
+                } else {
+                    return "Atributo";
+                }
+            }
+
+            /**
+             * Popula o menu dropdown com os cenários.
+             * @param {string} filterType - Tipo para filtrar ("todos", "Associação", "Atributo")
+             */
+            function populateSelect(filterType = 'todos') {
+                scenarioSelect.innerHTML = '';
+                const filteredScenarios = Object.entries(scenariosData).filter(([name, data]) => {
+                    return filterType === 'todos' || data.tipo === filterType;
+                });
+                
+                filteredScenarios.forEach(([name, data]) => {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    const prefix = data.tipo === 'Associação' ? '🟢' : '🔵';
+                    const customIndicator = data.custom ? ' ✨' : '';
+                    const autoIndicator = data.autoClassified ? ' 🤖' : '';
+                    option.textContent = `${prefix} ${name}${customIndicator}${autoIndicator}`;
+                    scenarioSelect.appendChild(option);
+                });
+                
+                // Se há cenários disponíveis, seleciona o primeiro
+                if (filteredScenarios.length > 0) {
+                    updateDisplay(filteredScenarios[0][0]);
+                }
+            }
+
+            // --- Event Listeners ---
+            scenarioSelect.addEventListener('change', (e) => {
+                updateDisplay(e.target.value);
+            });
+
+            typeFilter.addEventListener('change', (e) => {
+                populateSelect(e.target.value);
+            });
+
+            toggleViewButton.addEventListener('click', toggleView);
+
+            compareButton.addEventListener('click', openComparison);
+
+            closeComparison.addEventListener('click', () => {
+                comparisonModal.classList.add('hidden');
+            });
+
+            compareScenarioA.addEventListener('change', updateComparison);
+            compareScenarioB.addEventListener('change', updateComparison);
+
+            // Fechar modal clicando fora
+            comparisonModal.addEventListener('click', (e) => {
+                if (e.target === comparisonModal) {
+                    comparisonModal.classList.add('hidden');
+                }
+            });
+
+            statsButton.addEventListener('click', openStats);
+
+            closeStats.addEventListener('click', () => {
+                statsModal.classList.add('hidden');
+            });
+
+            // Fechar modal de stats clicando fora
+            statsModal.addEventListener('click', (e) => {
+                if (e.target === statsModal) {
+                    statsModal.classList.add('hidden');
+                }
+            });
+
+            themeToggle.addEventListener('click', toggleTheme);
+
+            helpButton.addEventListener('click', startOnboarding);
+
+            onboardingNext.addEventListener('click', nextOnboardingStep);
+            onboardingPrev.addEventListener('click', prevOnboardingStep);
+            onboardingSkip.addEventListener('click', endOnboarding);
+
+            // Fechar onboarding com ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && isOnboardingActive) {
+                    endOnboarding();
+                }
+            });
+
+            // Reposicionar onboarding ao redimensionar janela
+            window.addEventListener('resize', () => {
+                if (isOnboardingActive) {
+                    showOnboardingStep();
+                }
+            });
+
+            addScenarioButton.addEventListener('click', openNewScenarioModal);
+            closeNewScenario.addEventListener('click', closeNewScenarioModal);
+            cancelNewScenario.addEventListener('click', closeNewScenarioModal);
+
+            aboutButton.addEventListener('click', () => {
+                aboutModal.classList.remove('hidden');
+            });
+
+            closeAbout.addEventListener('click', () => {
+                aboutModal.classList.add('hidden');
+            });
+
+            // Fechar modais clicando fora
+            newScenarioModal.addEventListener('click', (e) => {
+                if (e.target === newScenarioModal) {
+                    closeNewScenarioModal();
+                }
+            });
+
+            aboutModal.addEventListener('click', (e) => {
+                if (e.target === aboutModal) {
+                    aboutModal.classList.add('hidden');
+                }
+            });
+
+            newScenarioForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const formData = new FormData(e.target);
+                
+                // Adiciona os campos manualmente pois os nomes são diferentes
+                formData.set('name', document.getElementById('scenario-name').value);
+                formData.set('type', document.getElementById('scenario-type').value);
+                formData.set('score-1', document.getElementById('score-1').value);
+                formData.set('score-2', document.getElementById('score-2').value);
+                formData.set('score-3', document.getElementById('score-3').value);
+                formData.set('score-4', document.getElementById('score-4').value);
+                formData.set('score-5', document.getElementById('score-5').value);
+                
+                addCustomScenario(formData);
+            });            sortButton.addEventListener('click', () => {
+                const selectedScenarioName = scenarioSelect.value;
+                const scenario = scenariosData[selectedScenarioName];
+                if (!scenario) return;
+
+                const sortedCriteria = Object.entries(scenario.criterios)
+                    .sort(([, scoreA], [, scoreB]) => scoreB - scoreA)
+                    .map(([name]) => name);
+                
+                if (isChartView) {
+                    renderChart(sortedCriteria, scenario.criterios);
+                } else {
+                    renderCriteria(sortedCriteria, scenario.criterios);
+                }
+                
+                sortButton.dataset.sorted = 'true';
+            });
+
+            resetButton.addEventListener('click', () => {
+                updateDisplay(scenarioSelect.value);
+            });
+
+            // --- Inicialização ---
+            function init() {
+                loadTheme();
+                loadCustomScenarios();
+                populateSelect('todos');
+                const initialState = 'Endereço de Entrega';
+                scenarioSelect.value = initialState;
+                updateDisplay(initialState);
+                checkAutoOnboarding();
+            }
+
+            init();
+        });
+    </script>
+</body>
+</html>

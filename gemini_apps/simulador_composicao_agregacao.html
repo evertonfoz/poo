@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulador Composição × Agregação</title>
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --text:#e6eef8;
+      --accent:#60a5fa; --danger:#fb7185; --ok:#34d399;
+      --muted:#9aa6b2;
+    }
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:linear-gradient(180deg,#061021,#071428); color:var(--text); margin:0;
+      padding:20px;
+    }
+    .app{
+      max-width:1100px;margin:0 auto;display:grid;grid-template-columns:360px 1fr;gap:18px;
+    }
+    .panel{
+      background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);
+      border:1px solid rgba(255,255,255,0.04);padding:16px;border-radius:12px;
+      box-shadow:0 6px 18px rgba(2,6,23,0.6);
+    }
+    h1{font-size:20px;margin:0 0 8px 0}
+    label{display:block;margin:8px 0 4px;color:var(--muted);font-size:13px}
+    select,input[type=text]{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);background:transparent;color:var(--text)}
+    .modes{display:flex;gap:8px;align-items:center;margin-top:6px}
+    .modes label{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;cursor:pointer
+    }
+    button{
+      padding:10px 12px;border-radius:10px;border:0;cursor:pointer;background:var(--accent);color:#04233a;font-weight:600
+    }
+    .btn-danger{background:var(--danger);color:#2b0210}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .svg-wrap{
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+      border-radius:12px;padding:12px; height:560px; display:flex; flex-direction:column;
+    }
+    #canvas{
+      flex:1;border-radius:8px;background:linear-gradient(180deg,#071428,#031021);display:block
+    }
+    .legend{font-size:13px;color:var(--muted);margin-top:8px}
+    .parts-list{
+      margin-top:12px;display:flex;flex-direction:column;gap:6px;max-height:200px;overflow:auto
+    }
+    .part-row{
+      display:flex;gap:8px;align-items:center;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px
+    }
+    .small{font-size:13px;color:var(--muted)}
+    .log{
+      height:140px;overflow:auto;background:rgba(0,0,0,0.24);border-radius:8px;padding:8px;margin-top:8px;font-family:monospace;font-size:13px
+    }
+    footer{grid-column:1/-1;margin-top:12px;display:flex;justify-content:space-between;gap:12px}
+    .badge{display:inline-block;padding:6px 8px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--muted);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="panel">
+      <h1>Simulador: Composição × Agregação</h1>
+      <div class="small">Use este simulador para testar dependência de vida entre "Todo" e "Partes".</div>
+
+      <label>Modo de simulação</label>
+      <div class="modes">
+        <label><input type="radio" name="mode" value="composition" checked> Composição</label>
+        <label><input type="radio" name="mode" value="aggregation"> Agregação</label>
+      </div>
+
+      <label>Exemplo</label>
+      <select id="exampleSelect">
+        <option value="tree">Árvore ↔ Folhas</option>
+        <option value="car">Carro ↔ Rodas</option>
+        <option value="playlist">Playlist ↔ Músicas</option>
+      </select>
+
+      <div style="display:flex;gap:8px;margin-top:10px">
+        <button id="btnNew">Criar Todo</button>
+        <button class="btn-ghost" id="btnReset">Reset</button>
+      </div>
+
+      <label>Adicionar / Remover Partes</label>
+      <div style="display:flex;gap:8px">
+        <input id="partName" type="text" placeholder="Nome da parte (ex.: Folha A)">
+        <button id="btnAdd">Adicionar</button>
+      </div>
+
+      <div class="parts-list" id="partsList" aria-live="polite"></div>
+
+      <div class="controls">
+        <button id="btnDeleteTodo" class="btn-danger">Apagar o Todo</button>
+        <button id="btnExportEvents" class="btn-ghost">Exportar eventos (JSON)</button>
+        <button id="btnExportState" class="btn-ghost">Exportar estado (JSON)</button>
+      </div>
+
+      <label>Log de eventos</label>
+      <div class="log" id="log"></div>
+    </div>
+
+    <div class="panel svg-wrap">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="badge" id="badgeMode">Modo: Composição</div>
+        <div class="small">Clique nas partes para selecioná-las. Linhas mostram associação.</div>
+      </div>
+      <svg id="canvas" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet"></svg>
+
+      <div class="legend">
+        <strong>Legenda:</strong>
+        <span style="margin-left:8px">🔴 Todo (existente)</span>
+        <span style="margin-left:8px">🟠 Parte (associada)</span>
+        <span style="margin-left:8px">⚪ Parte (órfã / desassociada)</span>
+      </div>
+    </div>
+
+    <footer style="grid-column:1/-1">
+      <div class="small">Simulador simples — exporta JSON. Use-o em debates para justificar composição vs agregação.</div>
+      <div style="display:flex;gap:8px">
+        <button id="btnClearLog" class="btn-ghost">Limpar log</button>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    /*
+      Simulador Composição x Agregação
+      - Client-side only
+    */
+
+    const svg = document.getElementById('canvas');
+    const partsList = document.getElementById('partsList');
+    const logEl = document.getElementById('log');
+    const badge = document.getElementById('badgeMode');
+
+    let state = {
+      mode: 'composition', // composition | aggregation
+      example: 'tree',
+      todo: null,   // { id, label, x, y }
+      parts: [],    // [{id, label, x, y, attachedTo: todoId|null }]
+      events: []    // log of actions
+    };
+
+    const EXAMPLES = {
+      tree: { todoLabel: 'Árvore', partLabelBase: 'Folha', defaultParts: ['Folha A','Folha B','Folha C','Folha D'] },
+      car:  { todoLabel: 'Carro',  partLabelBase: 'Roda',  defaultParts: ['Roda FL','Roda FR','Roda RL','Roda RR'] },
+      playlist: { todoLabel: 'Playlist', partLabelBase: 'Música', defaultParts: ['Música 1','Música 2','Música 3'] }
+    };
+
+    // utils
+    const uid = (p='id') => `${p}_${Math.random().toString(36).slice(2,9)}`;
+    const now = () => new Date().toISOString();
+    const log = (evt) => {
+      state.events.push({...evt, ts: now()});
+      const entry = document.createElement('div');
+      entry.textContent = `${evt.type}: ${evt.desc}`;
+      logEl.prepend(entry);
+    };
+
+    // SVG helpers
+    function clearSVG(){ while(svg.firstChild) svg.removeChild(svg.firstChild); }
+
+    function draw(){
+      clearSVG();
+      const W = svg.viewBox.baseVal.width || 800;
+      const H = svg.viewBox.baseVal.height || 500;
+      const cx = W/2, cy = 90;
+
+      // draw todo if exists
+      if(state.todo){
+        const todo = state.todo;
+        const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+        g.setAttribute('data-id', todo.id);
+        g.setAttribute('class','todo-group');
+        const r = document.createElementNS('http://www.w3.org/2000/svg','rect');
+        r.setAttribute('x', cx-90); r.setAttribute('y', 30);
+        r.setAttribute('width', 180); r.setAttribute('height', 60);
+        r.setAttribute('rx',12);
+        r.setAttribute('fill','#8b5cf6'); r.setAttribute('opacity',0.95);
+        const t = document.createElementNS('http://www.w3.org/2000/svg','text');
+        t.setAttribute('x', cx); t.setAttribute('y', 68);
+        t.setAttribute('text-anchor','middle'); t.setAttribute('fill','#041024');
+        t.setAttribute('font-size','16');
+        t.textContent = todo.label;
+        g.appendChild(r); g.appendChild(t);
+        svg.appendChild(g);
+      }
+
+      // layout parts around
+      const parts = state.parts;
+      const n = parts.length;
+      const radius = 160;
+      parts.forEach((p,i) => {
+        const angle = (i / Math.max(1,n)) * Math.PI * 2 - Math.PI/2;
+        const px = (svg.viewBox.baseVal.width || 800)/2 + Math.cos(angle)*radius;
+        const py = 270 + Math.sin(angle)*100;
+        p.x = px; p.y = py;
+      });
+
+      // lines
+      parts.forEach((p) => {
+        if(p.attachedTo && state.todo){
+          const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+          line.setAttribute('x1', (svg.viewBox.baseVal.width||800)/2);
+          line.setAttribute('y1', 60);
+          line.setAttribute('x2', p.x);
+          line.setAttribute('y2', p.y - 14);
+          line.setAttribute('stroke','#9ca3af');
+          line.setAttribute('stroke-width','1.6');
+          svg.appendChild(line);
+        }
+      });
+
+      // part nodes
+      parts.forEach((p) => {
+        const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+        g.setAttribute('transform', `translate(${p.x-60}, ${p.y-18})`);
+        g.setAttribute('data-id', p.id);
+        g.style.cursor = 'pointer';
+        const rect = document.createElementNS('http://www.w3.org/2000/svg','rect');
+        rect.setAttribute('width', 120); rect.setAttribute('height', 36); rect.setAttribute('rx',8);
+        const fill = p.attachedTo ? '#f59e0b' : '#cbd5e1';
+        rect.setAttribute('fill', fill);
+        rect.setAttribute('opacity', 0.95);
+        rect.setAttribute('stroke', '#0b1220');
+        const text = document.createElementNS('http://www.w3.org/2000/svg','text');
+        text.setAttribute('x', 60); text.setAttribute('y', 24);
+        text.setAttribute('text-anchor','middle'); text.setAttribute('font-size','13');
+        text.setAttribute('fill','#02121a');
+        text.textContent = p.label;
+        g.appendChild(rect); g.appendChild(text);
+        g.addEventListener('click', () => { flash(p.id); });
+        svg.appendChild(g);
+      });
+    }
+
+    function flash(id){
+      const el = document.querySelector(`[data-part="${id}"]`);
+      if(el){
+        el.style.boxShadow = '0 6px 18px rgba(99,102,241,0.28)';
+        setTimeout(()=>el.style.boxShadow='none',420);
+      }
+    }
+
+    // UI binding
+    document.getElementsByName('mode').forEach(r=>{
+      r.addEventListener('change', e=>{
+        state.mode = e.target.value;
+        badge.textContent = `Modo: ${state.mode === 'composition' ? 'Composição' : 'Agregação'}`;
+        log({type:'MODE', desc:`Modo alterado para ${state.mode}`});
+      });
+    });
+
+    document.getElementById('exampleSelect').addEventListener('change', e=>{
+      state.example = e.target.value;
+      log({type:'EXAMPLE', desc:`Exemplo selecionado ${state.example}`});
+    });
+
+    document.getElementById('btnNew').addEventListener('click', ()=>createTodoFromExample());
+    document.getElementById('btnReset').addEventListener('click', ()=>resetAll());
+    document.getElementById('btnAdd').addEventListener('click', ()=>{
+      const name = document.getElementById('partName').value.trim();
+      if(!name) return alert('Digite o nome da parte.');
+      addPart(name);
+      document.getElementById('partName').value = '';
+    });
+    document.getElementById('btnDeleteTodo').addEventListener('click', ()=> deleteTodoAction());
+    document.getElementById('btnExportEvents').addEventListener('click', ()=> exportEvents());
+    document.getElementById('btnExportState').addEventListener('click', ()=> exportState());
+    document.getElementById('btnClearLog').addEventListener('click', ()=>{
+      logEl.innerHTML=''; state.events=[];
+    });
+
+    // core actions
+    function createTodoFromExample(){
+      const ex = EXAMPLES[state.example];
+      createTodo(ex.todoLabel);
+      state.parts = [];
+      ex.defaultParts.forEach(p => addPart(p, true));
+      redrawList();
+      draw();
+      log({type:'CREATE_TODO', desc:`Criado todo "${ex.todoLabel}" com ${ex.defaultParts.length} partes`});
+    }
+
+    function createTodo(label){
+      state.todo = { id: uid('todo'), label };
+      state.parts.forEach(p=>p.attachedTo = state.todo.id);
+      draw();
+    }
+
+    function addPart(label, skipLog=false){
+      const p = { id: uid('part'), label, attachedTo: state.todo ? state.todo.id : null, x:0,y:0 };
+      state.parts.push(p);
+      if(!skipLog) log({type:'ADD_PART', desc:`Adicionada parte "${label}"`});
+      redrawList();
+      draw();
+    }
+
+    function removePart(partId){
+      const idx = state.parts.findIndex(p=>p.id===partId);
+      if(idx>=0){
+        const label = state.parts[idx].label;
+        state.parts.splice(idx,1);
+        log({type:'REMOVE_PART', desc:`Removida parte "${label}"`});
+        redrawList(); draw();
+      }
+    }
+
+    function deleteTodoAction(){
+      if(!state.todo) { alert('Não há todo criado'); return; }
+      const todoLabel = state.todo.label;
+      if(state.mode === 'composition'){
+        const removed = state.parts.filter(p => p.attachedTo === state.todo.id).map(p => p.label);
+        state.parts = state.parts.filter(p => p.attachedTo !== state.todo.id);
+        state.todo = null;
+        log({type:'APAGAR_TODO', desc:`Apagado todo "${todoLabel}" (Composição). Partes removidas: ${removed.join(', ') || '(nenhuma)'}`});
+      } else {
+        state.parts.forEach(p => { if(p.attachedTo === state.todo.id) p.attachedTo = null; });
+        state.todo = null;
+        log({type:'APAGAR_TODO', desc:`Apagado todo "${todoLabel}" (Agregação). Partes ficaram órfãs.`});
+      }
+      redrawList(); draw();
+    }
+
+    function resetAll(){
+      state = { mode: state.mode, example: state.example, todo: null, parts: [], events: [] };
+      logEl.innerHTML=''; draw(); redrawList();
+      log({type:'RESET', desc:'Estado reiniciado'});
+    }
+
+    // UI list redraw
+    function redrawList(){
+      partsList.innerHTML = '';
+      if(state.todo){
+        const d = document.createElement('div');
+        d.className = 'small';
+        d.textContent = `Todo: ${state.todo.label}`;
+        partsList.appendChild(d);
+      } else {
+        const d = document.createElement('div');
+        d.className = 'small';
+        d.textContent = `Todo: (nenhum)`;
+        partsList.appendChild(d);
+      }
+
+      state.parts.forEach(p=>{
+        const row = document.createElement('div');
+        row.className = 'part-row';
+        row.setAttribute('data-part', p.id);
+        const lbl = document.createElement('div');
+        lbl.style.flex='1';
+        lbl.innerHTML = `<strong style="display:block">${p.label}</strong><span class="small">${p.attachedTo? 'Associada' : 'Órfã'}</span>`;
+        const btnAttach = document.createElement('button');
+        btnAttach.className='btn-ghost';
+        btnAttach.textContent = p.attachedTo ? 'Desassociar' : 'Associar';
+        btnAttach.addEventListener('click', ()=>{
+          if(!state.todo){ alert('Crie um Todo primeiro para associar.'); return; }
+          if(p.attachedTo){
+            p.attachedTo = null;
+            log({type:'DESASSOCIAR_PARTE', desc:`Parte "${p.label}" desassociada`});
+          } else {
+            p.attachedTo = state.todo.id;
+            log({type:'ASSOCIAR_PARTE', desc:`Parte "${p.label}" associada ao todo "${state.todo.label}"`});
+          }
+          redrawList(); draw();
+        });
+        const btnDel = document.createElement('button');
+        btnDel.className='btn-danger';
+        btnDel.style.padding='6px 8px';
+        btnDel.textContent='Remover';
+        btnDel.addEventListener('click', ()=>{
+          if(confirm(`Remover parte "${p.label}"?`)) removePart(p.id);
+        });
+        row.appendChild(lbl); row.appendChild(btnAttach); row.appendChild(btnDel);
+        partsList.appendChild(row);
+      });
+    }
+
+    // export
+    function exportEvents(){
+      const data = { events: state.events, exportedAt: now(), mode: state.mode, example: state.example };
+      downloadJSON(data, `simulador_events_${state.example}_${now().replace(/[:.]/g,'-')}.json`);
+      log({type:'EXPORT', desc:'Eventos exportados'});
+    }
+    function exportState(){
+      const data = { state: structuredClone(state), exportedAt: now() };
+      downloadJSON(data, `simulador_state_${state.example}_${now().replace(/[:.]/g,'-')}.json`);
+      log({type:'EXPORT_STATE', desc:'Estado exportado'});
+    }
+    function downloadJSON(obj, filename){
+      const blob = new Blob([JSON.stringify(obj, null, 2)], {type:'application/json'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+      setTimeout(()=>{ URL.revokeObjectURL(url); a.remove(); }, 6000);
+    }
+
+    // initialize
+    createTodoFromExample();
+    draw();
+    redrawList();
+  </script>
+</body>
+</html>
