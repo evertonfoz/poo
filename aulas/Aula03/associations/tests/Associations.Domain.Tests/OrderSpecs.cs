@@ -34,9 +34,9 @@ public class OrderSpecs
         var quantidadeParaDecrementar = 10.0; // Maior que a quantidade atual
 
         // Act & Assert
-        var exception = Assert.Throws<InvalidOperationException>(() => 
+        var exception = Assert.Throws<InvalidOperationException>(() =>
             orderItem.Decrease(quantidadeParaDecrementar));
-        
+
         Assert.Equal("10 é superior ao que existe em estoque", exception.Message);
     }
 
@@ -56,4 +56,5 @@ public class OrderSpecs
         // Assert
         Assert.Equal(300.00m, order.Total.Value);
     }
+
 }
