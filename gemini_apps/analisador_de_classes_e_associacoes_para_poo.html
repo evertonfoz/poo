@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Associações OO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .highlight-class { background-color: #dbeafe; color: #1e40af; padding: 2px 4px; border-radius: 4px; }
+        .highlight-association { background-color: #d1fae5; color: #065f46; padding: 2px 4px; border-radius: 4px; }
+        .chip { cursor: grab; }
+        .chip:active { cursor: grabbing; }
+        .drop-zone { border: 2px dashed #9ca3af; }
+        .drop-zone.over { border-color: #2563eb; background-color: #eff6ff; }
+        .canvas-container {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+    <div class="max-w-7xl mx-auto">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-gray-800">Detector de Associações</h1>
+            <p class="mt-2 text-lg text-gray-600">Analise narrativas, identifique classes e visualize seus relacionamentos.</p>
+        </header>
+
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Coluna de Entrada e Análise -->
+            <div class="flex flex-col gap-6 bg-white p-6 rounded-lg shadow-md">
+                <!-- 01: Entrada de Dados -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-2">1. Insira a História</h2>
+                    <textarea id="storyInput" class="w-full h-48 p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="Ex: Um pet shop agenda banhos e tosas para tutores e entrega senhas de atendimento."></textarea>
+                    <button id="analyzeButton" class="mt-3 w-full bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition flex items-center justify-center">
+                        <svg id="analyzeIcon" class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <svg id="loadingSpinner" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Analisar com Gemini
+                    </button>
+                </div>
+
+                <!-- 02: Análise Textual -->
+                <div id="analysisSection" class="hidden">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-2">2. Análise Textual</h2>
+                    <div id="highlightedText" class="p-4 border rounded-md bg-gray-50 text-gray-800 leading-relaxed"></div>
+                </div>
+
+                <!-- 03: Montagem Visual -->
+                <div id="assemblySection" class="hidden">
+                    <h2 class="text-xl font-semibold text-gray-700 mb-2">3. Monte as Associações</h2>
+                    <div class="mb-4">
+                        <h3 class="font-medium text-gray-600 mb-2">Banco de Classes (arraste para montar)</h3>
+                        <div id="classChips" class="flex flex-wrap gap-2 p-3 bg-gray-100 rounded-md">
+                            <!-- Chips serão inseridos aqui -->
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-5 items-center gap-2 p-4 bg-gray-50 rounded-lg border">
+                        <div id="dropZoneA" class="drop-zone h-16 w-full flex items-center justify-center rounded-md text-gray-500">Classe A</div>
+                        <div class="text-center text-2xl text-gray-400">↔</div>
+                        <input type="text" id="associationInput" class="col-span-1 h-12 text-center border border-gray-300 rounded-md" placeholder="associação">
+                        <div class="text-center text-2xl text-gray-400">↔</div>
+                        <div id="dropZoneB" class="drop-zone h-16 w-full flex items-center justify-center rounded-md text-gray-500">Classe B</div>
+                    </div>
+                    <button id="createAssociationButton" class="mt-3 w-full bg-green-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition">Criar Associação</button>
+                </div>
+            </div>
+
+            <!-- Coluna de Visualização e Exportação -->
+            <div class="flex flex-col gap-6 bg-white p-6 rounded-lg shadow-md">
+                <!-- 04: Visualização -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-2">4. Diagrama de Classes</h2>
+                    <div class="canvas-container w-full aspect-square">
+                        <canvas id="graphCanvas"></canvas>
+                    </div>
+                     <button id="resetDiagram" class="mt-3 w-full bg-gray-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-600 transition">Resetar Diagrama</button>
+                </div>
+
+                <!-- 05: Exportação -->
+                <div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-2">5. Exportar</h2>
+                    <div class="flex gap-4">
+                        <button id="exportPngButton" class="flex-1 bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-indigo-700 transition">Exportar PNG</button>
+                        <button id="exportJsonButton" class="flex-1 bg-purple-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-purple-700 transition">Exportar JSON</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // --- ELEMENTOS DO DOM ---
+        const storyInput = document.getElementById('storyInput');
+        const analyzeButton = document.getElementById('analyzeButton');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const analyzeIcon = document.getElementById('analyzeIcon');
+        
+        const analysisSection = document.getElementById('analysisSection');
+        const highlightedText = document.getElementById('highlightedText');
+        
+        const assemblySection = document.getElementById('assemblySection');
+        const classChips = document.getElementById('classChips');
+        const dropZoneA = document.getElementById('dropZoneA');
+        const dropZoneB = document.getElementById('dropZoneB');
+        const associationInput = document.getElementById('associationInput');
+        const createAssociationButton = document.getElementById('createAssociationButton');
+        const resetDiagram = document.getElementById('resetDiagram');
+
+        const graphCanvas = document.getElementById('graphCanvas');
+        const exportPngButton = document.getElementById('exportPngButton');
+        const exportJsonButton = document.getElementById('exportJsonButton');
+        const ctx = graphCanvas.getContext('2d');
+
+        // --- ESTADO DA APLICAÇÃO ---
+        let model = {
+            classes: [],
+            associations: []
+        };
+        let nodes = {}; // Para posições no canvas
+
+        // --- LÓGICA DA API GEMINI ---
+        async function callGemini(text) {
+            const apiKey = ""; // Deixe em branco, será tratado pelo ambiente de execução
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            const systemPrompt = `Você é um assistente de análise de texto. Sua única tarefa é extrair todos os substantivos e todos os verbos/preposições da história fornecida. Seja o mais literal possível. Não generalize, não abastraia e não infira conceitos que não estão explicitamente escritos.
+1.  Para a chave 'classes', liste todos os substantivos encontrados no texto. Mantenha-os como aparecem na frase.
+2.  Para a chave 'associations', liste todos os verbos e preposições.
+3.  Responda APENAS com o objeto JSON.`;
+
+            const payload = {
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+                contents: [{ parts: [{ text: `Analise a história: "${text}"` }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            classes: {
+                                type: "ARRAY",
+                                items: { type: "STRING" },
+                                description: "Lista de todos os substantivos encontrados literalmente no texto."
+                            },
+                            associations: {
+                                type: "ARRAY",
+                                items: { type: "STRING" },
+                                description: "Lista de todos os verbos e preposições encontrados literalmente no texto."
+                            }
+                        },
+                        required: ["classes", "associations"]
+                    }
+                }
+            };
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Erro na API: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                const jsonText = result.candidates[0].content.parts[0].text;
+                return JSON.parse(jsonText);
+
+            } catch (error) {
+                console.error("Falha ao chamar a API Gemini:", error);
+                alert("Ocorreu um erro ao analisar o texto. Verifique o console para mais detalhes.");
+                return null;
+            }
+        }
+
+        analyzeButton.addEventListener('click', async () => {
+            const text = storyInput.value.trim();
+            if (!text) {
+                alert("Por favor, insira uma história para analisar.");
+                return;
+            }
+
+            loadingSpinner.classList.remove('hidden');
+            analyzeIcon.classList.add('hidden');
+            analyzeButton.disabled = true;
+
+            const analysisResult = await callGemini(text);
+
+            loadingSpinner.classList.add('hidden');
+            analyzeIcon.classList.remove('hidden');
+            analyzeButton.disabled = false;
+
+            if (analysisResult) {
+                updateUIWithAnalysis(text, analysisResult);
+            }
+        });
+
+        function updateUIWithAnalysis(originalText, analysis) {
+            // 1. Highlight text
+            let textHtml = originalText;
+            analysis.classes.forEach(c => {
+                const regex = new RegExp(`\\b${c}\\b`, 'gi');
+                textHtml = textHtml.replace(regex, `<strong class="highlight-class">${c}</strong>`);
+            });
+            analysis.associations.forEach(a => {
+                const regex = new RegExp(`\\b${a}\\b`, 'gi');
+                textHtml = textHtml.replace(regex, `<em class="highlight-association">${a}</em>`);
+            });
+            highlightedText.innerHTML = textHtml;
+            analysisSection.classList.remove('hidden');
+
+            // 2. Create class chips
+            model.classes = [...new Set(analysis.classes)]; // Remove duplicatas
+            classChips.innerHTML = '';
+            model.classes.forEach(className => {
+                const chip = document.createElement('div');
+                chip.className = 'chip bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full shadow-sm';
+                chip.textContent = className;
+                chip.draggable = true;
+                chip.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', className);
+                });
+                classChips.appendChild(chip);
+            });
+            assemblySection.classList.remove('hidden');
+            
+            // 3. Reset and draw initial nodes
+            model.associations = [];
+            drawGraph();
+        }
+
+        // --- LÓGICA DE DRAG & DROP ---
+        [dropZoneA, dropZoneB].forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('over');
+            });
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('over');
+            });
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('over');
+                const className = e.dataTransfer.getData('text/plain');
+                zone.textContent = className;
+                zone.dataset.className = className;
+            });
+        });
+
+        // --- LÓGICA DE CRIAÇÃO DE ASSOCIAÇÃO ---
+        createAssociationButton.addEventListener('click', () => {
+            const classA = dropZoneA.dataset.className;
+            const classB = dropZoneB.dataset.className;
+            const association = associationInput.value.trim();
+
+            if (!classA || classA === 'Classe A' || !classB || classB === 'Classe B' || !association) {
+                alert("Por favor, arraste duas classes e defina a associação.");
+                return;
+            }
+
+            model.associations.push({ source: classA, target: classB, label: association });
+            
+            // Limpar para a próxima
+            dropZoneA.textContent = 'Classe A';
+            dropZoneB.textContent = 'Classe B';
+            delete dropZoneA.dataset.className;
+            delete dropZoneB.dataset.className;
+            associationInput.value = '';
+
+            drawGraph();
+        });
+
+        // --- LÓGICA DO CANVAS ---
+        function resizeCanvas() {
+            const container = graphCanvas.parentElement;
+            graphCanvas.width = container.clientWidth;
+            graphCanvas.height = container.clientHeight;
+            drawGraph();
+        }
+
+        function drawGraph() {
+            if (!ctx) return;
+            const width = graphCanvas.width;
+            const height = graphCanvas.height;
+            ctx.clearRect(0, 0, width, height);
+
+            // Se não há classes, não há o que desenhar
+            if (model.classes.length === 0) {
+                 ctx.fillStyle = '#6b7280';
+                 ctx.font = '16px Inter';
+                 ctx.textAlign = 'center';
+                 ctx.fillText('O diagrama aparecerá aqui.', width / 2, height / 2);
+                 return;
+            }
+
+            // Inicializar posições dos nós se não existirem
+            const radius = Math.min(width, height) / (model.classes.length * 2);
+            const nodeRadius = Math.max(30, width / 20);
+
+            model.classes.forEach((className, i) => {
+                if (!nodes[className]) {
+                    const angle = (i / model.classes.length) * 2 * Math.PI;
+                    nodes[className] = {
+                        x: width / 2 + (width/2 - nodeRadius * 2) * Math.cos(angle),
+                        y: height / 2 + (height/2 - nodeRadius * 2) * Math.sin(angle)
+                    };
+                }
+            });
+
+            // Desenhar associações (arestas)
+            ctx.strokeStyle = '#6b7280';
+            ctx.lineWidth = 2;
+            model.associations.forEach(assoc => {
+                const start = nodes[assoc.source];
+                const end = nodes[assoc.target];
+                if (start && end) {
+                    ctx.beginPath();
+                    ctx.moveTo(start.x, start.y);
+                    ctx.lineTo(end.x, end.y);
+                    ctx.stroke();
+
+                    // Label da associação
+                    const midX = (start.x + end.x) / 2;
+                    const midY = (start.y + end.y) / 2;
+                    ctx.fillStyle = '#1e3a8a';
+                    ctx.font = '14px Inter';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'bottom';
+                    ctx.fillText(assoc.label, midX, midY - 5);
+                }
+            });
+            
+            // Desenhar classes (nós)
+            Object.keys(nodes).forEach(className => {
+                const node = nodes[className];
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, nodeRadius, 0, 2 * Math.PI);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fill();
+                ctx.strokeStyle = '#1d4ed8';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+                
+                ctx.fillStyle = 'white';
+                ctx.font = 'bold 14px Inter';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(className, node.x, node.y);
+            });
+        }
+        
+        resetDiagram.addEventListener('click', () => {
+            model.associations = [];
+            drawGraph();
+        });
+
+        // --- LÓGICA DE EXPORTAÇÃO ---
+        exportPngButton.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'diagrama-de-classes.png';
+            link.href = graphCanvas.toDataURL('image/png');
+            link.click();
+        });
+
+        exportJsonButton.addEventListener('click', () => {
+            const dataStr = JSON.stringify(model, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.download = 'modelo-de-classes.json';
+            link.href = url;
+            link.click();
+            URL.revokeObjectURL(url);
+        });
+
+        // --- INICIALIZAÇÃO ---
+        window.addEventListener('resize', resizeCanvas);
+        // Chamar uma vez para definir o tamanho inicial
+        setTimeout(resizeCanvas, 100);
+    </script>
+</body>
+</html>
+
+
