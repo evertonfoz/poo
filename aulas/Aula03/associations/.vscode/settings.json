@@ -1,0 +1,6 @@
+{
+  "editor.codeLens": true,
+  "gitlens.codeLens.enabled": true,
+  "dotnet.codeLens.enableReferencesCodeLens": true,
+  "dotnet.codeLens.enableTestsCodeLens": true
+}
