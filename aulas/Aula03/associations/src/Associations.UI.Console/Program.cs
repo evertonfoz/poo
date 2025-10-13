@@ -1,4 +1,5 @@
-﻿using Associations.Domain.Order;
+﻿using Associations.Domain.DepartmentAggregate;
+using Associations.Domain.Order;
 using Associations.Domain.ValueObjects;
 
 #region Previous Examples - Order and OrderItem
@@ -164,66 +165,87 @@ Console.WriteLine($"After setting description: {headphone.Category}");
 
 #region Product Example - ProductCode ([DisallowNull]) and Notes ([AllowNull])
 
-Console.WriteLine("=== Example 1: [DisallowNull] - ProductCode never returns null ===");
-var laptop = new Product.Product("Laptop");
-Console.WriteLine($"Product: {laptop.Name}");
-Console.WriteLine($"Initial ProductCode: '{laptop.ProductCode}' (is empty: {laptop.ProductCode == string.Empty})");
-Console.WriteLine($"ProductCode is null? {laptop.ProductCode == null}"); // Always false
-laptop.SetProductCode("LAP-2025-001");
-Console.WriteLine($"After setting: '{laptop.ProductCode}'");
-Console.WriteLine($"ProductCode is null? {laptop.ProductCode == null}"); // Still false
-Console.WriteLine();
+// Console.WriteLine("=== Example 1: [DisallowNull] - ProductCode never returns null ===");
+// var laptop = new Product.Product("Laptop");
+// Console.WriteLine($"Product: {laptop.Name}");
+// Console.WriteLine($"Initial ProductCode: '{laptop.ProductCode}' (is empty: {laptop.ProductCode == string.Empty})");
+// Console.WriteLine($"ProductCode is null? {laptop.ProductCode == null}"); // Always false
+// laptop.SetProductCode("LAP-2025-001");
+// Console.WriteLine($"After setting: '{laptop.ProductCode}'");
+// Console.WriteLine($"ProductCode is null? {laptop.ProductCode == null}"); // Still false
+// Console.WriteLine();
 
-Console.WriteLine("=== Example 2: [AllowNull] - Notes setter accepts null but getter returns empty string ===");
-var mouse = new Product.Product("Mouse");
-Console.WriteLine($"Product: {mouse.Name}");
-Console.WriteLine($"Initial Notes: '{mouse.Notes}' (is empty: {mouse.Notes == string.Empty})");
-Console.WriteLine($"Notes is null? {mouse.Notes == null}"); // Always false thanks to [AllowNull]
-mouse.Notes = "Important: Handle with care";
-Console.WriteLine($"After setting notes: '{mouse.Notes}'");
-mouse.Notes = null; // Setter accepts null
-Console.WriteLine($"After setting null: '{mouse.Notes}' (converted to empty string)");
-Console.WriteLine($"Notes is null? {mouse.Notes == null}"); // Still false
-Console.WriteLine();
+// Console.WriteLine("=== Example 2: [AllowNull] - Notes setter accepts null but getter returns empty string ===");
+// var mouse = new Product.Product("Mouse");
+// Console.WriteLine($"Product: {mouse.Name}");
+// Console.WriteLine($"Initial Notes: '{mouse.Notes}' (is empty: {mouse.Notes == string.Empty})");
+// Console.WriteLine($"Notes is null? {mouse.Notes == null}"); // Always false thanks to [AllowNull]
+// mouse.Notes = "Important: Handle with care";
+// Console.WriteLine($"After setting notes: '{mouse.Notes}'");
+// mouse.Notes = null; // Setter accepts null
+// Console.WriteLine($"After setting null: '{mouse.Notes}' (converted to empty string)");
+// Console.WriteLine($"Notes is null? {mouse.Notes == null}"); // Still false
+// Console.WriteLine();
 
-Console.WriteLine("=== Example 3: ProductCode with spaces - automatic trim ===");
-var keyboard = new Product.Product("Keyboard");
-keyboard.SetProductCode("  KBD-123  ");
-Console.WriteLine($"Product: {keyboard.Name}");
-Console.WriteLine($"ProductCode (trimmed): '{keyboard.ProductCode}'");
-Console.WriteLine();
+// Console.WriteLine("=== Example 3: ProductCode with spaces - automatic trim ===");
+// var keyboard = new Product.Product("Keyboard");
+// keyboard.SetProductCode("  KBD-123  ");
+// Console.WriteLine($"Product: {keyboard.Name}");
+// Console.WriteLine($"ProductCode (trimmed): '{keyboard.ProductCode}'");
+// Console.WriteLine();
 
-Console.WriteLine("=== Example 4: Multiple null assignments to Notes ===");
-var monitor = new Product.Product("Monitor");
-Console.WriteLine($"Product: {monitor.Name}");
-monitor.Notes = "First note";
-Console.WriteLine($"First: '{monitor.Notes}'");
-monitor.Notes = null;
-Console.WriteLine($"After null: '{monitor.Notes}' (empty, not null)");
-monitor.Notes = "Second note";
-Console.WriteLine($"Second: '{monitor.Notes}'");
-monitor.Notes = null;
-Console.WriteLine($"After null again: '{monitor.Notes}' (empty, not null)");
-Console.WriteLine();
+// Console.WriteLine("=== Example 4: Multiple null assignments to Notes ===");
+// var monitor = new Product.Product("Monitor");
+// Console.WriteLine($"Product: {monitor.Name}");
+// monitor.Notes = "First note";
+// Console.WriteLine($"First: '{monitor.Notes}'");
+// monitor.Notes = null;
+// Console.WriteLine($"After null: '{monitor.Notes}' (empty, not null)");
+// monitor.Notes = "Second note";
+// Console.WriteLine($"Second: '{monitor.Notes}'");
+// monitor.Notes = null;
+// Console.WriteLine($"After null again: '{monitor.Notes}' (empty, not null)");
+// Console.WriteLine();
 
-Console.WriteLine("=== Example 5: Demonstrating the difference between [DisallowNull] and [AllowNull] ===");
-var headphone = new Product.Product("Headphone");
-Console.WriteLine($"Product: {headphone.Name}");
-Console.WriteLine("\n[DisallowNull] ProductCode:");
-Console.WriteLine($"  - Initial value: '{headphone.ProductCode}' (never null, starts as empty)");
-Console.WriteLine($"  - Can be set via method: SetProductCode()");
-Console.WriteLine($"  - Setter validates and prevents null");
+// Console.WriteLine("=== Example 5: Demonstrating the difference between [DisallowNull] and [AllowNull] ===");
+// var headphone = new Product.Product("Headphone");
+// Console.WriteLine($"Product: {headphone.Name}");
+// Console.WriteLine("\n[DisallowNull] ProductCode:");
+// Console.WriteLine($"  - Initial value: '{headphone.ProductCode}' (never null, starts as empty)");
+// Console.WriteLine($"  - Can be set via method: SetProductCode()");
+// Console.WriteLine($"  - Setter validates and prevents null");
 
-Console.WriteLine("\n[AllowNull] Notes:");
-Console.WriteLine($"  - Initial value: '{headphone.Notes}' (never null, starts as empty)");
-Console.WriteLine($"  - Can be set directly: Notes = value");
-Console.WriteLine($"  - Setter accepts null but converts to empty string");
-Console.WriteLine($"  - Getter always returns non-null value");
+// Console.WriteLine("\n[AllowNull] Notes:");
+// Console.WriteLine($"  - Initial value: '{headphone.Notes}' (never null, starts as empty)");
+// Console.WriteLine($"  - Can be set directly: Notes = value");
+// Console.WriteLine($"  - Setter accepts null but converts to empty string");
+// Console.WriteLine($"  - Getter always returns non-null value");
 
-headphone.SetProductCode("HPH-001");
-headphone.Notes = "Premium audio quality";
-Console.WriteLine($"\nAfter setting both:");
-Console.WriteLine($"  ProductCode: '{headphone.ProductCode}'");
-Console.WriteLine($"  Notes: '{headphone.Notes}'");
+// headphone.SetProductCode("HPH-001");
+// headphone.Notes = "Premium audio quality";
+// Console.WriteLine($"\nAfter setting both:");
+// Console.WriteLine($"  ProductCode: '{headphone.ProductCode}'");
+// Console.WriteLine($"  Notes: '{headphone.Notes}'");
+
+#endregion
+
+#region Department and Employee
+
+Department dacom = new("DACOM");
+Employee everton = new("Everton");
+
+dacom.AddEmployee(everton);
+
+Console.WriteLine($"Departamento: {dacom.Name} / {dacom.Employees[0].Name}");
+Console.WriteLine($"Empregado {everton.Name} / Departamento: {everton.Department.Name}");
+
+Department dahla = new("DAHLA");
+dahla.AddEmployee(everton);
+// everton.AssignDepartment(dahla);
+
+Console.WriteLine($"Departamento: {dacom.Name} / {dacom.Employees}");
+Console.WriteLine($"Empregado {everton.Name} / Departamento: {everton.Department.Name}");
+
+Console.WriteLine($"Departamento: {dahla.Name} / {dahla.Employees[0].Name}");
 
 #endregion

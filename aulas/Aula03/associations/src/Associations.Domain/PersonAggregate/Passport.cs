@@ -1,17 +1,18 @@
-using System;
-
 namespace Associations.Domain.PersonAggregate;
 
 public class Passport
 {
-
-    public string Number { get; private set; }
+    public string Number { get; } 
+    public DateOnly Expiration { get; }
+    
     public Passport(string number, DateOnly expiration)
     {
-        if (string.IsNullOrEmpty(number) || string.IsNullOrWhiteSpace(number))
-        {
-            throw new ArgumentException($"Number inválido: {nameof(Number)}");
-        }
+        if (string.IsNullOrWhiteSpace(number))
+            throw new ArgumentException("Número obrigatório", nameof(number));
+        if (expiration <= DateOnly.FromDateTime(DateTime.Today))
+            throw new ArgumentOutOfRangeException(nameof(expiration), "Expiração deve ser futura");
+
         Number = number;
+        Expiration = expiration;
     }
 }
