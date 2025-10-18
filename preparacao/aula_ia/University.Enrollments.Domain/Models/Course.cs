@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace University.Enrollments.Domain.Models
 {
@@ -35,6 +37,16 @@ namespace University.Enrollments.Domain.Models
         /// </summary>
         public DateOnly MatriculationEnd { get; init; }
 
+    // Encapsulated internal storage for enrollments.
+    // Navigation is unidirectional: Course -> Enrollments
+    private readonly List<Enrollment> _enrollments = new();
+
+    /// <summary>
+    /// Read-only view of enrollments for this course.
+    /// Kept intentionally as IReadOnlyCollection to preserve encapsulation.
+    /// </summary>
+    public IReadOnlyCollection<Enrollment> Enrollments => _enrollments.AsReadOnly();
+
         /// <summary>
         /// Expected operation: Enroll a student by id.
         /// Rules to document (no implementation here):
@@ -45,9 +57,27 @@ namespace University.Enrollments.Domain.Models
         /// <param name="studentId">Identifier of the student to enroll.</param>
         public void Enroll(int studentId)
         {
-            // TODO: Implement enrollment logic.
-            // TODO: Add tests for matriculation window, capacity checks, and edge cases.
-            throw new NotImplementedException();
+            if (studentId <= 0) throw new DomainException("Student id must be greater than zero.");
+
+            // Uniqueness: (StudentId, CourseId) must be unique.
+            // We consider two enrollments the same when they share StudentId and CourseId.
+            var exists = _enrollments.Any(e => e.StudentId == studentId && e.CourseId == Id);
+            if (exists)
+            {
+                throw new DomainException($"Student {studentId} is already enrolled in course {Id}.");
+            }
+
+            // Minimal creation of the enrollment. Other rules (capacity, window) will be
+            // added in later steps/tests. For now we create an enrolled entry.
+            var enrollment = new Enrollment
+            {
+                StudentId = studentId,
+                CourseId = Id,
+                Status = EnrollmentStatus.Enrolled,
+                EnrolledOn = DateOnly.FromDateTime(DateTime.UtcNow)
+            };
+
+            _enrollments.Add(enrollment);
         }
 
         /// <summary>
