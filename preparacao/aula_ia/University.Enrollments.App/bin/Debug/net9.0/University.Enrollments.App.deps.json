@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "University.Enrollments.App/1.0.0": {
+        "dependencies": {
+          "University.Enrollments.Domain": "1.0.0"
+        },
+        "runtime": {
+          "University.Enrollments.App.dll": {}
+        }
+      },
+      "University.Enrollments.Domain/1.0.0": {
+        "runtime": {
+          "University.Enrollments.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "University.Enrollments.App/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "University.Enrollments.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

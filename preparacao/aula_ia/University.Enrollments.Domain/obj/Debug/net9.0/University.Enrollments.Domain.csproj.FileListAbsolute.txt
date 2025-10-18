@@ -1,0 +1,12 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/bin/Debug/net9.0/University.Enrollments.Domain.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/bin/Debug/net9.0/University.Enrollments.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/bin/Debug/net9.0/University.Enrollments.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/University.Enrollments.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/University.Enrollments.Domain.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/University.Enrollments.Domain.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/University.Enrollments.Domain.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/University.Enrollments.Domain.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/University.Enrollments.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/refint/University.Enrollments.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/University.Enrollments.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/obj/Debug/net9.0/ref/University.Enrollments.Domain.dll
