@@ -19,3 +19,8 @@ Next steps (optional):
 - Implement capacity and matriculation window checks in `Enroll` and add corresponding tests.
 - Implement `Unenroll` behavior and tests.
 - Provide IEquatable implementation for `Enrollment` and unit tests for equality.
+
+Update 2025-10-18 19:00: Matriculation window check
+- Implemented matriculation window validation in `Course.Enroll`.
+- Behavior: when current UTC date is outside `MatriculationStart`..`MatriculationEnd`, `Enroll` throws `DomainException` with message indicating today's date and the allowed window.
+

@@ -67,6 +67,13 @@ namespace University.Enrollments.Domain.Models
                 throw new DomainException($"Student {studentId} is already enrolled in course {Id}.");
             }
 
+            // Matriculation window check - must be within [MatriculationStart, MatriculationEnd]
+            var today = DateOnly.FromDateTime(DateTime.UtcNow);
+            if (today < MatriculationStart || today > MatriculationEnd)
+            {
+                throw new DomainException($"Cannot enroll: today ({today:yyyy-MM-dd}) is outside matriculation window ({MatriculationStart:yyyy-MM-dd} - {MatriculationEnd:yyyy-MM-dd}).");
+            }
+
             // Minimal creation of the enrollment. Other rules (capacity, window) will be
             // added in later steps/tests. For now we create an enrolled entry.
             var enrollment = new Enrollment
