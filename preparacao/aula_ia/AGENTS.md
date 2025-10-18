@@ -47,15 +47,19 @@ Registro de alterações
 
 Prática de ChangeLogs por chat
 -----------------------------
-Para manter histórico claro das ações realizadas via chat (agent/assistant), registre um ChangeLog para cada sessão/chat onde alteramos o repositório. Procedimento mínimo:
+Para manter histórico claro das ações realizadas via chat (agent/assistant), registre um ChangeLog para cada sessão/chat onde alteramos o repositório. Procedimento mínimo (preferência por um único arquivo MD):
 
 1. Criar pasta `ChangeLogs/YYYYMMDD-HHMMSS/` em `preparacao/aula_ia` (ou no root se quiser aplicação global).
-2. Incluir pelo menos os arquivos:
-  - `prompt.txt` (o prompt original ou resumo)
-  - `tasks.txt` (tarefas realizadas)
-  - `progress.txt` (status e notas de execução)
-  - `rationale_for_new_devs.md` (explicação didática consolidada)
-3. Consolidar os registros no `rationale_for_new_devs.md` e remover os `.txt` quando consolidado.
+2. Incluir um único arquivo principal:
+  - `rationale_for_new_devs.md` — deve conter seções claras: "prompt", "tasks", "progress" e "rationale". Evite criar múltiplos `.txt` separados.
+3. Se durante a sessão arquivos `.txt` forem criados temporariamente, consolide seu conteúdo em `rationale_for_new_devs.md` e remova os `.txt` antes do commit.
 4. Commitar e referenciar esse ChangeLog em um `CHANGELOG.md` no root (ou documento equivalente) para navegação rápida.
 
-Motivação: manter histórico humano-legível e organizado das mudanças feitas por automação/assistente, facilitando onboarding e auditoria.
+Motivação: reduzir dispersão de arquivos e manter um único documento legível e pesquisável por sessão; facilita revisão e onboarding.
+
+Convenção de nomes (recomendada)
+--------------------------------
+- Nome da pasta: `YYYYMMDD-HHMMSS-<objetivo-breve>` — por exemplo: `20251018-184700-enrollment-tests-empty-specs`.
+- Nome do arquivo principal: `<descricao-curta>.md` — por exemplo: `enrollment-tests-rationale.md` (não inclua data/hora no nome do arquivo).
+
+Motivo: incluir o objetivo no nome da pasta ajuda a localizar rapidamente a sessão; manter o arquivo com um nome descritivo sem timestamp facilita buscas e evita duplicação ao consolidar registros.
