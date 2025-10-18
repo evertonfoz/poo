@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <!-- Defaults for all projects in this directory subtree -->
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Make Domain and Tests projects treat warnings as errors -->
+  <PropertyGroup Condition="'$(MSBuildProjectName)' == 'University.Enrollments.Domain' Or '$(MSBuildProjectName)' == 'University.Enrollments.Tests'">
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors>$(WarningsAsErrors);NU1605</WarningsAsErrors>
+  </PropertyGroup>
+</Project>

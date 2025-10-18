@@ -1,0 +1,41 @@
+# EditorConfig para C# projetos
+root = true
+
+[*.{cs,vb}]
+charset = utf-8-bom
+end_of_line = crlf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Indentação
+indent_style = space
+indent_size = 4
+
+# C# specific code style (basic)
+# prefer var when type is apparent
+dotnet_style_qualification_for_field = false:suggestion
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_var_elsewhere = false:suggestion
+
+# Naming preferences (basic)
+dotnet_naming_rule.private_fields_should_be_camel_case.severity = suggestion
+dotnet_naming_rule.private_fields_should_be_camel_case.symbols = private_fields
+dotnet_naming_rule.private_fields_should_be_camel_case.style = camel_case_with_underscore
+
+dotnet_naming_symbols.private_fields.applicable_kinds = field
+dotnet_naming_symbols.private_fields.applicable_accessibilities = private
+
+dotnet_naming_style.camel_case_with_underscore.capitalization = camel_case
+dotnet_naming_style.camel_case_with_underscore.required_prefix = _
+
+# Using directives ordering
+dotnet_sort_system_directives_first = true
+csharp_using_directive_placement = outside_namespace:warning
+
+# Files with generated code (ignore warnings in generated files)
+[**/obj/**]
+generated_code = true
+
+[**/bin/**]
+generated_code = true
