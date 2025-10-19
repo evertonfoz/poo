@@ -89,14 +89,14 @@ namespace University.Enrollments.Domain.Models
             var today = DateOnly.FromDateTime(DateTime.UtcNow);
             if (today < MatriculationStart || today > MatriculationEnd)
             {
-                throw new DomainException($"Cannot enroll: today ({today:yyyy-MM-dd}) is outside matriculation window ({MatriculationStart:yyyy-MM-dd} - {MatriculationEnd:yyyy-MM-dd}).");
+                throw new DomainException($"Cannot enroll student {studentId} in course {Id}: today ({today:yyyy-MM-dd}) is outside matriculation window ({MatriculationStart:yyyy-MM-dd} - {MatriculationEnd:yyyy-MM-dd}).");
             }
 
             // Capacity check: count only currently enrolled students
             var enrolledCount = _enrollments.Count(e => e.Status == EnrollmentStatus.Enrolled);
             if (Capacity >= 0 && enrolledCount >= Capacity)
             {
-                throw new DomainException($"Cannot enroll: course {Id} has no available seats (capacity {Capacity}).");
+                throw new DomainException($"Cannot enroll student {studentId} in course {Id}: course has no available seats (capacity {Capacity}).");
             }
 
             // Minimal creation of the enrollment. Other rules (capacity, window) will be
@@ -129,7 +129,7 @@ namespace University.Enrollments.Domain.Models
 
             if (removed == 0)
             {
-                throw new DomainException($"Cannot unenroll: student {studentId} is not enrolled in course {Id}.");
+                throw new DomainException($"Cannot unenroll student {studentId} from course {Id}: no matching enrollment found.");
             }
 
             // Removal updates internal state (counts) implicitly since we store enrollments in-memory.
@@ -156,8 +156,9 @@ namespace University.Enrollments.Domain.Models
             }
             catch (DomainException ex)
             {
-                // rethrow with context
-                throw new DomainException($"Cannot conclude enrollment for student {studentId} in course {Id}: {ex.Message}");
+                // Rethrow preserving the original exception as inner exception so callers
+                // can inspect the root cause while we provide additional context.
+                throw new DomainException($"Cannot conclude enrollment for student {studentId} in course {Id}: {ex.Message}", ex);
             }
         }
     }

@@ -56,14 +56,16 @@ namespace University.Enrollments.Domain.Models
         /// - Completed -> (terminal)
         /// - Cancelled -> (terminal)
         /// Transitions should validate allowed moves and record timestamps or reasons where applicable.
-        /// (No state machine implementation here.)
+        /// These helpers enforce valid transitions and throw <see cref="University.Enrollments.Domain.DomainException"/>
+        /// when an invalid transition is attempted. Messages include the current status and the
+        /// identifying (StudentId, CourseId) pair to aid diagnostics.
         /// </summary>
         // Minimal state transition helpers
         public void Complete()
         {
             if (Status != EnrollmentStatus.Enrolled)
             {
-                throw new University.Enrollments.Domain.DomainException($"Cannot complete enrollment: current status is {Status}.");
+                throw new University.Enrollments.Domain.DomainException($"Cannot complete enrollment for student {StudentId} in course {CourseId}: current status is {Status}.");
             }
 
             Status = EnrollmentStatus.Completed;
@@ -73,7 +75,7 @@ namespace University.Enrollments.Domain.Models
         {
             if (Status != EnrollmentStatus.Requested)
             {
-                throw new University.Enrollments.Domain.DomainException($"Cannot cancel enrollment: current status is {Status}.");
+                throw new University.Enrollments.Domain.DomainException($"Cannot cancel enrollment for student {StudentId} in course {CourseId}: current status is {Status}.");
             }
 
             Status = EnrollmentStatus.Cancelled;
@@ -83,7 +85,7 @@ namespace University.Enrollments.Domain.Models
         {
             if (Status != EnrollmentStatus.Enrolled)
             {
-                throw new University.Enrollments.Domain.DomainException($"Cannot drop enrollment: current status is {Status}.");
+                throw new University.Enrollments.Domain.DomainException($"Cannot drop enrollment for student {StudentId} in course {CourseId}: current status is {Status}.");
             }
 
             Status = EnrollmentStatus.Dropped;
@@ -93,7 +95,7 @@ namespace University.Enrollments.Domain.Models
         {
             if (Status != EnrollmentStatus.Requested)
             {
-                throw new University.Enrollments.Domain.DomainException($"Cannot confirm enrollment: current status is {Status}.");
+                throw new University.Enrollments.Domain.DomainException($"Cannot confirm enrollment for student {StudentId} in course {CourseId}: current status is {Status}.");
             }
 
             Status = EnrollmentStatus.Enrolled;
