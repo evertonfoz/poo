@@ -5,7 +5,7 @@ namespace University.Enrollments.Domain.Models
     /// <summary>
     /// Represents a student's enrollment in a course.
     /// </summary>
-    public sealed class Enrollment
+    public sealed class Enrollment : IEquatable<Enrollment>
     {
         /// <summary>
         /// Identifier of the student.
@@ -22,7 +22,7 @@ namespace University.Enrollments.Domain.Models
         /// <summary>
         /// Current status of the enrollment.
         /// </summary>
-        public EnrollmentStatus Status { get; init; }
+    public EnrollmentStatus Status { get; set; }
 
         /// <summary>
         /// Date when the enrollment was recorded.
@@ -34,7 +34,19 @@ namespace University.Enrollments.Domain.Models
         /// (StudentId, CourseId) pair regardless of other properties like Status or EnrolledOn.
         /// (No Equals/GetHashCode implementation here - document expected behavior.)
         /// </summary>
-        // TODO: Implement IEquatable&lt;Enrollment&gt; and override Equals/GetHashCode in a later step.
+        // Equality based only on the (StudentId, CourseId) pair.
+        public bool Equals(Enrollment? other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return StudentId == other.StudentId && CourseId == other.CourseId;
+        }
+
+        public override bool Equals(object? obj)
+            => obj is Enrollment other && Equals(other);
+
+        public override int GetHashCode()
+            => HashCode.Combine(StudentId, CourseId);
 
         /// <summary>
         /// Expected state machine (documented expectations):
@@ -46,6 +58,47 @@ namespace University.Enrollments.Domain.Models
         /// Transitions should validate allowed moves and record timestamps or reasons where applicable.
         /// (No state machine implementation here.)
         /// </summary>
+        // Minimal state transition helpers
+        public void Complete()
+        {
+            if (Status != EnrollmentStatus.Enrolled)
+            {
+                throw new University.Enrollments.Domain.DomainException($"Cannot complete enrollment: current status is {Status}.");
+            }
+
+            Status = EnrollmentStatus.Completed;
+        }
+
+        public void Cancel()
+        {
+            if (Status != EnrollmentStatus.Requested)
+            {
+                throw new University.Enrollments.Domain.DomainException($"Cannot cancel enrollment: current status is {Status}.");
+            }
+
+            Status = EnrollmentStatus.Cancelled;
+        }
+
+        public void Drop()
+        {
+            if (Status != EnrollmentStatus.Enrolled)
+            {
+                throw new University.Enrollments.Domain.DomainException($"Cannot drop enrollment: current status is {Status}.");
+            }
+
+            Status = EnrollmentStatus.Dropped;
+        }
+
+        public void Confirm()
+        {
+            if (Status != EnrollmentStatus.Requested)
+            {
+                throw new University.Enrollments.Domain.DomainException($"Cannot confirm enrollment: current status is {Status}.");
+            }
+
+            Status = EnrollmentStatus.Enrolled;
+        }
+
         // TODO: Add unit tests that assert allowed transitions and that invalid transitions are rejected.
     }
 }

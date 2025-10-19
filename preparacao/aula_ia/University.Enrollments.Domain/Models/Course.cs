@@ -48,6 +48,24 @@ namespace University.Enrollments.Domain.Models
     public IReadOnlyCollection<Enrollment> Enrollments => _enrollments.AsReadOnly();
 
         /// <summary>
+        /// Number of currently enrolled students (Status == Enrolled).
+        /// </summary>
+        public int EnrolledCount => _enrollments.Count(e => e.Status == EnrollmentStatus.Enrolled);
+
+        /// <summary>
+        /// Checks if a given student is enrolled in this course.
+        /// </summary>
+        public bool IsStudentEnrolled(int studentId)
+            => _enrollments.Any(e => e.StudentId == studentId && e.CourseId == Id && e.Status == EnrollmentStatus.Enrolled);
+
+        /// <summary>
+        /// Returns the enrollment for the student if any (otherwise null).
+        /// This keeps the navigation unidirectional: Course -> Enrollment. No Student references are added.
+        /// </summary>
+        public Enrollment? GetEnrollment(int studentId)
+            => _enrollments.FirstOrDefault(e => e.StudentId == studentId && e.CourseId == Id);
+
+        /// <summary>
         /// Expected operation: Enroll a student by id.
         /// Rules to document (no implementation here):
         /// - Must verify matriculation window (MatriculationStart <= today <= MatriculationEnd).
@@ -74,6 +92,13 @@ namespace University.Enrollments.Domain.Models
                 throw new DomainException($"Cannot enroll: today ({today:yyyy-MM-dd}) is outside matriculation window ({MatriculationStart:yyyy-MM-dd} - {MatriculationEnd:yyyy-MM-dd}).");
             }
 
+            // Capacity check: count only currently enrolled students
+            var enrolledCount = _enrollments.Count(e => e.Status == EnrollmentStatus.Enrolled);
+            if (Capacity >= 0 && enrolledCount >= Capacity)
+            {
+                throw new DomainException($"Cannot enroll: course {Id} has no available seats (capacity {Capacity}).");
+            }
+
             // Minimal creation of the enrollment. Other rules (capacity, window) will be
             // added in later steps/tests. For now we create an enrolled entry.
             var enrollment = new Enrollment
@@ -97,9 +122,43 @@ namespace University.Enrollments.Domain.Models
         /// <param name="studentId">Identifier of the student to unenroll.</param>
         public void Unenroll(int studentId)
         {
-            // TODO: Implement unenrollment logic.
-            // TODO: Add tests for unenroll behavior, capacity adjustments and window rules.
-            throw new NotImplementedException();
+            if (studentId <= 0) throw new DomainException("Student id must be greater than zero.");
+
+            // Find matching enrollments for this student and course
+            var removed = _enrollments.RemoveAll(e => e.StudentId == studentId && e.CourseId == Id);
+
+            if (removed == 0)
+            {
+                throw new DomainException($"Cannot unenroll: student {studentId} is not enrolled in course {Id}.");
+            }
+
+            // Removal updates internal state (counts) implicitly since we store enrollments in-memory.
+            // If we later track metrics, update them here.
+        }
+
+        /// <summary>
+        /// Transition an existing enrollment to Completed when criteria are met.
+        /// Minimal implementation: ensure enrollment exists and call its Complete() helper.
+        /// </summary>
+        public void Conclude(int studentId)
+        {
+            if (studentId <= 0) throw new DomainException("Student id must be greater than zero.");
+
+            var enrollment = _enrollments.FirstOrDefault(e => e.StudentId == studentId && e.CourseId == Id);
+            if (enrollment is null)
+            {
+                throw new DomainException($"Cannot conclude: student {studentId} is not enrolled in course {Id}.");
+            }
+
+            try
+            {
+                enrollment.Complete();
+            }
+            catch (DomainException ex)
+            {
+                // rethrow with context
+                throw new DomainException($"Cannot conclude enrollment for student {studentId} in course {Id}: {ex.Message}");
+            }
         }
     }
 }
