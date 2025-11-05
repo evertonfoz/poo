@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VariaveisProvaApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f257042eab7013b9d163a47d085581c4bc61db6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb1791804cb3adca33810fe38ae088c2262e4d5c")]
 [assembly: System.Reflection.AssemblyProductAttribute("VariaveisProvaApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VariaveisProvaApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
