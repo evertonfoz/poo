@@ -1,0 +1,56 @@
+{
+  // Configurações de depuração para o projeto 01-AsyncBasics.
+  // Use o painel Run and Debug (Ctrl+Shift+D) e selecione ".NET Core Launch (01-AsyncBasics)".
+  // O preLaunchTask garante que o projeto seja compilado antes de iniciar a depuração.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": ".NET Core Launch (01-AsyncBasics)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      // O program aponta para o assembly gerado; ajustado para net8.0.
+      "program": "${workspaceFolder}/src/01-AsyncBasics/bin/Debug/net8.0/01-AsyncBasics.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/01-AsyncBasics",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+    ,
+    {
+      "name": ".NET Core Launch (02-WhenAllWhenAny)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/02-WhenAllWhenAny/bin/Debug/net8.0/02-WhenAllWhenAny.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/02-WhenAllWhenAny",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+    ,
+    {
+      "name": ".NET Core Launch (03-AsyncExceptions)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/03-AsyncExceptions/bin/Debug/net8.0/03-AsyncExceptions.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/03-AsyncExceptions",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+    ,
+    {
+      "name": ".NET Core Launch (04-CancellationAndTimeout)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/04-CancellationAndTimeout/bin/Debug/net8.0/04-CancellationAndTimeout.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/src/04-CancellationAndTimeout",
+      "console": "integratedTerminal",
+      "stopAtEntry": false
+    }
+  ]
+}

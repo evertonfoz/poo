@@ -1,0 +1,8 @@
+{
+  "editor.codeLens": true,
+  "dotnet.codeLens.enableReferencesCodeLens": true,
+  "dotnet.codeLens.enableTestsCodeLens": true,
+
+  "code-runner.executorMap": { "csharp": "" },
+  "code-runner.ignoreSelection": true
+}

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+  <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+  <PackageReference Include="xunit" Version="2.4.2" />
+  <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5" />
+  <!-- FluentAssertions removed due to runtime asset resolution issues on this environment; using xUnit asserts instead -->
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/05-AsyncStreams/05-AsyncStreams.csproj" />
+  </ItemGroup>
+</Project>
