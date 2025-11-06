@@ -27,14 +27,28 @@ class Program
         var store = new ConcurrentDictionary<int, string>();
         store[1] = "cached-value-1";
 
+        await RunCacheHitExampleAsync(store);
+        await RunCacheMissExampleAsync(store);
+
+        PrintObservation();
+    }
+
+    static async Task RunCacheHitExampleAsync(ConcurrentDictionary<int,string> store)
+    {
         // hot path: cache hit -> ValueTask.FromResult (no Task allocation)
         var vtHit = GetValueAsync(1, store);
         Console.WriteLine($"Cached lookup (ValueTask) result: {await vtHit}");
+    }
 
+    static async Task RunCacheMissExampleAsync(ConcurrentDictionary<int,string> store)
+    {
         // cold path: cache miss -> fallback para I/O (Task)
         var vtMiss = GetValueAsync(42, store);
         Console.WriteLine($"Non-cached lookup result: {await vtMiss}\n");
+    }
 
+    static void PrintObservation()
+    {
         Console.WriteLine("Observação: o método GetValueAsync retorna ValueTask<string> e internamente evita alocações se o item estiver em cache.");
     }
 

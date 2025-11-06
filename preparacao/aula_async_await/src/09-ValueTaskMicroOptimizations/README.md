@@ -63,3 +63,13 @@ dotnet run --project 09-ValueTaskMicroOptimizations
 
 ### Comentários finais
 - Este README explica otimizações avançadas. Próximos projetos serão atualizados.
+
+### Onde alterar o código
+
+- `Program.cs` contém as demos organizadas em métodos claros — edite estes métodos para ajustar os cenários em sala de aula:
+  - `RunCacheHitExampleAsync(ConcurrentDictionary<int,string> store)` — demonstra `ValueTask.FromResult` para cache hit (sem alocação de Task).
+  - `RunCacheMissExampleAsync(ConcurrentDictionary<int,string> store)` — demonstra fallback para I/O (`Task`) em cache miss.
+  - `GetValueAsync(int id, ConcurrentDictionary<int,string> cache)` — implementação que retorna `ValueTask<string>`; altere a lógica de cache se desejar.
+  - `GetFromIoAsync(int id)` — simula I/O com `Task.Delay(200)`; ajuste o delay para demos mais curtas (ex.: 100 ms) durante a aula.
+
+Altere os delays e a composição do cache para criar cenários de comparação mais curtos em sala (por exemplo reduzir `Task.Delay(200)` para `100` ou ajustar a taxa de cache hits/misses).

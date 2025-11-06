@@ -28,49 +28,58 @@ using System.Threading.Tasks;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Registrar controller support and DI for repository
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Registro do repositório que simula I/O assíncrono
-builder.Services.AddScoped<Repositories.IAsyncDataRepository, Repositories.MockDataRepository>();
+// Organizado em métodos para facilitar demonstração e edição em sala de aula
+ConfigureServices(builder);
 
 var app = builder.Build();
 
-// Middleware: mapear cancelamento para 499 (client closed request) e logar
-app.Use(async (context, next) =>
-{
-    var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
-    try
-    {
-        await next();
-    }
-    catch (OperationCanceledException oce)
-    {
-        // 499 is a common non-standard code used by some proxies to indicate client closed request.
-        // We log and return a friendly status. In production, adapt to your API convention.
-        logger.LogInformation(oce, "Request cancelled: {Method} {Path}", context.Request.Method, context.Request.Path);
-        if (!context.Response.HasStarted)
-        {
-            context.Response.StatusCode = 499; // Client Closed Request (non-standard but useful)
-            await context.Response.WriteAsync("Request cancelled (OperationCanceled)");
-        }
-    }
-    catch (Exception ex)
-    {
-        var logger2 = context.RequestServices.GetRequiredService<ILogger<Program>>();
-        logger2.LogError(ex, "Unhandled exception processing request {Method} {Path}", context.Request.Method, context.Request.Path);
-        throw; // let default handlers convert to 500
-    }
-});
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.MapControllers();
+ConfigurePipeline(app);
 
 app.Run();
+
+static void ConfigureServices(WebApplicationBuilder builder)
+{
+    // Registrar controller support and DI for repository
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    // Registro do repositório que simula I/O assíncrono
+    builder.Services.AddScoped<Repositories.IAsyncDataRepository, Repositories.MockDataRepository>();
+}
+
+static void ConfigurePipeline(WebApplication app)
+{
+    // Middleware: mapear cancelamento para 499 (client closed request) e logar
+    app.Use(async (context, next) =>
+    {
+        var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+        try
+        {
+            await next();
+        }
+        catch (OperationCanceledException oce)
+        {
+            logger.LogInformation(oce, "Request cancelled: {Method} {Path}", context.Request.Method, context.Request.Path);
+            if (!context.Response.HasStarted)
+            {
+                context.Response.StatusCode = 499; // Client Closed Request (non-standard but useful)
+                await context.Response.WriteAsync("Request cancelled (OperationCanceled)");
+            }
+        }
+        catch (Exception ex)
+        {
+            var logger2 = context.RequestServices.GetRequiredService<ILogger<Program>>();
+            logger2.LogError(ex, "Unhandled exception processing request {Method} {Path}", context.Request.Method, context.Request.Path);
+            throw; // let default handlers convert to 500
+        }
+    });
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.MapControllers();
+}

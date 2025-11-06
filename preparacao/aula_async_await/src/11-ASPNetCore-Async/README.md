@@ -68,3 +68,15 @@ dotnet run --project 11-ASPNetCore-Async
 
 ### Comentários finais
 - Este README explica integração web. Próximos projetos serão atualizados.
+
+### Onde alterar o código
+
+- `Program.cs` agora está organizado em dois pontos principais para demonstração:
+  - `ConfigureServices(WebApplicationBuilder builder)` — registre ou modifique serviços, controllers e o repositório mock.
+  - `ConfigurePipeline(WebApplication app)` — middleware que mapeia `OperationCanceledException` para 499 e registra logs; edite aqui se quiser demonstrar outros mapeamentos ou middlewares.
+
+- `Controllers/DadosController.cs` — o método `Get(CancellationToken ct)` é o ponto didático: ele recebe o token injetado automaticamente pelo framework e passa ao repositório. Edite este método para alterar comportamento, tempo de simulação ou adicionar comportamento de timeout local.
+
+- `Repositories/MockDataRepository.cs` — simula I/O e observa o token; modifique o `Task.Delay` e a lógica de resposta para criar demos mais curtas ou cenários de falha.
+
+Para testes rápidos em sala de aula, reduza os delays (por exemplo `Task.Delay(2000)` → `Task.Delay(300)`) e use `curl` com timeouts para simular cliente que fecha conexão.

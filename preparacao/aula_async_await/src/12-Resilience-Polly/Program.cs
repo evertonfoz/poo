@@ -29,6 +29,18 @@ class Program
     {
         Console.WriteLine("Demo: Polly Timeout + Retry vs CancellationToken timeout/retry\n");
 
+        await RunPollyPolicyExampleAsync();
+
+        Console.WriteLine();
+
+        await RunManualRetryExampleAsync();
+
+        Console.WriteLine();
+        Console.WriteLine("Notes: Polly gives a declarative centralized approach. Manual approach is straightforward but you must repeat patterns and be careful with idempotency and backoff.");
+    }
+
+    static async Task RunPollyPolicyExampleAsync()
+    {
         // Polly policy: timeout of 1s + retry 3 times with exponential backoff
         var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromSeconds(1), TimeoutStrategy.Pessimistic);
         var retryPolicy = Policy.Handle<Exception>()
@@ -47,9 +59,10 @@ class Program
             Console.WriteLine($"Polly operation succeeded in {sw.ElapsedMilliseconds} ms");
             return Task.CompletedTask;
         }, CancellationToken.None);
+    }
 
-        Console.WriteLine();
-
+    static async Task RunManualRetryExampleAsync()
+    {
         Console.WriteLine("2) Manual timeout with CancellationTokenSource + manual retry");
         for (int attempt = 1; attempt <= 3; attempt++)
         {
@@ -74,9 +87,6 @@ class Program
                 await Task.Delay(200 * attempt);
             }
         }
-
-        Console.WriteLine();
-        Console.WriteLine("Notes: Polly gives a declarative centralized approach. Manual approach is straightforward but you must repeat patterns and be careful with idempotency and backoff.");
     }
 
     // Simula operação instável que aleatoriamente demora (gera timeout) ou tem sucesso rápido.

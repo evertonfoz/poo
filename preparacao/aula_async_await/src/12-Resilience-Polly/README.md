@@ -51,6 +51,15 @@ dotnet run --project 12-Resilience-Polly
 
 ### Observações finais
 - Este README foi padronizado para facilitar o ensino dos conceitos de resiliência. Posso agora adicionar o projeto à solution e executar build + testes.
+ 
+### Onde alterar o código
+
+- `Program.cs` contém as demos organizadas em métodos:
+  - `RunPollyPolicyExampleAsync()` — configura `Timeout` + `Retry` (no exemplo: 1s timeout, 3 retries com backoff). Edite aqui para adicionar `CircuitBreaker`, `Bulkhead` ou `Fallback` e para ajustar o backoff/jitter.
+  - `RunManualRetryExampleAsync()` — mostra abordagem manual com `CancellationTokenSource(TimeSpan)` e retry manual; ajuste número de tentativas, timeout e delays de backoff aqui.
+  - `UnreliableOperationAsync(CancellationToken)` — simula operação instável; ajuste probabilidades e tempos (`1500ms`, `100ms`, `200ms`) para criar cenários mais curtos ou mais agressivos.
+
+Altere os tempos/tentativas para tornar os demos adequados à sua aula (ex.: reduzir timeout de 1s para 500ms, reduzir delays de backoff). Posso, se preferir, adicionar um exemplo de `CircuitBreaker` e um `PolicyWrap` com `Bulkhead` para demonstrar proteção sob alta concorrência.
 ## 12-Resilience-Polly
 
 Este projeto demonstra padrões de resiliência aplicados a operações assíncronas, comparando políticas da biblioteca Polly com uma implementação manual (retry + timeout). Ideal para aprender quando usar políticas reutilizáveis e como evitar efeitos colaterais em retries.
