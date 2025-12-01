@@ -36,6 +36,10 @@ class Program
         await RunManualRetryExampleAsync();
 
         Console.WriteLine();
+        // run the policy wrap demo after the other examples
+        await RunPolicyWrapWithBulkheadExampleAsync();
+
+        Console.WriteLine();
         Console.WriteLine("Notes: Polly gives a declarative centralized approach. Manual approach is straightforward but you must repeat patterns and be careful with idempotency and backoff.");
     }
 
@@ -87,6 +91,64 @@ class Program
                 await Task.Delay(200 * attempt);
             }
         }
+    }
+
+    // -------------------------
+    // Additional demo: Circuit Breaker + Bulkhead (PolicyWrap)
+    // Objective: show how Bulkhead limits concurrent executions and how CircuitBreaker
+    // opens when too many failures occur. This is useful to protect downstream systems.
+    static async Task RunPolicyWrapWithBulkheadExampleAsync()
+    {
+        Console.WriteLine("3) PolicyWrap: Bulkhead + CircuitBreaker + Retry + Timeout demonstration");
+
+        // Bulkhead: allow 2 concurrent executions and queue up to 4
+        var bulkhead = Policy.BulkheadAsync(maxParallelization: 2, maxQueuingActions: 4,
+            onBulkheadRejectedAsync: ctx =>
+            {
+                Console.WriteLine("Bulkhead rejected an execution (queue full)");
+                return Task.CompletedTask;
+            });
+
+        // Circuit breaker: open after 2 consecutive failures, keep open for 5 seconds
+        var circuitBreaker = Policy.Handle<Exception>()
+            .CircuitBreakerAsync(2, TimeSpan.FromSeconds(5),
+                onBreak: (ex, ts) => Console.WriteLine($"Circuit opened due to {ex.GetType().Name}, staying open for {ts.TotalSeconds}s"),
+                onReset: () => Console.WriteLine("Circuit closed (reset)"),
+                onHalfOpen: () => Console.WriteLine("Circuit is half-open; testing next call"));
+
+        var retry = Policy.Handle<Exception>()
+                          .WaitAndRetryAsync(new[] { TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(200) },
+                              (ex, ts, ctx) => Console.WriteLine($"Retrying due to {ex.GetType().Name}, waiting {ts.TotalMilliseconds}ms"));
+
+        var timeout = Policy.TimeoutAsync(TimeSpan.FromSeconds(1), TimeoutStrategy.Pessimistic);
+
+        var wrapped = Policy.WrapAsync(bulkhead, circuitBreaker, retry, timeout);
+
+        // Launch multiple concurrent operations to observe bulkhead behavior and circuit transitions
+        var tasks = new List<Task>();
+        for (int i = 0; i < 8; i++)
+        {
+            var idx = i;
+            tasks.Add(Task.Run(async () =>
+            {
+                try
+                {
+                    await wrapped.ExecuteAsync(async ct =>
+                    {
+                        Console.WriteLine($"Wrapped: starting op {idx}");
+                        await UnreliableOperationAsync(ct);
+                        Console.WriteLine($"Wrapped: op {idx} succeeded");
+                        return Task.CompletedTask;
+                    }, CancellationToken.None);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Wrapped: op {idx} failed/was rejected: {ex.GetType().Name} - {ex.Message}");
+                }
+            }));
+        }
+
+        await Task.WhenAll(tasks);
     }
 
     // Simula operação instável que aleatoriamente demora (gera timeout) ou tem sucesso rápido.

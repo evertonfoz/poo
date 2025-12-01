@@ -1,0 +1,16 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/bin/Debug/net9.0/School.Persistence.AdoNet.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/bin/Debug/net9.0/School.Persistence.AdoNet.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/bin/Debug/net9.0/School.Persistence.AdoNet.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/bin/Debug/net9.0/School.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/bin/Debug/net9.0/School.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.Persistence.AdoNet.csproj.AssemblyReference.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.Persistence.AdoNet.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.Persistence.AdoNet.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.Persistence.AdoNet.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.Persistence.AdoNet.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.Persistence.AdoNet.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.P.B4E5C4B4.Up2Date
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.Persistence.AdoNet.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/refint/School.Persistence.AdoNet.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/School.Persistence.AdoNet.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/Debug/net9.0/ref/School.Persistence.AdoNet.dll

@@ -1,0 +1,138 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/School.Persistence.AdoNet.csproj": {}
+  },
+  "projects": {
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Domain/School.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Domain/School.Domain.csproj",
+        "projectName": "School.Domain",
+        "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Domain/School.Domain.csproj",
+        "packagesPath": "/Users/evertoncoimbradearaujo/.nuget/packages/",
+        "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/evertoncoimbradearaujo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/School.Persistence.AdoNet.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/School.Persistence.AdoNet.csproj",
+        "projectName": "School.Persistence.AdoNet",
+        "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/School.Persistence.AdoNet.csproj",
+        "packagesPath": "/Users/evertoncoimbradearaujo/.nuget/packages/",
+        "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.AdoNet/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/evertoncoimbradearaujo/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Domain/School.Domain.csproj": {
+                "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Domain/School.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.200"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.Data.Sqlite": {
+              "target": "Package",
+              "version": "[10.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

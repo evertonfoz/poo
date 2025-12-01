@@ -69,3 +69,19 @@ dotnet run -c Release --project 13-Benchmarks
 
 ### Comentários finais
 - Este README conclui as atualizações. Todos os READMEs foram padronizados com explicações detalhadas.
+
+### Onde alterar o código
+
+- `Benchmarks` (classe em `Program.cs`) contém os métodos de benchmark organizados por cenário. Edite estes pontos para ajustar os testes:
+  - `OpsCount` (atributo `[Params]`) — altera número de operações simuladas (ex.: 10, 50).
+  - `IoDelayMs` — tempo de I/O artificial para simular latência por operação (atualmente `50ms`).
+  - Métodos `Io_Sequential()` e `Io_WhenAll()` — são os benchmarks de I/O; ajuste `OpsCount` e `IoDelayMs` para cenários mais curtos.
+  - Métodos `Cache_Task_Hot()` e `Cache_ValueTask_Hot()` — benchmarkam `Task<T>` vs `ValueTask<T>`; ajuste `BackingStoreFetchAsync` para simular caminhos frios mais ou menos caros.
+
+Para rodar os benchmarks (em Release):
+
+```bash
+dotnet run -c Release --project src/13-Benchmarks
+```
+
+Nota: BenchmarkDotNet executa microbenchmarks em processos isolados e pode levar alguns minutos dependendo dos parâmetros; use valores menores durante desenvolvimento (ex.: `IoDelayMs = 10`).
