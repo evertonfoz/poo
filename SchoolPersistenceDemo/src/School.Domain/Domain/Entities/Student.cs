@@ -4,7 +4,7 @@ namespace School.Domain.Entities
 {
     public class Student
     {
-        public int Id { get; set; }
+        public int StudentId { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public Address Address { get; set; } = new Address();

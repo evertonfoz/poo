@@ -20,6 +20,32 @@ public sealed class CourseService(ICourseRepository courseRepository)
         }
     }
 
+    public void UpdateCourse(int id, string? name, int? workloadHours,
+               bool? isActive)
+    {
+        var course = _courseRepository.GetById(id)
+            ?? throw new InvalidOperationException($"Curso com Id {id} não encontrado.");
+
+        if (!string.IsNullOrWhiteSpace(name))
+            course.Name = name.Trim();
+
+        if (workloadHours is not null && workloadHours > 0)
+            course.WorkloadHours = workloadHours.Value;
+        if (isActive is not null)
+            course.IsActive = isActive.Value;
+
+        _courseRepository.Update(course);
+    }
+
+    public void RemoveCourse(int id)
+    {
+        // Aqui você pode adicionar regras, por exemplo:
+        // - Impedir exclusão se houver matrículas ativas nesse curso.
+        _courseRepository.Remove(id);
+    }
+
+    public IReadOnlyList<Course> ListAll() => _courseRepository.ListAll();
+
     private Course ValidateAndAddCourse(Course course)
     {
         if (string.IsNullOrWhiteSpace(course.Name))

@@ -12,6 +12,8 @@ namespace School.Domain.Entities
 
         public bool IsActive { get; set; } = true;
 
+        public int? Year { get; set; }
+
         public List<Enrollment> Enrollments { get; } = new();
     }
 }
