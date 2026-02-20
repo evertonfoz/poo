@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/bin/Debug/net10.0/Missao-2-Tipos-E-Variaveis
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/bin/Debug/net10.0/Missao-2-Tipos-E-Variaveis.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/bin/Debug/net10.0/Missao-2-Tipos-E-Variaveis.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/bin/Debug/net10.0/Missao-2-Tipos-E-Variaveis.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/bin/Debug/net10.0/Missao-2-Tipos-E-Variaveis.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/Missao-2-Tipos-E-Variaveis.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/Missao-2-Tipos-E-Variaveis.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/Missao-2-Tipos-E-Variaveis.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/Missao-2-Tipos-E-Variaveis.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/Missao-2-Tipos-E-Variaveis.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/Missao-2-Tipos-E-Variaveis.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/refint/Missao-2-Tipos-E-Variaveis.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/Missao-2-Tipos-E-Variaveis.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/Missao-2-Tipos-E-Variaveis.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missao-2-Tipos-E-Variaveis/obj/Debug/net10.0/ref/Missao-2-Tipos-E-Variaveis.dll

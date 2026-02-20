@@ -1,0 +1,14 @@
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/bin/Debug/net10.0/Missao1-Hello
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/bin/Debug/net10.0/Missao1-Hello.deps.json
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/bin/Debug/net10.0/Missao1-Hello.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/bin/Debug/net10.0/Missao1-Hello.dll
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/bin/Debug/net10.0/Missao1-Hello.pdb
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/Missao1-Hello.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/Missao1-Hello.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/Missao1-Hello.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/Missao1-Hello.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/Missao1-Hello.dll
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/refint/Missao1-Hello.dll
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/Missao1-Hello.pdb
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/Missao1-Hello.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/Debug/net10.0/ref/Missao1-Hello.dll
