@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/bin/Debug/net10.0/Aula_03_Encapsulamento
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/bin/Debug/net10.0/Aula_03_Encapsulamento.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/bin/Debug/net10.0/Aula_03_Encapsulamento.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/bin/Debug/net10.0/Aula_03_Encapsulamento.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/bin/Debug/net10.0/Aula_03_Encapsulamento.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/Aula_03_Encapsulamento.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/Aula_03_Encapsulamento.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/Aula_03_Encapsulamento.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/Aula_03_Encapsulamento.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/Aula_03_Encapsulamento.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/Aula_03_Encapsulamento.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/refint/Aula_03_Encapsulamento.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/Aula_03_Encapsulamento.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/Aula_03_Encapsulamento.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_03_Encapsulamento/obj/Debug/net10.0/ref/Aula_03_Encapsulamento.dll
