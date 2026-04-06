@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/bin/Debug/net10.0/Preparacoes
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/bin/Debug/net10.0/Preparacoes.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/bin/Debug/net10.0/Preparacoes.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/bin/Debug/net10.0/Preparacoes.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/bin/Debug/net10.0/Preparacoes.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/Preparacoes.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/Preparacoes.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/Preparacoes.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/Preparacoes.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/Preparacoes.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/Preparacoes.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/refint/Preparacoes.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/Preparacoes.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/Preparacoes.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Preparacoes/obj/Debug/net10.0/ref/Preparacoes.dll
