@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/bin/Debug/net10.0/Aula04_MA
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/bin/Debug/net10.0/Aula04_MA.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/bin/Debug/net10.0/Aula04_MA.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/bin/Debug/net10.0/Aula04_MA.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/bin/Debug/net10.0/Aula04_MA.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/Aula04_MA.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/Aula04_MA.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/Aula04_MA.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/Aula04_MA.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/Aula04_MA.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/Aula04_MA.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/refint/Aula04_MA.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/Aula04_MA.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/Aula04_MA.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula04_MA/obj/Debug/net10.0/ref/Aula04_MA.dll

@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/bin/Debug/net10.0/Aula03_Construtor
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/bin/Debug/net10.0/Aula03_Construtor.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/bin/Debug/net10.0/Aula03_Construtor.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/bin/Debug/net10.0/Aula03_Construtor.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/bin/Debug/net10.0/Aula03_Construtor.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/Aula03_Construtor.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/Aula03_Construtor.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/Aula03_Construtor.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/Aula03_Construtor.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/Aula03_Construtor.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/Aula03_Construtor.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/refint/Aula03_Construtor.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/Aula03_Construtor.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/Aula03_Construtor.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula03_Construtor/obj/Debug/net10.0/ref/Aula03_Construtor.dll
