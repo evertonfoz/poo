@@ -27,11 +27,18 @@
 
 // using Models.Academico;
 
-Models.Academico.Aluno aluno1 = new Models.Academico.Aluno("2023001", "João Silva", new DateTime(2000, 5, 15), "joao.silva@email.com");
-Models.Academico.Disciplina disciplina1 = new Models.Academico.Disciplina("Matemática", "Prof. Carlos");
-Models.Academico.Matricula matricula1 = new Models.Academico.Matricula(aluno1, disciplina1, DateTime.Now);
+// Models.Academico.Aluno aluno1 = new Models.Academico.Aluno("2023001", "João Silva", new DateTime(2000, 5, 15), "joao.silva@email.com");
+// Models.Academico.Disciplina disciplina1 = new Models.Academico.Disciplina("Matemática", "Prof. Carlos");
+// Models.Academico.Matricula matricula1 = new Models.Academico.Matricula(aluno1, disciplina1, DateTime.Now);
 
-Console.WriteLine(matricula1);
+// Console.WriteLine(matricula1);
 // Console.WriteLine($"Aluno: {aluno1.Nome}, RA: {aluno1.RegistroAcademico}, Email: {aluno1.Email}");
 // Console.WriteLine($"Disciplina: {disciplina1.Nome}, Professor: {disciplina1.Professor}");
 // Console.WriteLine($"Data da Matrícula: {matricula1.DataMatricula}");
+
+Livro livro1 = new Livro("O Senhor dos Anéis", "J.R.R. Tolkien");
+
+Usuario usuario1 = new Usuario("Maria bobo", "maria.silva@email.com", "123.456.789-00", "(11) 98765-4321");
+
+Console.WriteLine($"Título do livro: {livro1.Titulo}");
+Console.WriteLine($"Autor do livro: {livro1.Autor}");
