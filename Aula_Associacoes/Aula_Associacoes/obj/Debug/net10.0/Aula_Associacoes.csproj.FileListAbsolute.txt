@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/bin/Debug/net10.0/Aula_Associacoes
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/bin/Debug/net10.0/Aula_Associacoes.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/bin/Debug/net10.0/Aula_Associacoes.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/bin/Debug/net10.0/Aula_Associacoes.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/bin/Debug/net10.0/Aula_Associacoes.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/Aula_Associacoes.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/Aula_Associacoes.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/Aula_Associacoes.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/Aula_Associacoes.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/Aula_Associacoes.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/Aula_Associacoes.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/refint/Aula_Associacoes.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/Aula_Associacoes.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/Aula_Associacoes.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Aula_Associacoes/Aula_Associacoes/obj/Debug/net10.0/ref/Aula_Associacoes.dll
