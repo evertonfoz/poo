@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/bin/Debug/net10.0/ProvaPratica
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/bin/Debug/net10.0/ProvaPratica.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/bin/Debug/net10.0/ProvaPratica.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/bin/Debug/net10.0/ProvaPratica.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/bin/Debug/net10.0/ProvaPratica.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ProvaPratica.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ProvaPratica.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ProvaPratica.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ProvaPratica.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ProvaPratica.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ProvaPratica.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/refint/ProvaPratica.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ProvaPratica.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ProvaPratica.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/ProvaPratica/obj/Debug/net10.0/ref/ProvaPratica.dll
