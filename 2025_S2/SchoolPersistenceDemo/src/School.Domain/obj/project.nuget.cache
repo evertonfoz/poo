@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Dv5vGQDs1+s=",
+  "dgSpecHash": "BolYx0KdbJ0=",
   "success": true,
-  "projectFilePath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Domain/School.Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/SchoolPersistenceDemo/src/School.Domain/School.Domain.csproj",
+  "expectedPackageFiles": [
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.netcore.app.ref/9.0.13/microsoft.netcore.app.ref.9.0.13.nupkg.sha512",
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.13/microsoft.aspnetcore.app.ref.9.0.13.nupkg.sha512"
+  ],
   "logs": []
 }

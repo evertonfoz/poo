@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Pa1xSMazONM=",
+  "dgSpecHash": "SDK8afNg6Wk=",
   "success": true,
-  "projectFilePath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SchoolPersistenceDemo/src/School.Persistence.EfCore/School.Persistence.EfCore.csproj",
+  "projectFilePath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/SchoolPersistenceDemo/src/School.Persistence.EfCore/School.Persistence.EfCore.csproj",
   "expectedPackageFiles": [
     "/Users/evertoncoimbradearaujo/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.bcl.asyncinterfaces/7.0.0/microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
@@ -58,7 +58,9 @@
     "/Users/evertoncoimbradearaujo/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/Users/evertoncoimbradearaujo/.nuget/packages/system.text.encodings.web/10.0.0/system.text.encodings.web.10.0.0.nupkg.sha512",
     "/Users/evertoncoimbradearaujo/.nuget/packages/system.text.json/10.0.0/system.text.json.10.0.0.nupkg.sha512",
-    "/Users/evertoncoimbradearaujo/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512"
+    "/Users/evertoncoimbradearaujo/.nuget/packages/system.threading.channels/7.0.0/system.threading.channels.7.0.0.nupkg.sha512",
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.netcore.app.ref/9.0.13/microsoft.netcore.app.ref.9.0.13.nupkg.sha512",
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.13/microsoft.aspnetcore.app.ref.9.0.13.nupkg.sha512"
   ],
   "logs": []
 }

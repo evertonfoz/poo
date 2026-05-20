@@ -1,0 +1,15 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/bin/Debug/net10.0/TrabalhoPOO
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/bin/Debug/net10.0/TrabalhoPOO.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/bin/Debug/net10.0/TrabalhoPOO.runtimeconfig.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/bin/Debug/net10.0/TrabalhoPOO.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/bin/Debug/net10.0/TrabalhoPOO.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/TrabalhoPOO.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/TrabalhoPOO.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/TrabalhoPOO.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/TrabalhoPOO.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/TrabalhoPOO.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/TrabalhoPOO.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/refint/TrabalhoPOO.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/TrabalhoPOO.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/TrabalhoPOO.genruntimeconfig.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/Debug/net10.0/ref/TrabalhoPOO.dll

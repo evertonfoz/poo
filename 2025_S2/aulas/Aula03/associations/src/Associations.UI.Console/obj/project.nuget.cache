@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "a0NZ3wkRsDY=",
+  "dgSpecHash": "xqbcuEf7DF8=",
   "success": true,
-  "projectFilePath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula03/associations/src/Associations.UI.Console/Associations.UI.Console.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/aulas/Aula03/associations/src/Associations.UI.Console/Associations.UI.Console.csproj",
+  "expectedPackageFiles": [
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.netcore.app.ref/9.0.13/microsoft.netcore.app.ref.9.0.13.nupkg.sha512",
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.13/microsoft.aspnetcore.app.ref.9.0.13.nupkg.sha512",
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.netcore.app.host.osx-arm64/9.0.13/microsoft.netcore.app.host.osx-arm64.9.0.13.nupkg.sha512"
+  ],
   "logs": []
 }

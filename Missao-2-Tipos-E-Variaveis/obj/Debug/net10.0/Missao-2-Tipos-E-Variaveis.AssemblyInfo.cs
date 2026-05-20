@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Missao-2-Tipos-E-Variaveis")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b35a1ee4908fcf875a88297642b33998770eab37")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb20a9db813adb22c037ecb2c9da1ce7e8aa9a99")]
 [assembly: System.Reflection.AssemblyProductAttribute("Missao-2-Tipos-E-Variaveis")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Missao-2-Tipos-E-Variaveis")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

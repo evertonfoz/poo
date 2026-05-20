@@ -32,11 +32,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.App/University.Enrollments.App.csproj",
+      "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/preparacao/aula_ia/University.Enrollments.App/University.Enrollments.App.csproj",
       "projectName": "University.Enrollments.App",
-      "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.App/University.Enrollments.App.csproj",
+      "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/preparacao/aula_ia/University.Enrollments.App/University.Enrollments.App.csproj",
       "packagesPath": "/Users/evertoncoimbradearaujo/.nuget/packages/",
-      "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.App/obj/",
+      "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/preparacao/aula_ia/University.Enrollments.App/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/evertoncoimbradearaujo/.nuget/NuGet/NuGet.Config"
@@ -45,15 +45,14 @@
         "net9.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/University.Enrollments.Domain.csproj": {
-              "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Domain/University.Enrollments.Domain.csproj"
+            "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/preparacao/aula_ia/University.Enrollments.Domain/University.Enrollments.Domain.csproj": {
+              "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/preparacao/aula_ia/University.Enrollments.Domain/University.Enrollments.Domain.csproj"
             }
           }
         }
@@ -68,7 +67,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net9.0": {
@@ -84,12 +83,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[9.0.13, 9.0.13]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.osx-arm64",
+            "version": "[9.0.13, 9.0.13]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[9.0.13, 9.0.13]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

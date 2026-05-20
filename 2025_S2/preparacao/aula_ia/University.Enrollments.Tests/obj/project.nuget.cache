@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1EfOjoDYOdM=",
+  "dgSpecHash": "YYP54VBZCR4=",
   "success": true,
-  "projectFilePath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/preparacao/aula_ia/University.Enrollments.Tests/University.Enrollments.Tests.csproj",
+  "projectFilePath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/preparacao/aula_ia/University.Enrollments.Tests/University.Enrollments.Tests.csproj",
   "expectedPackageFiles": [
     "/Users/evertoncoimbradearaujo/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
     "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.codecoverage/17.8.0/microsoft.codecoverage.17.8.0.nupkg.sha512",
@@ -92,7 +92,9 @@
     "/Users/evertoncoimbradearaujo/.nuget/packages/xunit.core/2.5.3/xunit.core.2.5.3.nupkg.sha512",
     "/Users/evertoncoimbradearaujo/.nuget/packages/xunit.extensibility.core/2.5.3/xunit.extensibility.core.2.5.3.nupkg.sha512",
     "/Users/evertoncoimbradearaujo/.nuget/packages/xunit.extensibility.execution/2.5.3/xunit.extensibility.execution.2.5.3.nupkg.sha512",
-    "/Users/evertoncoimbradearaujo/.nuget/packages/xunit.runner.visualstudio/2.5.3/xunit.runner.visualstudio.2.5.3.nupkg.sha512"
+    "/Users/evertoncoimbradearaujo/.nuget/packages/xunit.runner.visualstudio/2.5.3/xunit.runner.visualstudio.2.5.3.nupkg.sha512",
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.netcore.app.ref/9.0.13/microsoft.netcore.app.ref.9.0.13.nupkg.sha512",
+    "/Users/evertoncoimbradearaujo/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.13/microsoft.aspnetcore.app.ref.9.0.13.nupkg.sha512"
   ],
   "logs": []
 }

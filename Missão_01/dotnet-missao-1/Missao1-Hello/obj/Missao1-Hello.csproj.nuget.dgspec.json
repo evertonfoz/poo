@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/Missao1-Hello.csproj": {}
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missão_01/dotnet-missao-1/Missao1-Hello/Missao1-Hello.csproj": {}
   },
   "projects": {
-    "/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/Missao1-Hello.csproj": {
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missão_01/dotnet-missao-1/Missao1-Hello/Missao1-Hello.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/Missao1-Hello.csproj",
+        "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missão_01/dotnet-missao-1/Missao1-Hello/Missao1-Hello.csproj",
         "projectName": "Missao1-Hello",
-        "projectPath": "/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/Missao1-Hello.csproj",
+        "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missão_01/dotnet-missao-1/Missao1-Hello/Missao1-Hello.csproj",
         "packagesPath": "/Users/evertoncoimbradearaujo/.nuget/packages/",
-        "outputPath": "/Users/evertoncoimbradearaujo/Development/dotnet-missao-1/Missao1-Hello/obj/",
+        "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/Missão_01/dotnet-missao-1/Missao1-Hello/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/evertoncoimbradearaujo/.nuget/NuGet/NuGet.Config"

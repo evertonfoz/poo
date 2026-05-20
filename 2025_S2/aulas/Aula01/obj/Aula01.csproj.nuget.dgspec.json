@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula01/Aula01.csproj": {}
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/aulas/Aula01/Aula01.csproj": {}
   },
   "projects": {
-    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula01/Aula01.csproj": {
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/aulas/Aula01/Aula01.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula01/Aula01.csproj",
+        "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/aulas/Aula01/Aula01.csproj",
         "projectName": "Aula01",
-        "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula01/Aula01.csproj",
+        "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/aulas/Aula01/Aula01.csproj",
         "packagesPath": "/Users/evertoncoimbradearaujo/.nuget/packages/",
-        "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aulas/Aula01/obj/",
+        "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/2025_S2/aulas/Aula01/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/evertoncoimbradearaujo/.nuget/NuGet/NuGet.Config"
@@ -20,7 +20,6 @@
           "net9.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.200"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -55,12 +54,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[9.0.13, 9.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[9.0.13, 9.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[9.0.13, 9.0.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.201/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
