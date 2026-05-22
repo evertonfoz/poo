@@ -1,13 +1,22 @@
 ﻿@page "/"
-
-<PageTitle>Home</PageTitle>
+@rendermode InteractiveServer
 
 <h1>Cadastro de Alunos</h1>
 
-<p>Esta página permitirá cadastrar alunos.</p>
+<label>Nome do aluno</label>
 
-<h2>Minha primeira interface com Blazor</h2>
+<input @bind="nome" @bind:event="oninput" />
+
+<button @onclick="CadastrarAluno">Cadastrar</button>
+
+<p>@mensagem</p>
 
 @code {
-    private string mensagem = "Bem-vindo ao cadastro.";
+    private string nome = "";
+    private string mensagem = "";
+
+    private void CadastrarAluno()
+    {
+        mensagem = $"Aluno {nome} cadastrado com sucesso.";
+    }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/TrabalhoPOO.csproj": {}
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aula-poo-github/TrabalhoPOO/TrabalhoPOO.csproj": {}
   },
   "projects": {
-    "/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/TrabalhoPOO.csproj": {
+    "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aula-poo-github/TrabalhoPOO/TrabalhoPOO.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/TrabalhoPOO.csproj",
+        "projectUniqueName": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aula-poo-github/TrabalhoPOO/TrabalhoPOO.csproj",
         "projectName": "TrabalhoPOO",
-        "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/TrabalhoPOO.csproj",
+        "projectPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aula-poo-github/TrabalhoPOO/TrabalhoPOO.csproj",
         "packagesPath": "/Users/evertoncoimbradearaujo/.nuget/packages/",
-        "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/aula-poo-github/TrabalhoPOO/obj/",
+        "outputPath": "/Users/evertoncoimbradearaujo/Documents/GitHub/poo/aula-poo-github/TrabalhoPOO/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/evertoncoimbradearaujo/.nuget/NuGet/NuGet.Config"
