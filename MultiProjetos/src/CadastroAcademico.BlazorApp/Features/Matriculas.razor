@@ -1,0 +1,246 @@
+@page "/matriculas"
+@rendermode InteractiveServer
+
+@inject CourseService CourseService
+@inject StudentService StudentService
+@inject EnrollmentService EnrollmentService
+
+<PageTitle>Matrículas</PageTitle>
+
+<h1>Matrículas</h1>
+
+@if (!string.IsNullOrWhiteSpace(_message))
+{
+    <div class="alert @(_isError ? "alert-danger" : "alert-success") alert-dismissible" role="alert">
+        @_message
+        <button type="button" class="btn-close" @onclick="() => _message = string.Empty"></button>
+    </div>
+}
+
+<div class="card mb-4">
+    <div class="card-header">Matricular Aluno</div>
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-5">
+                <label class="form-label">Aluno</label>
+                <div class="position-relative">
+                    <input class="form-control @(_selectedStudentId > 0 ? "is-valid" : string.Empty)"
+                           placeholder="Digite o nome para buscar..."
+                           value="@_studentSearch"
+                           @oninput="OnStudentSearchInput"
+                           @onblur="() => _showStudentDropdown = false"
+                           autocomplete="off" />
+                    @if (_showStudentDropdown && _filteredStudents.Count > 0)
+                    {
+                        <ul class="list-group position-absolute shadow"
+                            style="z-index: 1000; width: 100%; max-height: 220px; overflow-y: auto;">
+                            @foreach (var s in _filteredStudents)
+                            {
+                                <li class="list-group-item list-group-item-action py-2"
+                                    style="cursor: pointer"
+                                    @onmousedown:preventDefault
+                                    @onclick="() => SelectStudent(s)">
+                                    <strong>@s.Nome</strong>
+                                    <span class="text-muted small ms-2">@s.RegistroAcademico</span>
+                                </li>
+                            }
+                        </ul>
+                    }
+                </div>
+                @if (_selectedStudentId == 0 && !string.IsNullOrWhiteSpace(_studentSearch))
+                {
+                    <div class="form-text text-warning">Selecione um aluno da lista.</div>
+                }
+            </div>
+            <div class="col-md-5">
+                <label class="form-label">Curso</label>
+                <select class="form-select" @bind="_selectedCourseId">
+                    <option value="0">Selecione um curso...</option>
+                    @foreach (var course in _courses)
+                    {
+                        <option value="@course.Id">@course.Nome (@course.Sigla)</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button class="btn btn-success w-100" @onclick="EnrollStudent">Matricular</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="h5 mb-3">Matrículas Registradas</h2>
+
+@if (_enrollments.Count == 0)
+{
+    <p class="text-muted">Nenhuma matrícula registrada ainda.</p>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Aluno</th>
+                <th>Curso</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var enrollment in _enrollments)
+            {
+                <tr>
+                    <td>@enrollment.Id</td>
+                    <td>@enrollment.StudentName</td>
+                    <td>@enrollment.CourseName</td>
+                    <td>@enrollment.DataMatricula.ToShortDateString()</td>
+                    <td>
+                        <span class="badge @GetStatusBadgeClass(enrollment.Status)">
+                            @enrollment.Status
+                        </span>
+                    </td>
+                    <td>
+                        @if (_confirmDeleteId == enrollment.Id)
+                        {
+                            <span class="text-danger me-2 small">Confirmar exclusão?</span>
+                            <button class="btn btn-sm btn-danger me-1" @onclick="() => DeleteEnrollment(enrollment.Id)">Sim</button>
+                            <button class="btn btn-sm btn-secondary" @onclick="() => _confirmDeleteId = 0">Não</button>
+                        }
+                        else
+                        {
+                            @if (enrollment.Status == "Ativa")
+                            {
+                                <button class="btn btn-sm btn-outline-danger me-1"
+                                        @onclick="() => CancelEnrollment(enrollment.Id)">
+                                    Cancelar
+                                </button>
+                                <button class="btn btn-sm btn-outline-primary me-1"
+                                        @onclick="() => CompleteEnrollment(enrollment.Id)">
+                                    Concluir
+                                </button>
+                            }
+                            <button class="btn btn-sm btn-outline-secondary"
+                                    @onclick="() => _confirmDeleteId = enrollment.Id">
+                                Excluir
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private string _studentSearch = string.Empty;
+    private bool _showStudentDropdown;
+    private List<StudentDto> _filteredStudents = [];
+    private int _selectedStudentId;
+    private int _selectedCourseId;
+    private int _confirmDeleteId;
+    private string _message = string.Empty;
+    private bool _isError;
+
+    private IReadOnlyList<CourseDto> _courses = [];
+    private IReadOnlyList<StudentDto> _students = [];
+    private IReadOnlyList<EnrollmentDto> _enrollments = [];
+
+    protected override void OnInitialized() => RefreshLists();
+
+    private void OnStudentSearchInput(ChangeEventArgs e)
+    {
+        _studentSearch = e.Value?.ToString() ?? string.Empty;
+        _selectedStudentId = 0;
+
+        if (string.IsNullOrWhiteSpace(_studentSearch))
+        {
+            _showStudentDropdown = false;
+            _filteredStudents = [];
+            return;
+        }
+
+        _filteredStudents = _students
+            .Where(s => s.Nome.Contains(_studentSearch, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        _showStudentDropdown = _filteredStudents.Count > 0;
+    }
+
+    private void SelectStudent(StudentDto student)
+    {
+        _selectedStudentId = student.Id;
+        _studentSearch = $"{student.Nome} ({student.RegistroAcademico})";
+        _showStudentDropdown = false;
+    }
+
+    private void EnrollStudent()
+    {
+        if (_selectedStudentId == 0)
+        {
+            _isError = true;
+            _message = "Selecione um aluno da lista de busca antes de matricular.";
+            return;
+        }
+
+        var result = EnrollmentService.Enroll(new CreateEnrollmentInput
+        {
+            StudentId = _selectedStudentId,
+            CourseId = _selectedCourseId
+        });
+
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+
+        if (result.IsSuccess)
+        {
+            _selectedStudentId = 0;
+            _selectedCourseId = 0;
+            _studentSearch = string.Empty;
+            RefreshLists();
+        }
+    }
+
+    private void CancelEnrollment(int enrollmentId)
+    {
+        var result = EnrollmentService.CancelEnrollment(enrollmentId);
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+        if (result.IsSuccess) RefreshLists();
+    }
+
+    private void CompleteEnrollment(int enrollmentId)
+    {
+        var result = EnrollmentService.CompleteEnrollment(enrollmentId);
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+        if (result.IsSuccess) RefreshLists();
+    }
+
+    private void DeleteEnrollment(int enrollmentId)
+    {
+        var result = EnrollmentService.DeleteEnrollment(enrollmentId);
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+        if (result.IsSuccess)
+        {
+            _confirmDeleteId = 0;
+            RefreshLists();
+        }
+    }
+
+    private void RefreshLists()
+    {
+        _courses = CourseService.GetAll();
+        _students = StudentService.GetAll();
+        _enrollments = EnrollmentService.GetAll();
+    }
+
+    private static string GetStatusBadgeClass(string status) => status switch
+    {
+        "Ativa" => "bg-success",
+        "Cancelada" => "bg-danger",
+        "Concluida" => "bg-primary",
+        _ => "bg-secondary"
+    };
+}

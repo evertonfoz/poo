@@ -25,6 +25,7 @@
 
 # Visual Studio Code settings
 .vscode/*
+**/.vscode/mcp.json
 !.vscode/extensions.json
 !.vscode/launch.json
 

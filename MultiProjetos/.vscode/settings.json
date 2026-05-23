@@ -1,0 +1,16 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "dotnet add": true,
+        "dotnet build": true,
+        "dotnet list": true,
+        "dotnet run": true,
+        "/^dotnet --info \\| head -n 80$/": {
+            "approve": true,
+            "matchCommandLine": true
+        },
+        "/^python3 - <<'PY'\nimport json, pathlib\nbase=pathlib\\.Path\\.home\\(\\)/'\\.vscode/extensions/ms-dotnettools\\.csdevkit-3\\.20\\.197-darwin-arm64'\nfor name in \\['package\\.nls\\.pt-br\\.json','package\\.nls\\.json'\\]:\n    p=base/name\n    data=json\\.loads\\(p\\.read_text\\(\\)\\)\n    print\\('FILE', name\\)\n    for key in sorted\\(data\\):\n        if any\\(x in key for x in \\['selectStartupProject','projectDebugLaunch','noDebugProjectLaunch','stepIntoProjectLaunch','fileLaunch','noDebugFileLaunch'\\]\\):\n            print\\(key, '=>', data\\[key\\]\\)\nPY$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

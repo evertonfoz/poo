@@ -1,0 +1,6 @@
+# Local secrets
+.env.local
+.env
+
+# Keep template file versioned
+!.env.example

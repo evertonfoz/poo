@@ -1,0 +1,265 @@
+@page "/academico"
+@rendermode InteractiveServer
+
+@using Microsoft.AspNetCore.Components.Web
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
+@using CadastroAcademico.Application.DTOs.Courses
+@using CadastroAcademico.Application.DTOs.Enrollments
+@using CadastroAcademico.Application.DTOs.Students
+@using CadastroAcademico.Application.Services
+
+@inject CourseService CourseService
+@inject StudentService StudentService
+@inject EnrollmentService EnrollmentService
+
+<PageTitle>Fluxo Academico</PageTitle>
+
+<h1>Fluxo Academico Didatico</h1>
+
+<p>Esta tela demonstra a integracao da interface Blazor com a camada Application.</p>
+
+@if (!string.IsNullOrWhiteSpace(_message))
+{
+    <div class="alert @(_isError ? "alert-danger" : "alert-success")" role="alert">
+        @_message
+    </div>
+}
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">1. Criar Curso</div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <label class="form-label">Nome</label>
+                    <input class="form-control" @bind="_courseName" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Sigla</label>
+                    <input class="form-control" @bind="_courseCode" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Carga Horaria</label>
+                    <input type="number" class="form-control" @bind="_courseWorkload" />
+                </div>
+                <button class="btn btn-primary" @onclick="CreateCourse">Criar Curso</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">2. Criar Aluno</div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <label class="form-label">Nome</label>
+                    <input class="form-control" @bind="_studentName" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Email</label>
+                    <input class="form-control" @bind="_studentEmail" />
+                </div>
+                <div class="mb-2">
+                    <label class="form-label">Registro Academico</label>
+                    <input class="form-control" @bind="_studentRegistration" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Periodo</label>
+                    <input class="form-control" @bind="_studentPeriod" />
+                </div>
+                <button class="btn btn-primary" @onclick="CreateStudent">Criar Aluno</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">3. Matricular Aluno</div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <label class="form-label">Aluno</label>
+                    <select class="form-select" @bind="_selectedStudentId">
+                        <option value="0">Selecione...</option>
+                        @foreach (var student in _students)
+                        {
+                            <option value="@student.Id">@student.Nome (@student.RegistroAcademico)</option>
+                        }
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Curso</label>
+                    <select class="form-select" @bind="_selectedCourseId">
+                        <option value="0">Selecione...</option>
+                        @foreach (var course in _courses)
+                        {
+                            <option value="@course.Id">@course.Nome (@course.Sigla)</option>
+                        }
+                    </select>
+                </div>
+                <button class="btn btn-success" @onclick="EnrollStudent">Matricular</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div class="row g-4">
+    <div class="col-md-4">
+        <h3>Cursos</h3>
+        <ul class="list-group">
+            @foreach (var course in _courses)
+            {
+                <li class="list-group-item">@course.Id - @course.Nome (@course.Sigla), CH @course.CargaHoraria</li>
+            }
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Alunos</h3>
+        <ul class="list-group">
+            @foreach (var student in _students)
+            {
+                <li class="list-group-item">@student.Id - @student.Nome - @student.RegistroAcademico</li>
+            }
+        </ul>
+    </div>
+
+    <div class="col-md-4">
+        <h3>Matriculas</h3>
+        <ul class="list-group">
+            @foreach (var enrollment in _enrollments)
+            {
+                <li class="list-group-item">
+                    <div>@enrollment.Id - @enrollment.StudentName -> @enrollment.CourseName (@enrollment.Status)</div>
+
+                    @if (enrollment.Status == "Ativa")
+                    {
+                        <div class="mt-2 d-flex gap-2">
+                            <button class="btn btn-sm btn-outline-danger" @onclick="() => CancelEnrollment(enrollment.Id)">Cancelar</button>
+                            <button class="btn btn-sm btn-outline-primary" @onclick="() => CompleteEnrollment(enrollment.Id)">Concluir</button>
+                        </div>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+@code {
+    private string _courseName = string.Empty;
+    private string _courseCode = string.Empty;
+    private int _courseWorkload;
+
+    private string _studentName = string.Empty;
+    private string _studentEmail = string.Empty;
+    private string _studentRegistration = string.Empty;
+    private string _studentPeriod = string.Empty;
+
+    private int _selectedStudentId;
+    private int _selectedCourseId;
+
+    private string _message = string.Empty;
+    private bool _isError;
+
+    private IReadOnlyList<CourseDto> _courses = [];
+    private IReadOnlyList<StudentDto> _students = [];
+    private IReadOnlyList<EnrollmentDto> _enrollments = [];
+
+    protected override void OnInitialized()
+    {
+        RefreshLists();
+    }
+
+    private void CreateCourse()
+    {
+        var result = CourseService.CreateCourse(new CreateCourseInput
+        {
+            Nome = _courseName,
+            Sigla = _courseCode,
+            CargaHoraria = _courseWorkload
+        });
+
+        SetFeedback(result.IsSuccess, result.Message);
+        if (result.IsSuccess)
+        {
+            _courseName = string.Empty;
+            _courseCode = string.Empty;
+            _courseWorkload = 0;
+            RefreshLists();
+        }
+    }
+
+    private void CreateStudent()
+    {
+        var result = StudentService.CreateStudent(new CreateStudentInput
+        {
+            Nome = _studentName,
+            Email = _studentEmail,
+            RegistroAcademico = _studentRegistration,
+            Periodo = _studentPeriod
+        });
+
+        SetFeedback(result.IsSuccess, result.Message);
+        if (result.IsSuccess)
+        {
+            _studentName = string.Empty;
+            _studentEmail = string.Empty;
+            _studentRegistration = string.Empty;
+            _studentPeriod = string.Empty;
+            RefreshLists();
+        }
+    }
+
+    private void EnrollStudent()
+    {
+        var result = EnrollmentService.Enroll(new CreateEnrollmentInput
+        {
+            StudentId = _selectedStudentId,
+            CourseId = _selectedCourseId
+        });
+
+        SetFeedback(result.IsSuccess, result.Message);
+        if (result.IsSuccess)
+        {
+            _selectedStudentId = 0;
+            _selectedCourseId = 0;
+            RefreshLists();
+        }
+    }
+
+    private void CancelEnrollment(int enrollmentId)
+    {
+        var result = EnrollmentService.CancelEnrollment(enrollmentId);
+        SetFeedback(result.IsSuccess, result.Message);
+
+        if (result.IsSuccess)
+        {
+            RefreshLists();
+        }
+    }
+
+    private void CompleteEnrollment(int enrollmentId)
+    {
+        var result = EnrollmentService.CompleteEnrollment(enrollmentId);
+        SetFeedback(result.IsSuccess, result.Message);
+
+        if (result.IsSuccess)
+        {
+            RefreshLists();
+        }
+    }
+
+    private void RefreshLists()
+    {
+        _courses = CourseService.GetAll();
+        _students = StudentService.GetAll();
+        _enrollments = EnrollmentService.GetAll();
+    }
+
+    private void SetFeedback(bool isSuccess, string message)
+    {
+        _isError = !isSuccess;
+        _message = message;
+    }
+}

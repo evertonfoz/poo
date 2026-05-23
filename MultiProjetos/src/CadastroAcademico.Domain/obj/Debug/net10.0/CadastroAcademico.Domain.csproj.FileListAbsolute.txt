@@ -1,0 +1,12 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/bin/Debug/net10.0/CadastroAcademico.Domain.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/bin/Debug/net10.0/CadastroAcademico.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/bin/Debug/net10.0/CadastroAcademico.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/CadastroAcademico.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/CadastroAcademico.Domain.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/CadastroAcademico.Domain.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/CadastroAcademico.Domain.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/CadastroAcademico.Domain.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/CadastroAcademico.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/refint/CadastroAcademico.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/CadastroAcademico.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/MultiProjetos/src/CadastroAcademico.Domain/obj/Debug/net10.0/ref/CadastroAcademico.Domain.dll

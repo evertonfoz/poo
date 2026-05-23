@@ -1,0 +1,195 @@
+@page "/cursos"
+@rendermode InteractiveServer
+
+@inject CourseService CourseService
+
+<PageTitle>Cursos</PageTitle>
+
+<h1>Cursos</h1>
+
+@if (!string.IsNullOrWhiteSpace(_message))
+{
+    <div class="alert @(_isError ? "alert-danger" : "alert-success") alert-dismissible" role="alert">
+        @_message
+        <button type="button" class="btn-close" @onclick="() => _message = string.Empty"></button>
+    </div>
+}
+
+@if (_editingId > 0)
+{
+    <div class="card mb-4 border-warning">
+        <div class="card-header bg-warning text-dark">Editar Curso</div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-5">
+                    <label class="form-label">Nome</label>
+                    <input class="form-control" @bind="_editName" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Sigla</label>
+                    <input class="form-control" @bind="_editCode" />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Carga Horária (h)</label>
+                    <input type="number" class="form-control" @bind="_editWorkload" min="1" />
+                </div>
+                <div class="col-md-2 d-flex align-items-end gap-2">
+                    <button class="btn btn-warning flex-fill" @onclick="UpdateCourse">Salvar</button>
+                    <button class="btn btn-secondary flex-fill" @onclick="CancelEdit">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card mb-4">
+        <div class="card-header">Cadastrar Curso</div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-5">
+                    <label class="form-label">Nome</label>
+                    <input class="form-control" @bind="_courseName" placeholder="Ex.: Análise e Desenvolvimento de Sistemas" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Sigla</label>
+                    <input class="form-control" @bind="_courseCode" placeholder="Ex.: ADS" />
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Carga Horária (h)</label>
+                    <input type="number" class="form-control" @bind="_courseWorkload" min="1" />
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button class="btn btn-primary w-100" @onclick="CreateCourse">Criar Curso</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<h2 class="h5 mb-3">Cursos Cadastrados</h2>
+
+@if (_courses.Count == 0)
+{
+    <p class="text-muted">Nenhum curso cadastrado ainda.</p>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Sigla</th>
+                <th>Carga Horária (h)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var course in _courses)
+            {
+                <tr class="@(_editingId == course.Id ? "table-warning" : string.Empty)">
+                    <td>@course.Id</td>
+                    <td>@course.Nome</td>
+                    <td><span class="badge bg-secondary">@course.Sigla</span></td>
+                    <td>@course.CargaHoraria</td>
+                    <td>
+                        @if (_confirmDeleteId == course.Id)
+                        {
+                            <span class="text-danger me-2 small">Confirmar exclusão?</span>
+                            <button class="btn btn-sm btn-danger me-1" @onclick="() => DeleteCourse(course.Id)">Sim</button>
+                            <button class="btn btn-sm btn-secondary" @onclick="() => _confirmDeleteId = 0">Não</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-sm btn-outline-warning me-1" @onclick="() => StartEdit(course)">Editar</button>
+                            <button class="btn btn-sm btn-outline-danger" @onclick="() => { _confirmDeleteId = course.Id; _editingId = 0; }">Excluir</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private string _courseName = string.Empty;
+    private string _courseCode = string.Empty;
+    private int _courseWorkload;
+    private string _message = string.Empty;
+    private bool _isError;
+    private IReadOnlyList<CourseDto> _courses = [];
+
+    private int _editingId;
+    private string _editName = string.Empty;
+    private string _editCode = string.Empty;
+    private int _editWorkload;
+    private int _confirmDeleteId;
+
+    protected override void OnInitialized() => _courses = CourseService.GetAll();
+
+    private void CreateCourse()
+    {
+        var result = CourseService.CreateCourse(new CreateCourseInput
+        {
+            Nome = _courseName,
+            Sigla = _courseCode,
+            CargaHoraria = _courseWorkload
+        });
+
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+
+        if (result.IsSuccess)
+        {
+            _courseName = string.Empty;
+            _courseCode = string.Empty;
+            _courseWorkload = 0;
+            _courses = CourseService.GetAll();
+        }
+    }
+
+    private void StartEdit(CourseDto course)
+    {
+        _editingId = course.Id;
+        _editName = course.Nome;
+        _editCode = course.Sigla;
+        _editWorkload = course.CargaHoraria;
+        _confirmDeleteId = 0;
+        _message = string.Empty;
+    }
+
+    private void CancelEdit() => _editingId = 0;
+
+    private void UpdateCourse()
+    {
+        var result = CourseService.UpdateCourse(_editingId, new UpdateCourseInput
+        {
+            Nome = _editName,
+            Sigla = _editCode,
+            CargaHoraria = _editWorkload
+        });
+
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+
+        if (result.IsSuccess)
+        {
+            _editingId = 0;
+            _courses = CourseService.GetAll();
+        }
+    }
+
+    private void DeleteCourse(int id)
+    {
+        var result = CourseService.DeleteCourse(id);
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+
+        if (result.IsSuccess)
+        {
+            _confirmDeleteId = 0;
+            _courses = CourseService.GetAll();
+        }
+    }
+}

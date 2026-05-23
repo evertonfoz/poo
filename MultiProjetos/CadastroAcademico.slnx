@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/CadastroAcademico.Application/CadastroAcademico.Application.csproj" />
+    <Project Path="src/CadastroAcademico.BlazorApp/CadastroAcademico.BlazorApp.csproj" />
+    <Project Path="src/CadastroAcademico.ConsoleApp/CadastroAcademico.ConsoleApp.csproj" />
+    <Project Path="src/CadastroAcademico.Domain/CadastroAcademico.Domain.csproj" />
+  </Folder>
+</Solution>

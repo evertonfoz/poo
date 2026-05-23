@@ -1,0 +1,223 @@
+@page "/alunos"
+@rendermode InteractiveServer
+
+@inject StudentService StudentService
+
+<PageTitle>Alunos</PageTitle>
+
+<h1>Alunos</h1>
+
+@if (!string.IsNullOrWhiteSpace(_message))
+{
+    <div class="alert @(_isError ? "alert-danger" : "alert-success") alert-dismissible" role="alert">
+        @_message
+        <button type="button" class="btn-close" @onclick="() => _message = string.Empty"></button>
+    </div>
+}
+
+@if (_editingId > 0)
+{
+    <div class="card mb-4 border-warning">
+        <div class="card-header bg-warning text-dark">Editar Aluno</div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <h6 class="text-muted mb-2">Dados do Aluno</h6>
+                    <div class="mb-2">
+                        <label class="form-label">Nome</label>
+                        <input class="form-control" @bind="_editName" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">E-mail</label>
+                        <input type="email" class="form-control" @bind="_editEmail" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted mb-2">Perfil Acadêmico</h6>
+                    <div class="mb-2">
+                        <label class="form-label">Registro Acadêmico</label>
+                        <input class="form-control" @bind="_editRegistration" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Período</label>
+                        <input class="form-control" @bind="_editPeriod" />
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3 d-flex gap-2">
+                <button class="btn btn-warning" @onclick="UpdateStudent">Salvar</button>
+                <button class="btn btn-secondary" @onclick="CancelEdit">Cancelar</button>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card mb-4">
+        <div class="card-header">Cadastrar Aluno</div>
+        <div class="card-body">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <h6 class="text-muted mb-2">Dados do Aluno</h6>
+                    <div class="mb-2">
+                        <label class="form-label">Nome</label>
+                        <input class="form-control" @bind="_studentName" placeholder="Nome completo" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">E-mail <span class="text-muted small">(único)</span></label>
+                        <input type="email" class="form-control" @bind="_studentEmail" placeholder="email@exemplo.com" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h6 class="text-muted mb-2">Perfil Acadêmico</h6>
+                    <div class="mb-2">
+                        <label class="form-label">Registro Acadêmico <span class="text-muted small">(único)</span></label>
+                        <input class="form-control" @bind="_studentRegistration" placeholder="Ex.: 2024001" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Período</label>
+                        <input class="form-control" @bind="_studentPeriod" placeholder="Ex.: 1º Semestre 2024" />
+                    </div>
+                </div>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-primary" @onclick="CreateStudent">Criar Aluno</button>
+            </div>
+        </div>
+    </div>
+}
+
+<h2 class="h5 mb-3">Alunos Cadastrados</h2>
+
+@if (_students.Count == 0)
+{
+    <p class="text-muted">Nenhum aluno cadastrado ainda.</p>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Registro Acadêmico</th>
+                <th>Período</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in _students)
+            {
+                <tr class="@(_editingId == student.Id ? "table-warning" : string.Empty)">
+                    <td>@student.Id</td>
+                    <td>@student.Nome</td>
+                    <td>@student.Email</td>
+                    <td><code>@student.RegistroAcademico</code></td>
+                    <td>@student.Periodo</td>
+                    <td>
+                        @if (_confirmDeleteId == student.Id)
+                        {
+                            <span class="text-danger me-2 small">Confirmar exclusão?</span>
+                            <button class="btn btn-sm btn-danger me-1" @onclick="() => DeleteStudent(student.Id)">Sim</button>
+                            <button class="btn btn-sm btn-secondary" @onclick="() => _confirmDeleteId = 0">Não</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-sm btn-outline-warning me-1" @onclick="() => StartEdit(student)">Editar</button>
+                            <button class="btn btn-sm btn-outline-danger" @onclick="() => { _confirmDeleteId = student.Id; _editingId = 0; }">Excluir</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private string _studentName = string.Empty;
+    private string _studentEmail = string.Empty;
+    private string _studentRegistration = string.Empty;
+    private string _studentPeriod = string.Empty;
+    private string _message = string.Empty;
+    private bool _isError;
+    private IReadOnlyList<StudentDto> _students = [];
+
+    private int _editingId;
+    private string _editName = string.Empty;
+    private string _editEmail = string.Empty;
+    private string _editRegistration = string.Empty;
+    private string _editPeriod = string.Empty;
+    private int _confirmDeleteId;
+
+    protected override void OnInitialized() => _students = StudentService.GetAll();
+
+    private void CreateStudent()
+    {
+        var result = StudentService.CreateStudent(new CreateStudentInput
+        {
+            Nome = _studentName,
+            Email = _studentEmail,
+            RegistroAcademico = _studentRegistration,
+            Periodo = _studentPeriod
+        });
+
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+
+        if (result.IsSuccess)
+        {
+            _studentName = string.Empty;
+            _studentEmail = string.Empty;
+            _studentRegistration = string.Empty;
+            _studentPeriod = string.Empty;
+            _students = StudentService.GetAll();
+        }
+    }
+
+    private void StartEdit(StudentDto student)
+    {
+        _editingId = student.Id;
+        _editName = student.Nome;
+        _editEmail = student.Email;
+        _editRegistration = student.RegistroAcademico;
+        _editPeriod = student.Periodo;
+        _confirmDeleteId = 0;
+        _message = string.Empty;
+    }
+
+    private void CancelEdit() => _editingId = 0;
+
+    private void UpdateStudent()
+    {
+        var result = StudentService.UpdateStudent(_editingId, new UpdateStudentInput
+        {
+            Nome = _editName,
+            Email = _editEmail,
+            RegistroAcademico = _editRegistration,
+            Periodo = _editPeriod
+        });
+
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+
+        if (result.IsSuccess)
+        {
+            _editingId = 0;
+            _students = StudentService.GetAll();
+        }
+    }
+
+    private void DeleteStudent(int id)
+    {
+        var result = StudentService.DeleteStudent(id);
+        _isError = !result.IsSuccess;
+        _message = result.Message;
+
+        if (result.IsSuccess)
+        {
+            _confirmDeleteId = 0;
+            _students = StudentService.GetAll();
+        }
+    }
+}

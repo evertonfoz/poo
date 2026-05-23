@@ -1,0 +1,77 @@
+@page "/"
+
+<PageTitle>Sistema Academico</PageTitle>
+
+<h1>Sistema de Cadastro Academico</h1>
+
+<p class="lead text-muted">
+    Projeto didatico em C# e .NET 10 para praticar Programacao Orientada a Objetos com duas interfaces: Console e Blazor.
+</p>
+
+<hr />
+
+<div class="row g-4 mb-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Cursos</h5>
+                <p class="card-text text-muted">Cadastre e consulte os cursos disponiveis. Cada curso possui nome, sigla e carga horaria.</p>
+                <a href="cursos" class="btn btn-primary">Acessar Cursos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Alunos</h5>
+                <p class="card-text text-muted">Cadastre alunos com seus dados e perfil academico (registro e periodo).</p>
+                <a href="alunos" class="btn btn-primary">Acessar Alunos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Matriculas</h5>
+                <p class="card-text text-muted">Matricule alunos em cursos, acompanhe o status e cancele ou conclua matriculas.</p>
+                <a href="matriculas" class="btn btn-primary">Acessar Matriculas</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="h5 mb-3">Sobre o Projeto</h2>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <div class="card border-0 bg-light h-100">
+            <div class="card-body">
+                <h6 class="card-title">Arquitetura</h6>
+                <p class="card-text small text-muted">
+                    A solucao e dividida em quatro projetos. Domain e Application sao compartilhados
+                    entre Console e Blazor — as regras de negocio vivem no Domain, os casos de uso na Application.
+                    As interfaces apenas coletam entrada e exibem saida.
+                </p>
+                <pre class="small mb-0 text-muted">Domain
+  └── Application
+        ├── ConsoleApp
+        └── BlazorApp</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card border-0 bg-light h-100">
+            <div class="card-body">
+                <h6 class="card-title">Fluxo Didatico</h6>
+                <p class="card-text small text-muted">
+                    A pagina <a href="academico">Fluxo Academico</a> exibe os tres formularios lado a lado
+                    para demonstrar a integracao entre a interface Blazor e a camada Application em uma
+                    unica tela, facilitando o estudo do fluxo completo.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

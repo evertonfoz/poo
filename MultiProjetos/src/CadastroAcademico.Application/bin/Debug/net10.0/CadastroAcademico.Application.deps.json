@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "CadastroAcademico.Application/1.0.0": {
+        "dependencies": {
+          "CadastroAcademico.Domain": "1.0.0"
+        },
+        "runtime": {
+          "CadastroAcademico.Application.dll": {}
+        }
+      },
+      "CadastroAcademico.Domain/1.0.0": {
+        "runtime": {
+          "CadastroAcademico.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CadastroAcademico.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "CadastroAcademico.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

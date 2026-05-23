@@ -1,0 +1,42 @@
+﻿<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">Sistema Academico</a>
+    </div>
+</div>
+
+<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+
+<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
+    <nav class="nav flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="cursos">
+                <span class="bi bi-book-fill-nav-menu" aria-hidden="true"></span> Cursos
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="alunos">
+                <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> Alunos
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="matriculas">
+                <span class="bi bi-pencil-fill-nav-menu" aria-hidden="true"></span> Matriculas
+            </NavLink>
+        </div>
+
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="academico">
+                <span class="bi bi-mortarboard-fill-nav-menu" aria-hidden="true"></span> Fluxo Academico
+            </NavLink>
+        </div>
+    </nav>
+</div>
+
