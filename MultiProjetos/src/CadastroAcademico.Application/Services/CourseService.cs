@@ -16,9 +16,17 @@ public sealed class CourseService
 
     public OperationResult<CourseDto> CreateCourse(CreateCourseInput input)
     {
+        var sigla = input.Sigla.Trim();
+        var siglaConflito = _store.Courses.Any(c =>
+            c.Sigla.Equals(sigla, StringComparison.OrdinalIgnoreCase));
+        if (siglaConflito)
+        {
+            return OperationResult<CourseDto>.Failure("Ja existe um curso com esta sigla.");
+        }
+
         try
         {
-            var course = new Curso(input.Nome, input.Sigla, input.CargaHoraria);
+            var course = new Curso(input.Nome, sigla, input.CargaHoraria);
             _store.AddCourse(course);
 
             return OperationResult<CourseDto>.Success(ToDto(course), "Curso criado com sucesso.");

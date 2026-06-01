@@ -16,10 +16,27 @@ public sealed class StudentService
 
     public OperationResult<StudentDto> CreateStudent(CreateStudentInput input)
     {
+        var email = input.Email.Trim();
+        var registroAcademico = input.RegistroAcademico.Trim();
+
+        var emailConflito = _store.Students.Any(s =>
+            s.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+        if (emailConflito)
+        {
+            return OperationResult<StudentDto>.Failure("Ja existe um aluno com este e-mail.");
+        }
+
+        var raConflito = _store.Students.Any(s =>
+            s.PerfilAcademico.RegistroAcademico.Equals(registroAcademico, StringComparison.OrdinalIgnoreCase));
+        if (raConflito)
+        {
+            return OperationResult<StudentDto>.Failure("Ja existe um aluno com este registro academico.");
+        }
+
         try
         {
-            var profile = new PerfilAcademico(input.RegistroAcademico, input.Periodo);
-            var student = new Aluno(input.Nome, input.Email, profile);
+            var profile = new PerfilAcademico(registroAcademico, input.Periodo);
+            var student = new Aluno(input.Nome, email, profile);
             _store.AddStudent(student);
 
             return OperationResult<StudentDto>.Success(ToDto(student), "Aluno criado com sucesso.");

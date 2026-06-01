@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SuporteTecnico.ConsoleApp/SuporteTecnico.ConsoleApp.csproj" />
+  <Project Path="SuporteTecnico.Domain/SuporteTecnico.Domain.csproj" />
+</Solution>

@@ -6,6 +6,23 @@ O mesmo modelo de negocio e a mesma camada de servicos sao consumidos por duas i
 
 ---
 
+## Status da Ultima Validacao
+
+> Revisao tecnica executada em **2026-05-23** — [ver relatorio completo](Docs/00-acompanhamento/05_revisao-tecnica-2026-05-23.md)
+
+| Item | Resultado |
+|---|---|
+| Build (`dotnet build`) | 0 erros, 0 avisos |
+| SDK / Target Framework | .NET 10.0.103 / `net10.0` |
+| Encapsulamento das entidades | Correto |
+| Padrao OperationResult | Aplicado consistentemente |
+| APIs Blazor | Atualizadas para net10 |
+| IDs por contador estatico | Aceitavel (fins didaticos) |
+| `PerfilAcademico` imutabilidade | Evolucao futura sugerida |
+| `lang` no App.razor | Deveria ser `pt-BR` |
+
+---
+
 ## Resumo Rapido
 
 | Objetivo | Onde ir |
@@ -16,6 +33,7 @@ O mesmo modelo de negocio e a mesma camada de servicos sao consumidos por duas i
 | Implementar uma nova entidade | [Roteiro](#roteiro-para-implementar-um-novo-problema) |
 | Localizar um conceito no codigo | [Indice de Conceitos](#onde-cada-conceito-esta-no-codigo) |
 | Duvidas frequentes | [FAQ](#perguntas-frequentes) |
+| Acompanhamento e historico | [Docs/00-acompanhamento/](Docs/00-acompanhamento/) |
 
 ---
 

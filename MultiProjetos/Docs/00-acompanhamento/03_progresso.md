@@ -3,7 +3,7 @@
 ## Sessão atual
 
 Data: 2026-05-23
-Status: Sessão 5 concluída — ConsoleApp com menus interativos completos
+Status: Sessão 6 concluída — Revisão técnica completa e MCPs configurados
 
 ## O que foi implementado
 
@@ -87,6 +87,15 @@ Status: Sessão 5 concluída — ConsoleApp com menus interativos completos
 54. `Cursos.razor` evoluida com editar inline (card amarelo pre-preenchido, substituindo o card de cadastro) e excluir com confirmacao na linha da tabela (Sim/Nao).
 55. `Alunos.razor` evoluida com editar inline (mesma estrutura de duas colunas do cadastro) e excluir com confirmacao na linha da tabela.
 56. `Matriculas.razor` evoluida com excluir matricula com confirmacao na linha; cancelar e concluir continuam disponiveis apenas para status Ativa.
+57. Configurados MCPs do projeto em `.claude/settings.json`: `context7` e `microsoft-learn`.
+58. Revisão técnica completa executada sobre todo o código-fonte — resultado em `Docs/00-acompanhamento/05_revisao-tecnica-2026-05-23.md`.
+59. README atualizado com seção de status da última validação.
+60. Ajustado o lifetime do `InMemoryAcademicStore` na BlazorApp para `scoped`, alinhando o estado em memória ao circuito do usuário em Blazor Interactive Server.
+61. Adicionadas validações de unicidade também na criação:
+   - `CourseService.CreateCourse(...)` bloqueia sigla duplicada.
+   - `StudentService.CreateStudent(...)` bloqueia e-mail duplicado.
+   - `StudentService.CreateStudent(...)` bloqueia registro acadêmico duplicado.
+62. Documentada explicitamente a decisão didática de manter as exclusões simples em memória nesta etapa, mesmo sem sincronização histórica total nas coleções internas das entidades.
 
 ## O que foi validado
 
@@ -107,12 +116,17 @@ Status: Sessão 5 concluída — ConsoleApp com menus interativos completos
 15. Build completo da solution validado com sucesso apos criacao das paginas Cursos, Alunos e Matriculas na BlazorApp (0 erros, 0 warnings).
 16. Build completo da solution validado com sucesso apos criacao da estrutura de menus da ConsoleApp (0 erros, 0 warnings).
 17. Build completo da solution validado com sucesso apos adicionar editar e excluir nas paginas Blazor (0 erros, 0 warnings).
+18. Revisão técnica completa em 2026-05-23: 0 erros, 0 avisos, 3 observações de baixa severidade documentadas em `05_revisao-tecnica-2026-05-23.md`.
+19. Build completo da solution validado com sucesso apos ajuste do lifetime do store e validacoes de unicidade na criacao (0 erros, 0 warnings).
 
 ## Pendências
 
 1. Revisar e consolidar pendencias do bloco `03-application-e-persistencia-em-memoria` com exemplos adicionais se necessario.
 2. Avaliar necessidade de testes automatizados para os fluxos de Application e UI.
 3. Planejar inicio do bloco de testes automatizados sem quebrar foco didatico atual.
+4. Corrigir `lang="en"` para `lang="pt-BR"` no `App.razor` (baixa prioridade).
+5. Evoluir `PerfilAcademico` para Value Object imutável em sessão futura (conceito avançado).
+6. Revisitar a estratégia de exclusão em memória caso a próxima etapa exija consistência histórica mais forte entre store e agregados.
 
 ## Próxima ação recomendada
 

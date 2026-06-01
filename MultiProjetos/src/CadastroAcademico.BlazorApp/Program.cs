@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-builder.Services.AddSingleton<InMemoryAcademicStore>();
+builder.Services.AddScoped<InMemoryAcademicStore>();
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<StudentService>();
 builder.Services.AddScoped<EnrollmentService>();

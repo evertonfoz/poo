@@ -1,0 +1,12 @@
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/SuporteTecnico.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/SuporteTecnico.Domain.AssemblyInfoInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/SuporteTecnico.Domain.AssemblyInfo.cs
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/SuporteTecnico.Domain.csproj.CoreCompileInputs.cache
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/SuporteTecnico.Domain.sourcelink.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/bin/Debug/net10.0/SuporteTecnico.Domain.deps.json
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/bin/Debug/net10.0/SuporteTecnico.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/bin/Debug/net10.0/SuporteTecnico.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/SuporteTecnico.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/refint/SuporteTecnico.Domain.dll
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/SuporteTecnico.Domain.pdb
+/Users/evertoncoimbradearaujo/Documents/GitHub/poo/SuporteTecnico/SuporteTecnico.Domain/obj/Debug/net10.0/ref/SuporteTecnico.Domain.dll
