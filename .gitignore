@@ -9,8 +9,8 @@
 *.sln.docstates
 
 # Build results
-/bin/
-/obj/
+bin/
+obj/
 
 # Test result
 .vs/TestResults/
@@ -53,6 +53,7 @@ csx/
 
 # Mac
 .DS_Store
+**/.DS_Store
 
 # Logs
 *.log
