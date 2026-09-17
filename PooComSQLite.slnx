@@ -1,3 +1,7 @@
 <Solution>
+  <Folder Name="/2026_S2/" />
+  <Folder Name="/2026_S2/Aula004/">
+    <Project Path="2026_S2/Aula004/ReservaDeCinema/ReservaDeCinema.csproj" />
+  </Folder>
   <Project Path="ConsoleApp/ConsoleApp.csproj" />
 </Solution>
