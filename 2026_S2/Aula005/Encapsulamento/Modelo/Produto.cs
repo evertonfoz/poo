@@ -20,9 +20,28 @@ public class Produto
          }
     }
 
-    private double _estoque;
-    public double Estoque { get => _estoque;}
+    private double? _estoque;
+    public double Estoque { get => _estoque ?? 0;}
 
+    public Produto(string nome, decimal preco)
+    {
+        if (string.IsNullOrEmpty(nome))
+        {
+            throw new ArgumentException("O nome não pode ser nulo ou vazio.");
+        }
+        
+        Nome = nome;
+        AtualizarPreco(preco);
+    }
+
+    public void AtualizarPreco(decimal novoPreco)
+    {
+        if (novoPreco <= 0)
+        {
+            throw new ArgumentException("O preço não pode ser zero ou negativo.");
+        }
+        Preco = novoPreco;
+    }
     public void RegistrarEntrada(double quantidade)
     {
         if (quantidade <= 0)
