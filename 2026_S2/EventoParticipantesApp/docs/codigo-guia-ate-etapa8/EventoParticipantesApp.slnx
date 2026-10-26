@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="EventoParticipantesApp.Console/EventoParticipantesApp.Console.csproj" />
+  <Project Path="EventoParticipantesApp.Negocio/EventoParticipantesApp.Negocio.csproj" />
+  <Project Path="EventoParticipantesApp.Persistencia/EventoParticipantesApp.Persistencia.csproj" />
+</Solution>

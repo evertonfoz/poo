@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GestaoAcademica.Cli/GestaoAcademica.Cli.csproj" />
+  <Project Path="GestaoAcademica.Negocio/GestaoAcademica.Negocio.csproj" />
+  <Project Path="GestaoAcademica.Persistencia/GestaoAcademica.Persistencia.csproj" />
+</Solution>
