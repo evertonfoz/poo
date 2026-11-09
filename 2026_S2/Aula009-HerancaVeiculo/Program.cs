@@ -82,8 +82,18 @@ foreach (var peso in testesDeCarga)
 Console.WriteLine("\n--- 6. Validações na Criação (Tratamento de Exceções) ---");
 try
 {
-    Console.WriteLine("Tentando criar veículo com ano anterior a 1886 (1800)...");
-    _ = new Automovel("OLD-0001", "Carruagem", "Vapor", 1800, 0, 2, 2);
+    Console.WriteLine("Tentando criar veículo com placa fora do padrão Mercosul (ABC-1234)...");
+    _ = new Automovel("ABC-1234", "Ford", "Ka", 2020, 10000, 4, 5);
+}
+catch (ArgumentException ex)
+{
+    Console.WriteLine($"[Exceção capturada com sucesso]: {ex.Message}");
+}
+
+try
+{
+    Console.WriteLine("\nTentando criar veículo com ano anterior a 1886 (1800)...");
+    _ = new Automovel("OLD-1A01", "Carruagem", "Vapor", 1800, 0, 2, 2);
 }
 catch (ArgumentOutOfRangeException ex)
 {
@@ -93,7 +103,7 @@ catch (ArgumentOutOfRangeException ex)
 try
 {
     Console.WriteLine("\nTentando criar caminhão com apenas 1 eixo...");
-    _ = new Caminhao("ERR-0002", "Mini", "Carga", 2021, 1000, 5000, 1);
+    _ = new Caminhao("ERR-1A02", "Mini", "Carga", 2021, 1000, 5000, 1);
 }
 catch (ArgumentOutOfRangeException ex)
 {

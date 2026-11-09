@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+
 namespace Aula009_HerancaVeiculo.Modelo;
 
 public class Veiculo
@@ -23,12 +25,20 @@ public class Veiculo
     }
 
     // Métodos de inicialização e validação (dados cadastrais imutáveis de um veículo)
-    private void DefinirPlaca(string placa)
+    private void DefinirPlaca(string placa) // Regular Expression - RegEx
     {
         if (string.IsNullOrWhiteSpace(placa))
             throw new ArgumentException("A placa do veículo é obrigatória e não pode ser vazia.", nameof(placa));
 
-        Placa = placa.Trim().ToUpperInvariant();
+        string placaNormalizada = placa.Trim().ToUpperInvariant();
+
+        // Padrão Mercosul (Brasil): 3 letras, 1 número, 1 letra e 2 números (ex: ABC1D23 ou ABC-1D23)
+        const string padraoMercosul = @"^[A-Z]{3}-?[0-9][A-Z][0-9]{2}$";
+
+        if (!Regex.IsMatch(placaNormalizada, padraoMercosul))
+            throw new ArgumentException("A placa informada é inválida. O padrão Mercosul (Brasil) requer 3 letras, 1 número, 1 letra e 2 números (ex: ABC1D23).", nameof(placa));
+
+        Placa = placaNormalizada;
     }
 
     private void DefinirMarca(string marca)
