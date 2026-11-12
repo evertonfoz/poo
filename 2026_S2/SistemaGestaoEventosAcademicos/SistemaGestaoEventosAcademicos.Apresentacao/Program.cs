@@ -1,2 +1,2 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+Console.WriteLine("=== Sistema de Gestão de Eventos Acadêmicos ===");
+Console.WriteLine("Ambiente inicializado com sucesso em .NET 10.");

@@ -237,8 +237,8 @@ classDiagram
 ## 7. Rastreabilidade e Mapeamento de Camadas
 
 > [!NOTE]
-> Para a visualização detalhada e bidirecional correlacionando Requisitos Funcionais, Regras de Negócio, Classes POO, Camadas e Casos de Teste, consulte o documento:
-> 👉 [matriz-de-rastreabilidade.md](file:///Users/evertoncoimbradearaujo/Documents/GitHub/poo/2026_S2/SistemaGestaoEventosAcademicos/docs/requisitos/matriz-de-rastreabilidade.md).
+> Para a visualização detalhada e bidirecional correlacionando Requisitos Funcionais, Casos de Uso, Regras de Negócio, Classes POO, Camadas e Casos de Teste, consulte:
+> 👉 [03-matriz-de-rastreabilidade.md](file:///Users/evertoncoimbradearaujo/Documents/GitHub/poo/2026_S2/SistemaGestaoEventosAcademicos/docs/requisitos/03-matriz-de-rastreabilidade.md) e [04-especificacao-de-casos-de-uso.md](file:///Users/evertoncoimbradearaujo/Documents/GitHub/poo/2026_S2/SistemaGestaoEventosAcademicos/docs/requisitos/04-especificacao-de-casos-de-uso.md).
 
 | Camada | Responsabilidade no Projeto | Elementos Representativos |
 | :--- | :--- | :--- |
