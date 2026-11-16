@@ -4,6 +4,8 @@
 // notificacao.Exibir();
 // Console.WriteLine(notificacao.Mensagem);
 
+// Notificacao notificacao = new Notificacao();
+
 NotificacaoSMS notificacaoSMS = new("Olá, esta é uma notificação via SMS!");
 
-notificacaoSMS.Exibir();
+notificacaoSMS.Enviar();
