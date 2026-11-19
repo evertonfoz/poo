@@ -94,17 +94,7 @@ classDiagram
     }
 
     class Evento {
-        -int _id
-        -string _nome
-        -string _descricao
-        -DateTime _dataInicio
-        -DateTime _dataFim
-        -string _local
-        -int _capacidadeMaxima
-        -int _cargaHoraria
-        -StatusEvento _status
-        -List~Atividade~ _atividades
-        +int Id
+        +int EventoId
         +string Nome
         +string Descricao
         +DateTime DataInicio
@@ -114,7 +104,7 @@ classDiagram
         +int CargaHoraria
         +StatusEvento Status
         +IReadOnlyCollection~Atividade~ Atividades
-        +Evento(int id, string nome, string descricao, DateTime dataInicio, DateTime dataFim, string local, int capacidadeMaxima, int cargaHoraria)
+        +Evento(int eventoId, string nome, string descricao, DateTime dataInicio, DateTime dataFim, string local, int capacidadeMaxima, int cargaHoraria)
         +AlterarStatus(StatusEvento novoStatus) void
         +AdicionarAtividade(Atividade atividade) void
         +RemoverAtividade(int atividadeId, int totalInscritosNaAtividade) void
@@ -123,21 +113,11 @@ classDiagram
         +PermiteInscricoes() bool
         +EstaEncerrado() bool
         +GarantirModificavel() void
-        +ObterAtividadePorId(int id) Atividade
+        +ObterAtividadePorId(int atividadeId) Atividade
     }
 
     class Atividade {
-        -int _id
-        -int _eventoId
-        -string _titulo
-        -string _descricao
-        -TipoAtividade _tipo
-        -DateTime _dataHoraInicio
-        -DateTime _dataHoraFim
-        -string _local
-        -int _vagas
-        -string _instrutor
-        +int Id
+        +int AtividadeId
         +int EventoId
         +string Titulo
         +string Descricao
@@ -147,7 +127,7 @@ classDiagram
         +string Local
         +int Vagas
         +string Instrutor
-        +Atividade(int id, int eventoId, string titulo, string descricao, TipoAtividade tipo, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int vagas, string instrutor)
+        +Atividade(int atividadeId, int eventoId, string titulo, string descricao, TipoAtividade tipo, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int vagas, string instrutor)
         +AtualizarDados(string titulo, string descricao, TipoAtividade tipo, DateTime dataHoraInicio, DateTime dataHoraFim, string local, int vagas, string instrutor, int totalInscritosAtuais) void
         +CalcularDuracaoEmHoras() int
         +ConflitaHorarioCom(Atividade outra) bool
@@ -155,17 +135,12 @@ classDiagram
     }
 
     class Participante {
-        -int _id
-        -string _nome
-        -string _cpf
-        -string _email
-        -string _instituicao
-        +int Id
+        +int ParticipanteId
         +string Nome
         +string Cpf
         +string Email
         +string Instituicao
-        +Participante(int id, string nome, string cpf, string email, string instituicao)
+        +Participante(int participanteId, string nome, string cpf, string email, string instituicao)
         +AtualizarDados(string nome, string email, string instituicao) void
         +AtualizarCpf(string novoCpf) void
         -ValidarCpf(string cpf) void
@@ -173,15 +148,7 @@ classDiagram
     }
 
     class Inscricao {
-        -int _id
-        -Participante _participante
-        -Evento _evento
-        -DateTime _dataInscricao
-        -StatusInscricao _status
-        -bool _presencaConfirmada
-        -DateTime? _dataHoraCheckin
-        -List~Atividade~ _atividadesInscritas
-        +int Id
+        +int InscricaoId
         +Participante Participante
         +Evento Evento
         +DateTime DataInscricao
@@ -189,7 +156,7 @@ classDiagram
         +bool PresencaConfirmada
         +DateTime? DataHoraCheckin
         +IReadOnlyCollection~Atividade~ AtividadesInscritas
-        +Inscricao(int id, Participante participante, Evento evento)
+        +Inscricao(int inscricaoId, Participante participante, Evento evento)
         +InscreverAtividade(Atividade atividade, int totalInscritosNaAtividade) void
         +Cancelar() void
         +ConfirmarPresenca() bool

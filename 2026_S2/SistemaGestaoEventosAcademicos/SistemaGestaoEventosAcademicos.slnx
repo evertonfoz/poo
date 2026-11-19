@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="SistemaGestaoEventosAcademicos.Apresentacao/SistemaGestaoEventosAcademicos.Apresentacao.csproj" />
+  <Project Path="SistemaGestaoEventosAcademicos.Apresentacao.Desktop/SistemaGestaoEventosAcademicos.Apresentacao.Desktop.csproj" />
   <Project Path="SistemaGestaoEventosAcademicos.Negocio/SistemaGestaoEventosAcademicos.Negocio.csproj" />
   <Project Path="SistemaGestaoEventosAcademicos.Persistencia/SistemaGestaoEventosAcademicos.Persistencia.csproj" />
 </Solution>

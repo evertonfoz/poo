@@ -1,0 +1,57 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SistemaGestaoEventosAcademicos.Apresentacao.Desktop.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="SistemaGestaoEventosAcademicos.Apresentacao.Desktop.Views.CredenciamentoView"
+             x:DataType="vm:CredenciamentoViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="24" Margin="24" MaxWidth="700" HorizontalAlignment="Left">
+
+            <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="24">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="🎟️ Registro de Presença (Check-in)"
+                               FontSize="18"
+                               FontWeight="SemiBold"/>
+
+                    <TextBlock Text="Localize a inscrição ativa para registrar a presença do participante no evento em andamento. O registro é idempotente e valida o estado atual do evento."
+                               FontSize="13"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                               TextWrapping="Wrap"/>
+
+                    <Grid ColumnDefinitions="*,Auto" Margin="0,8,0,0">
+                        <TextBox PlaceholderText="Digite o CPF ou o número da inscrição..."
+                                 Text="{Binding CpfOuInscricao}"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,12,0"/>
+
+                        <Button Grid.Column="1"
+                                Content="Confirmar Presença"
+                                Classes="accent"
+                                VerticalAlignment="Center"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Card Informativo de Status -->
+            <Border Background="{DynamicResource ControlFillColorDefaultBrush}"
+                    CornerRadius="8"
+                    Padding="16">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Status da Operação:" FontWeight="Medium" FontSize="13"/>
+                    <TextBlock Text="{Binding MensagemStatus}"
+                               Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                               TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

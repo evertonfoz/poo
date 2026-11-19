@@ -1,0 +1,63 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SistemaGestaoEventosAcademicos.Apresentacao.Desktop.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="SistemaGestaoEventosAcademicos.Apresentacao.Desktop.Views.RelatoriosView"
+             x:DataType="vm:RelatoriosViewModel">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="24" Margin="24">
+
+            <TextBlock Text="Central de Relatórios e Certificação"
+                       FontSize="18"
+                       FontWeight="SemiBold"/>
+
+            <TextBlock Text="{Binding Descricao}"
+                       FontSize="13"
+                       Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                       TextWrapping="Wrap"/>
+
+            <Grid ColumnDefinitions="*,*" Margin="0,8,0,0">
+                <!-- Relatório de Ocupação -->
+                <Border Grid.Column="0"
+                        Margin="0,0,12,0"
+                        Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="20">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="📊 Taxa de Ocupação por Evento" FontSize="15" FontWeight="SemiBold"/>
+                        <TextBlock Text="Acompanhe a proporção de vagas preenchidas nos eventos e nas atividades vinculadas."
+                                   FontSize="12"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                   TextWrapping="Wrap"/>
+                        <Button Content="Visualizar Ocupação" HorizontalAlignment="Left" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Emissão de Certificados -->
+                <Border Grid.Column="1"
+                        Margin="12,0,0,0"
+                        Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="1"
+                        CornerRadius="10"
+                        Padding="20">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="🎓 Emissão de Certificados Acadêmicos" FontSize="15" FontWeight="SemiBold"/>
+                        <TextBlock Text="Emita certificados para participantes elegíveis com presença confirmada e eventos concluídos."
+                                   FontSize="12"
+                                   Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                   TextWrapping="Wrap"/>
+                        <Button Content="Acessar Emissão" Classes="accent" HorizontalAlignment="Left" Margin="0,8,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+        </StackPanel>
+    </ScrollViewer>
+
+</UserControl>

@@ -1,0 +1,74 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SistemaGestaoEventosAcademicos.Apresentacao.Desktop.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="SistemaGestaoEventosAcademicos.Apresentacao.Desktop.Views.ParticipantesView"
+             x:DataType="vm:ParticipantesViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="24">
+        <Grid ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,16">
+            <TextBox PlaceholderText="🔍 Buscar participante por CPF ou Nome..."
+                     Text="{Binding TermoBusca}"
+                     MaxWidth="400"
+                     HorizontalAlignment="Left"
+                     VerticalAlignment="Center"/>
+
+            <Button Grid.Column="1"
+                    Content="🔄 Recarregar"
+                    Margin="8,0"
+                    VerticalAlignment="Center"/>
+
+            <Button Grid.Column="2"
+                    Content="➕ Cadastrar Participante"
+                    Classes="accent"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Participantes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Margin="0,0,0,12"
+                                Padding="16">
+                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                <Border Background="{DynamicResource AccentButtonBackground}"
+                                        CornerRadius="20"
+                                        Width="40"
+                                        Height="40"
+                                        Margin="0,0,16,0"
+                                        VerticalAlignment="Center">
+                                    <TextBlock Text="👤" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18"/>
+                                </Border>
+
+                                <StackPanel Grid.Column="1" Spacing="4">
+                                    <TextBlock Text="{Binding Nome}" FontSize="16" FontWeight="SemiBold"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="16">
+                                        <TextBlock Text="{Binding Cpf, StringFormat='CPF: {0}'}" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <TextBlock Text="{Binding Email, StringFormat='✉️ {0}'}" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <TextBlock Text="{Binding Telefone, StringFormat='📞 {0}'}" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <Border Background="{DynamicResource SubtleFillColorSecondaryBrush}"
+                                            CornerRadius="6"
+                                            Padding="10,4">
+                                        <TextBlock Text="{Binding TotalInscricoes, StringFormat='{}{0} inscrições'}" FontSize="12"/>
+                                    </Border>
+                                    <Button Content="Editar"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SistemaGestaoEventosAcademicos.Apresentacao.Desktop.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="SistemaGestaoEventosAcademicos.Apresentacao.Desktop.Views.InscricoesView"
+             x:DataType="vm:InscricoesViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="24">
+        <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,16">
+            <TextBlock Text="Gerenciamento de Inscrições em Eventos e Atividades"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       VerticalAlignment="Center"/>
+
+            <Button Grid.Column="1"
+                    Content="➕ Realizar Inscrição"
+                    Classes="accent"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Inscricoes}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Margin="0,0,0,12"
+                                Padding="16">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="4">
+                                    <TextBlock Text="{Binding Participante}" FontSize="16" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Evento, StringFormat='Evento: {0}'}" FontSize="13" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="16" Margin="0,4,0,0">
+                                        <TextBlock Text="{Binding DataInscricao, StringFormat='Data: {0}'}" FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                                        <TextBlock Text="{Binding QuantidadeAtividades, StringFormat='Atividades vinculadas: {0}'}" FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <Border Background="{DynamicResource SubtleFillColorSecondaryBrush}"
+                                            CornerRadius="6"
+                                            Padding="10,4">
+                                        <TextBlock Text="{Binding Status}" FontSize="12" FontWeight="Medium"/>
+                                    </Border>
+                                    <Button Content="Visualizar"/>
+                                    <Button Content="Cancelar" Foreground="{DynamicResource SystemFillColorCriticalBrush}"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:SistemaGestaoEventosAcademicos.Apresentacao.Desktop.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="600"
+             x:Class="SistemaGestaoEventosAcademicos.Apresentacao.Desktop.Views.EventosView"
+             x:DataType="vm:EventosViewModel">
+
+    <Grid RowDefinitions="Auto,*" Margin="24">
+        <!-- Barra de Ações Superior -->
+        <Grid ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,16">
+            <TextBox PlaceholderText="🔍 Filtrar eventos por nome ou local..."
+                     Text="{Binding Filtro}"
+                     VerticalAlignment="Center"
+                     MaxWidth="400"
+                     HorizontalAlignment="Left"/>
+
+            <Button Grid.Column="1"
+                    Content="🔄 Atualizar"
+                    Margin="8,0"
+                    VerticalAlignment="Center"/>
+
+            <Button Grid.Column="2"
+                    Content="➕ Novo Evento"
+                    Classes="accent"
+                    VerticalAlignment="Center"/>
+        </Grid>
+
+        <!-- Lista de Eventos em Cartões Estilizados -->
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Eventos}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="{DynamicResource CardBackgroundFillColorDefaultBrush}"
+                                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Margin="0,0,0,12"
+                                Padding="16">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <StackPanel Spacing="6">
+                                    <TextBlock Text="{Binding Nome}" FontSize="16" FontWeight="SemiBold"/>
+                                    <StackPanel Orientation="Horizontal" Spacing="16">
+                                        <TextBlock Text="{Binding Periodo, StringFormat='🗓️ {0}'}" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                        <TextBlock Text="{Binding Local, StringFormat='📍 {0}'}" FontSize="12" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Capacidade, StringFormat='👥 {0}'}" FontSize="12" Foreground="{DynamicResource TextFillColorTertiaryBrush}"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                    <Border Background="{DynamicResource SubtleFillColorSecondaryBrush}"
+                                            CornerRadius="6"
+                                            Padding="10,4">
+                                        <TextBlock Text="{Binding Status}" FontSize="12" FontWeight="Medium"/>
+                                    </Border>
+                                    <Button Content="Detalhes" VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+
+</UserControl>

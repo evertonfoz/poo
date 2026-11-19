@@ -5,5 +5,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <EnableSourceControlManagerQueries>false</EnableSourceControlManagerQueries>
     <BuildInParallel>false</BuildInParallel>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 </Project>

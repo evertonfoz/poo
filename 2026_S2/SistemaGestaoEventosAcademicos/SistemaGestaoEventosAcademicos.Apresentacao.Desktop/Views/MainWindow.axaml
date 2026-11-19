@@ -1,0 +1,140 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:SistemaGestaoEventosAcademicos.Apresentacao.Desktop.ViewModels"
+        xmlns:models="using:SistemaGestaoEventosAcademicos.Apresentacao.Desktop.Models"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="700"
+        x:Class="SistemaGestaoEventosAcademicos.Apresentacao.Desktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Sistema de Gestão de Eventos Acadêmicos"
+        Width="1150" Height="740"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <SplitView IsPaneOpen="{Binding IsPaneOpen}"
+                   DisplayMode="CompactInline"
+                   CompactPaneLength="64"
+                   OpenPaneLength="260"
+                   Background="{DynamicResource SolidBackgroundFillColorBaseBrush}">
+
+            <!-- Painel de Menu Lateral (Sidebar) -->
+            <SplitView.Pane>
+                <Border Background="{DynamicResource SolidBackgroundFillColorSecondaryBrush}"
+                        BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                        BorderThickness="0,0,1,0">
+                    <Grid RowDefinitions="Auto,*,Auto">
+
+                        <!-- Topo do Menu com Botão Hambúrguer e Logotipo -->
+                        <Grid ColumnDefinitions="64,*" Height="64">
+                            <Button Command="{Binding TogglePaneCommand}"
+                                    Width="44" Height="44"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="Transparent"
+                                    BorderThickness="0"
+                                    ToolTip.Tip="Recolher / Expandir Menu">
+                                <TextBlock Text="☰" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Button>
+
+                            <StackPanel Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        IsVisible="{Binding IsPaneOpen}"
+                                        Margin="0,0,12,0">
+                                <TextBlock Text="Eventos Acadêmicos"
+                                           FontWeight="Bold"
+                                           FontSize="14"/>
+                                <TextBlock Text="Gestão POO .NET 10"
+                                           FontSize="11"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Lista de Itens do Menu -->
+                        <ListBox Grid.Row="1"
+                                 ItemsSource="{Binding MenuItems}"
+                                 SelectedItem="{Binding SelectedMenuItem}"
+                                 Background="Transparent"
+                                 Margin="4,8,4,8">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate x:DataType="models:MenuItemModel">
+                                    <Grid ColumnDefinitions="48,*" Height="44">
+                                        <TextBlock Text="{Binding Icone}"
+                                                   FontSize="20"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+
+                                        <StackPanel Grid.Column="1"
+                                                    VerticalAlignment="Center"
+                                                    Spacing="1">
+                                            <TextBlock Text="{Binding Titulo}"
+                                                       FontWeight="Medium"
+                                                       FontSize="13"/>
+                                            <TextBlock Text="{Binding Subtitulo}"
+                                                       FontSize="10"
+                                                       Foreground="{DynamicResource TextFillColorTertiaryBrush}"
+                                                       TextTrimming="CharacterEllipsis"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+
+                        <!-- Rodapé do Menu Lateral -->
+                        <Border Grid.Row="2"
+                                BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                                BorderThickness="0,1,0,0"
+                                Padding="12"
+                                IsVisible="{Binding IsPaneOpen}">
+                            <StackPanel Spacing="2">
+                                <TextBlock Text="Ambiente Operacional" FontSize="11" FontWeight="SemiBold"/>
+                                <TextBlock Text="Domínio Puro + Persistência" FontSize="10" Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            </StackPanel>
+                        </Border>
+
+                    </Grid>
+                </Border>
+            </SplitView.Pane>
+
+            <!-- Conteúdo Principal da Janela -->
+            <SplitView.Content>
+                <Grid RowDefinitions="Auto,*">
+
+                    <!-- Cabeçalho Superior da Página -->
+                    <Border Background="{DynamicResource SolidBackgroundFillColorSecondaryBrush}"
+                            BorderBrush="{DynamicResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="0,0,0,1"
+                            Padding="24,14">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <StackPanel Spacing="2">
+                                <TextBlock Text="{Binding PaginaTitulo}"
+                                           FontSize="20"
+                                           FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding PaginaDescricao}"
+                                           FontSize="12"
+                                           Foreground="{DynamicResource TextFillColorSecondaryBrush}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+                                <Border Background="{DynamicResource SubtleFillColorSecondaryBrush}"
+                                        CornerRadius="12"
+                                        Padding="10,4">
+                                    <TextBlock Text="● Conectado ao Domínio" FontSize="11" Foreground="{DynamicResource SystemFillColorSuccessBrush}"/>
+                                </Border>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <!-- Área de Conteúdo da View Ativa -->
+                    <ContentControl Grid.Row="1"
+                                    Content="{Binding CurrentPage}"
+                                    HorizontalContentAlignment="Stretch"
+                                    VerticalContentAlignment="Stretch"/>
+
+                </Grid>
+            </SplitView.Content>
+
+        </SplitView>
+    </Grid>
+
+</Window>
